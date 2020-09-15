@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import store from '../store/index'
 import Auth from '../components/_module/auth.vue'
+import Reset from '../components/_module/reset.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
     path: '/auth',
     name: 'Auth',
     component: Auth
+  },
+  {
+    path: '/reset',
+    name: 'Reset',
+    component: Reset
   }
 ]
 
@@ -36,7 +42,7 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to login page.
     if (!store.getters.isLogin) {
       next({
-        path: '/login'
+        path: '/auth'
       })
     } else {
       next()

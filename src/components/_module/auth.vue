@@ -11,17 +11,39 @@
     <div v-if="isReset === false" class="formHead">
       <div class="formTitel">
         <h4>Hallo, Badagers</h4>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus similique ipsum exercitationem voluptates quos iure quibusdam voluptas consectetur pariatur deleniti.</p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+          similique ipsum exercitationem voluptates quos iure quibusdam voluptas
+          consectetur pariatur deleniti.
+        </p>
       </div>
       <form class="authForm" @submit.prevent="onSubmit">
         <div v-if="isRegist === false" class="login">
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat emali" v-model="formLogin.user_email" />
+          <input
+            v-if="isPt === false"
+            type="email"
+            placeholder="Masukkan alamat emali"
+            v-model="formLogin.user_email"
+          />
+          <input
+            v-if="isPt === true"
+            type="email"
+            placeholder="Masukkan alamat emali"
+            v-model="formLoginPt.company_email"
+          />
           <p>Kata Sandi</p>
           <input
+            v-if="isPt === false"
             type="password"
             placeholder="Masukkan kata sandi"
             v-model="formLogin.user_password"
+          />
+          <input
+            v-if="isPt === true"
+            type="password"
+            placeholder="Masukkan kata sandi"
+            v-model="formLoginPt.company_password"
           />
           <br />
           <p>
@@ -35,9 +57,17 @@
         </div>
         <div v-if="isRegist === true && isPt === false" class="register">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegister.user_name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegister.user_name"
+          />
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat email" v-model="formRegister.user_email" />
+          <input
+            type="email"
+            placeholder="Masukkan alamat email"
+            v-model="formRegister.user_email"
+          />
           <p>No handphone</p>
           <input
             type="number"
@@ -45,7 +75,11 @@
             v-model="formRegister.user_phone"
           />
           <p>Kata sandi</p>
-          <input type="password" placeholder="Masukkan kata sandi" v-model="formRegister.password" />
+          <input
+            type="password"
+            placeholder="Masukkan kata sandi"
+            v-model="formRegister.password"
+          />
           <p>Konfirmasi kata sandi</p>
           <input
             type="password"
@@ -61,7 +95,11 @@
         </div>
         <div v-if="isRegist === true && isPt === true" class="registerPt">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegisterPt.user_name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegisterPt.user_name"
+          />
           <p>Email</p>
           <input
             type="email"
@@ -110,11 +148,18 @@
     <div v-if="isReset === true" class="formHead">
       <div class="formTitel">
         <h4>Reset password</h4>
-        <p>Enter your user account's verified email address and we will send you a password reset link.</p>
+        <p>
+          Enter your user account's verified email address and we will send you
+          a password reset link.
+        </p>
       </div>
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Email</p>
-        <input type="email" placeholder="Masukkan alamat emali" v-model="formReset.user_email" />
+        <input
+          type="email"
+          placeholder="Masukkan alamat emali"
+          v-model="formReset.user_email"
+        />
         <br />
         <button type="submit">Send password reset email</button>
       </form>
@@ -123,16 +168,22 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Auth',
   data() {
     return {
+      msg: '',
       isRegist: false,
-      isPt: false,
+      isPt: true,
       isReset: false,
       formLogin: {
         user_email: '',
         user_password: ''
+      },
+      formLoginPt: {
+        company_email: '',
+        company_password: ''
       },
       formRegister: {
         user_name: '',
@@ -156,7 +207,11 @@ export default {
     }
   },
   props: [],
+  computed: {
+    ...mapGetters(['userData'])
+  },
   methods: {
+    ...mapActions(['login', 'loginPt']),
     onRegist() {
       this.isRegist = true
     },
@@ -171,7 +226,31 @@ export default {
     },
     onSubmit() {
       if (this.isRegist === false) {
-        console.log('Login success')
+        if (this.isPt === false) {
+          alert('login public')
+          this.login(this.formLogin)
+            .then(result => {
+              alert(result.msg)
+              console.log(result.data)
+              this.$router.push('/')
+            })
+            .catch(error => {
+              this.msg = error.data.msg
+              alert(this.msg)
+            })
+        } else {
+          alert('login company')
+          this.loginPt(this.formLoginPt)
+            .then(result => {
+              alert(result.msg)
+              console.log(result.data)
+              this.$router.push('/')
+            })
+            .catch(error => {
+              this.msg = error.data.msg
+              alert(this.msg)
+            })
+        }
       } else if (this.isRegist === true && this.isPt === false) {
         console.log('Register jobseeker')
       } else {
@@ -180,7 +259,7 @@ export default {
     },
     onSubmitReset() {
       console.log('Sending email success')
-      this.$router.push('/')
+      this.$router.push('/reset')
     }
   }
 }
