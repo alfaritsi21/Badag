@@ -46,6 +46,30 @@ export default {
           })
       })
     },
+    register(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.urlApi}register`, payload)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
+    },
+    registerPt(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.urlApi}register/recruiter`, payload)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            reject(error.response)
+          })
+      })
+    },
     interceptorRequest(context) {
       axios.interceptors.request.use(
         function(config) {

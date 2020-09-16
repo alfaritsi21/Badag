@@ -57,22 +57,34 @@
         </div>
         <div v-if="isRegist === true && isPt === false" class="register">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegister.user_name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegister.name"
+          />
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat email" v-model="formRegister.user_email" />
+          <input
+            type="email"
+            placeholder="Masukkan alamat email"
+            v-model="formRegister.email"
+          />
           <p>No handphone</p>
           <input
             type="number"
             placeholder="Masukkan no handphone"
-            v-model="formRegister.user_phone"
+            v-model="formRegister.phone"
           />
           <p>Kata sandi</p>
-          <input type="password" placeholder="Masukkan kata sandi" v-model="formRegister.password" />
+          <input
+            type="password"
+            placeholder="Masukkan kata sandi"
+            v-model="formRegister.password"
+          />
           <p>Konfirmasi kata sandi</p>
           <input
             type="password"
             placeholder="Masukkan konfirmasi kata sandi"
-            v-model="formRegister.password_confirm"
+            v-model="formRegister.re_password"
           />
           <br />
           <button type="submit">Daftar</button>
@@ -83,30 +95,34 @@
         </div>
         <div v-if="isRegist === true && isPt === true" class="registerPt">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegisterPt.user_name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegisterPt.name"
+          />
           <p>Email</p>
           <input
             type="email"
             placeholder="Masukkan alamat email"
-            v-model="formRegisterPt.user_email"
+            v-model="formRegisterPt.email"
           />
           <p>Perusahaan</p>
           <input
             type="text"
             placeholder="Masukkan nama perusahaan"
-            v-model="formRegisterPt.user_pt"
+            v-model="formRegisterPt.company_name"
           />
           <p>Jabatan</p>
           <input
             type="text"
             placeholder="Posisi di perusahaan Anda"
-            v-model="formRegisterPt.user_position"
+            v-model="formRegisterPt.position"
           />
           <p>No handphone</p>
           <input
             type="number"
             placeholder="Masukkan no handphone"
-            v-model="formRegisterPt.user_phone"
+            v-model="formRegisterPt.phone"
           />
           <p>Kata sandi</p>
           <input
@@ -118,7 +134,7 @@
           <input
             type="password"
             placeholder="Masukkan konfirmasi kata sandi"
-            v-model="formRegisterPt.password_confirm"
+            v-model="formRegisterPt.re_password"
           />
           <br />
           <button type="submit">Daftar</button>
@@ -139,7 +155,11 @@
       </div>
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Email</p>
-        <input type="email" placeholder="Masukkan alamat emali" v-model="formReset.user_email" />
+        <input
+          type="email"
+          placeholder="Masukkan alamat emali"
+          v-model="formReset.user_email"
+        />
         <br />
         <button type="submit">Send password reset email</button>
       </form>
@@ -166,20 +186,20 @@ export default {
         company_password: ''
       },
       formRegister: {
-        user_name: '',
-        user_email: '',
-        user_phone: null,
+        name: '',
+        email: '',
+        phone: null,
         password: '',
-        password_confirm: ''
+        re_password: ''
       },
       formRegisterPt: {
-        user_name: '',
-        user_email: '',
-        user_pt: '',
-        user_position: '',
-        user_phone: null,
+        name: '',
+        email: '',
+        company_name: '',
+        position: '',
+        phone: null,
         password: '',
-        password_confirm: ''
+        re_password: ''
       },
       formReset: {
         user_email: ''
@@ -191,7 +211,7 @@ export default {
     ...mapGetters(['userData'])
   },
   methods: {
-    ...mapActions(['login', 'loginPt']),
+    ...mapActions(['login', 'loginPt', 'register', 'registerPt']),
     onRegist() {
       this.isRegist = true
     },
@@ -209,32 +229,52 @@ export default {
         if (this.isPt === false) {
           alert('login public')
           this.login(this.formLogin)
-            .then((result) => {
+            .then(result => {
               alert(result.msg)
               console.log(result.data)
               this.$router.push('/')
             })
-            .catch((error) => {
+            .catch(error => {
               this.msg = error.data.msg
               alert(this.msg)
             })
         } else {
           alert('login company')
           this.loginPt(this.formLoginPt)
-            .then((result) => {
+            .then(result => {
               alert(result.msg)
               console.log(result.data)
               this.$router.push('/')
             })
-            .catch((error) => {
+            .catch(error => {
               this.msg = error.data.msg
               alert(this.msg)
             })
         }
       } else if (this.isRegist === true && this.isPt === false) {
         console.log('Register jobseeker')
+        this.register(this.formRegister)
+          .then(result => {
+            alert(result.data.msg)
+            console.log(result.data)
+            this.$router.push('/')
+          })
+          .catch(error => {
+            this.msg = error.data.msg
+            alert(this.msg)
+          })
       } else {
         console.log('Register perusahaan')
+        this.registerPt(this.formRegisterPt)
+          .then(result => {
+            alert(result.data.msg)
+            console.log(result.data)
+            this.$router.push('/')
+          })
+          .catch(error => {
+            this.msg = error.data.msg
+            alert(this.msg)
+          })
       }
     },
     onSubmitReset() {
