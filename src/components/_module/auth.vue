@@ -57,17 +57,9 @@
         </div>
         <div v-if="isRegist === true && isPt === false" class="register">
           <p>Nama</p>
-          <input
-            type="text"
-            placeholder="Masukkan nama panjang"
-            v-model="formRegister.user_name"
-          />
+          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegister.user_name" />
           <p>Email</p>
-          <input
-            type="email"
-            placeholder="Masukkan alamat email"
-            v-model="formRegister.user_email"
-          />
+          <input type="email" placeholder="Masukkan alamat email" v-model="formRegister.user_email" />
           <p>No handphone</p>
           <input
             type="number"
@@ -75,11 +67,7 @@
             v-model="formRegister.user_phone"
           />
           <p>Kata sandi</p>
-          <input
-            type="password"
-            placeholder="Masukkan kata sandi"
-            v-model="formRegister.password"
-          />
+          <input type="password" placeholder="Masukkan kata sandi" v-model="formRegister.password" />
           <p>Konfirmasi kata sandi</p>
           <input
             type="password"
@@ -95,11 +83,7 @@
         </div>
         <div v-if="isRegist === true && isPt === true" class="registerPt">
           <p>Nama</p>
-          <input
-            type="text"
-            placeholder="Masukkan nama panjang"
-            v-model="formRegisterPt.user_name"
-          />
+          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegisterPt.user_name" />
           <p>Email</p>
           <input
             type="email"
@@ -155,11 +139,7 @@
       </div>
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Email</p>
-        <input
-          type="email"
-          placeholder="Masukkan alamat emali"
-          v-model="formReset.user_email"
-        />
+        <input type="email" placeholder="Masukkan alamat emali" v-model="formReset.user_email" />
         <br />
         <button type="submit">Send password reset email</button>
       </form>
@@ -229,24 +209,24 @@ export default {
         if (this.isPt === false) {
           alert('login public')
           this.login(this.formLogin)
-            .then(result => {
+            .then((result) => {
               alert(result.msg)
               console.log(result.data)
               this.$router.push('/')
             })
-            .catch(error => {
+            .catch((error) => {
               this.msg = error.data.msg
               alert(this.msg)
             })
         } else {
           alert('login company')
           this.loginPt(this.formLoginPt)
-            .then(result => {
+            .then((result) => {
               alert(result.msg)
               console.log(result.data)
               this.$router.push('/')
             })
-            .catch(error => {
+            .catch((error) => {
               this.msg = error.data.msg
               alert(this.msg)
             })
