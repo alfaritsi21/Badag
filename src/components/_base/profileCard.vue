@@ -53,11 +53,11 @@ export default {
   padding: 0;
   position: relative;
   width: 350px;
-  border: 1px solid black;
   border-radius: 5px;
   padding: 20px 30px;
   text-align: left;
   box-sizing: border-box;
+  background-color: white;
 }
 .email {
   width: 100%;
