@@ -1,24 +1,30 @@
 <template>
-  <div>
-    <Main />
-  </div>
+  <b-container fluid class="container">
+    <Cardprofile />
+    <!-- <Protofoliotab /> -->
+  </b-container>
 </template>
 
 <script>
-import Main from '../_base/profileCard'
+import Cardprofile from '../_base/profileCard'
+// import Protofoliotab from '../_base/portofolioTab'
 export default {
   name: 'Portofolio',
   components: {
-    Main
+    Cardprofile
+    // Protofoliotab
   }
 }
 </script>
 
 <style scoped>
-div {
+.container {
+  border: 1px solid black;
   text-align: center;
   margin: 0 auto;
   padding-top: 50px;
   width: 100%;
+  display: flex;
+  box-sizing: border-box;
 }
 </style>
