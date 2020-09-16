@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import store from '../store/index'
 import Auth from '../components/_module/auth.vue'
 import Reset from '../components/_module/reset.vue'
+import Portofolio from '../components/_module/profilePortofolio.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +28,11 @@ const routes = [
     path: '/reset',
     name: 'Reset',
     component: Reset
+  },
+  {
+    path: '/profile-portofolio',
+    name: 'Portofolio',
+    component: Portofolio
   }
 ]
 

@@ -20,7 +20,8 @@ export default {
 
 <style>
 html,
-body {
+body,
+#app {
   margin: 0;
   padding: 0;
 }
