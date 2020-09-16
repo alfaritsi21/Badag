@@ -4,7 +4,8 @@ export default {
   state: {
     urlApi: process.env.VUE_APP_URL,
     user: {},
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    isPt: false
   },
   mutations: {
     setUser(state, payload) {
@@ -14,6 +15,9 @@ export default {
     delUser(state) {
       state.user = {}
       state.token = null
+    },
+    setTrigger(state, payload) {
+      state.isPt = payload
     }
   },
   actions: {
@@ -70,6 +74,13 @@ export default {
           })
       })
     },
+    userRole(context, payload) {
+      if (payload === 'public') {
+        context.commit('setTrigger', false)
+      } else {
+        context.commit('setTrigger', true)
+      }
+    },
     interceptorRequest(context) {
       axios.interceptors.request.use(
         function(config) {
@@ -114,6 +125,9 @@ export default {
     },
     userData(state) {
       return state.user
+    },
+    isPt(state) {
+      return state.isPt
     }
   }
 }

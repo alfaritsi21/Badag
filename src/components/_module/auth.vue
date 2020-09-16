@@ -52,7 +52,7 @@
           <button type="submit">Masuk</button>
           <p>
             Anda belum punya akun?
-            <a href="#daftar" @click="onRegist">Daftar disini</a>
+            <a href="#masuk" @click="onRegist">Daftar disini</a>
           </p>
         </div>
         <div v-if="isRegist === true && isPt === false" class="register">
@@ -90,7 +90,7 @@
           <button type="submit">Daftar</button>
           <p>
             Anda sudah punya akun?
-            <a href="#masuk" @click="onLogin">Masuk disini</a>
+            <a href="#daftar" @click="onLogin">Masuk disini</a>
           </p>
         </div>
         <div v-if="isRegist === true && isPt === true" class="registerPt">
@@ -140,7 +140,7 @@
           <button type="submit">Daftar</button>
           <p>
             Anda sudah punya akun?
-            <a href="#masuk" @click="onLoginPt">Masuk disini</a>
+            <a href="#daftar" @click="onLoginPt">Masuk disini</a>
           </p>
         </div>
       </form>
@@ -175,7 +175,7 @@ export default {
     return {
       msg: '',
       isRegist: false,
-      isPt: true,
+      // isPt: false,
       isReset: false,
       formLogin: {
         user_email: '',
@@ -208,7 +208,7 @@ export default {
   },
   props: [],
   computed: {
-    ...mapGetters(['userData'])
+    ...mapGetters(['userData', 'isPt'])
   },
   methods: {
     ...mapActions(['login', 'loginPt', 'register', 'registerPt']),
