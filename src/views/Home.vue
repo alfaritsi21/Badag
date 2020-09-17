@@ -22,8 +22,8 @@
                   variant="primary"
                   class="btn-sigin float-right"
                 >
-                  <b-dropdown-item>Masuk Sebagai Pekerja</b-dropdown-item>
-                  <b-dropdown-item>Masuk Sebagai Perekrut</b-dropdown-item>
+                  <b-dropdown-item @click="onLogin('public')">Masuk Sebagai Pekerja</b-dropdown-item>
+                  <b-dropdown-item @click="onLogin('recruiter')">Masuk Sebagai Perekrut</b-dropdown-item>
                 </b-dropdown>
                 <b-dropdown
                   id="dropdown-right"
@@ -32,8 +32,8 @@
                   variant="primary"
                   class="btn-sigup float-right"
                 >
-                  <b-dropdown-item>Daftar Sebagai Pekerja</b-dropdown-item>
-                  <b-dropdown-item>Daftar Sebagai Perekrut</b-dropdown-item>
+                  <b-dropdown-item @click="onRegister('public')">Daftar Sebagai Pekerja</b-dropdown-item>
+                  <b-dropdown-item @click="onRegister('recruiter')">Daftar Sebagai Perekrut</b-dropdown-item>
                 </b-dropdown>
               </b-col>
             </b-row>
@@ -42,7 +42,10 @@
             <b-row>
               <b-col cols="12" md="6" sm="6" class="header-left">
                 <h1>Talenta terbaik negri untuk perubahan revolusi 4.0</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor</p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+                  euismod ipsum et dui rhoncus auctor
+                </p>
                 <b-button class="btn-start">Mulai Dari Sekarang</b-button>
               </b-col>
               <b-col cols="12" md="6" sm="6" class="header-right">
@@ -89,7 +92,10 @@
         <b-row>
           <b-col cols="12" md="6" sm="6">
             <h2>Skill Tallent</h2>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas voluptas atque nisi nulla illum!</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
+              voluptas atque nisi nulla illum!
+            </p>
             <b-row>
               <b-col cols="6" md="6" sm="6">
                 <p class="p">
@@ -159,11 +165,29 @@
 <script>
 import ContentOpinion from '../components/_module/contentOpinion'
 import Footer from '../components/_base/footer'
+import { mapActions } from 'vuex'
 export default {
   name: 'Home',
+  data() {
+    return {}
+  },
   components: {
     ContentOpinion,
     Footer
+  },
+  computer: {},
+  methods: {
+    ...mapActions(['userRole', 'userRoleRegist']),
+    onLogin(val) {
+      this.userRole(val)
+      this.$router.push('/auth')
+      alert(`Anda akan login sebagai ${val}`)
+    },
+    onRegister(val) {
+      this.userRoleRegist(val)
+      this.$router.push('/auth')
+      alert(`Anda akan register sebagai ${val}`)
+    }
   }
 }
 </script>

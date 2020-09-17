@@ -4,7 +4,9 @@ export default {
   state: {
     urlApi: process.env.VUE_APP_URL,
     user: {},
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    isPt: false,
+    isRegist: false
   },
   mutations: {
     setUser(state, payload) {
@@ -14,6 +16,10 @@ export default {
     delUser(state) {
       state.user = {}
       state.token = null
+    },
+    setTrigger(state, payload) {
+      state.isPt = payload[1]
+      state.isRegist = payload[0]
     }
   },
   actions: {
@@ -28,7 +34,11 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -42,9 +52,59 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
+    },
+    register(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.urlApi}register`, payload)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
+          })
+      })
+    },
+    registerPt(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.urlApi}register/recruiter`, payload)
+          .then(response => {
+            resolve(response)
+          })
+          .catch(error => {
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
+          })
+      })
+    },
+    userRole(context, payload) {
+      if (payload === 'public') {
+        context.commit('setTrigger', [false, false])
+      } else {
+        context.commit('setTrigger', [false, true])
+      }
+    },
+    userRoleRegist(context, payload) {
+      if (payload === 'public') {
+        context.commit('setTrigger', [true, false])
+      } else {
+        context.commit('setTrigger', [true, true])
+      }
     },
     interceptorRequest(context) {
       axios.interceptors.request.use(
@@ -90,6 +150,12 @@ export default {
     },
     userData(state) {
       return state.user
+    },
+    isPt(state) {
+      return state.isPt
+    },
+    isRegist(state) {
+      return state.isRegist
     }
   }
 }
