@@ -34,7 +34,11 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -48,7 +52,11 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -60,7 +68,11 @@ export default {
             resolve(response)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -72,7 +84,11 @@ export default {
             resolve(response)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },

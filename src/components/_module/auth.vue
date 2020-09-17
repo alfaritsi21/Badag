@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="leftBg">
-      <div class="icon">
+      <div class="icon" @click="onLogo">
         <div class="imgIcon"></div>
         <p>Badag</p>
       </div>
@@ -252,6 +252,9 @@ export default {
     onSubmitReset() {
       console.log('Sending email success')
       this.$router.push('/reset')
+    },
+    onLogo() {
+      this.$router.push('/')
     }
   }
 }
@@ -612,6 +615,9 @@ export default {
   top: 30px;
   left: 20px;
   box-sizing: border-box;
+}
+.icon:hover {
+  cursor: pointer;
 }
 .imgIcon {
   width: 40px;
