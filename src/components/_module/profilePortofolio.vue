@@ -5,10 +5,10 @@
     </nav>
     <b-container fluid class="container">
       <div class="headerBg"></div>
-      <main>
+      <div class="main">
         <Cardprofile />
         <Protofoliotab />
-      </main>
+      </div>
     </b-container>
     <footer>
       <Footer />
@@ -40,11 +40,10 @@ export default {
   width: 100%;
   background-color: #e5e5e5;
 }
-main {
+.main {
   text-align: center;
   margin: 0 auto;
   width: 100%;
-  /* height: 100%; */
   display: flex;
   flex-wrap: nowrap;
   box-sizing: border-box;
