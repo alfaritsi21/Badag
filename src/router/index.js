@@ -7,6 +7,8 @@ import Auth from '../components/_module/auth.vue'
 import Reset from '../components/_module/reset.vue'
 import HomePages from '../views/PageHomes.vue'
 import Portofolio from '../components/_module/profilePortofolio.vue'
+import profileCompany from '../components/_module/profileCompany.vue'
+import PageHire from '../views/PageHire.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,6 +41,16 @@ const routes = [
     path: '/profile-portofolio',
     name: 'Portofolio',
     component: Portofolio
+  },
+  {
+    path: '/profile-company',
+    name: 'profileCompany',
+    component: profileCompany
+  },
+  {
+    path: '/hire',
+    name: 'PageHire',
+    component: PageHire
   }
 ]
 
