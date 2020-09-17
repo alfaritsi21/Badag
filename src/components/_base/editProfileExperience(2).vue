@@ -19,9 +19,15 @@
             <input type="text" placeholder="Januari 2018" />
           </div>
           <br />
-          <label for>Deskripsi singkat</label>
-          <br />
-          <textarea placeholder="Deskripsikan pekerjaan anda"></textarea>
+          <b-form-group id="fieldset-1" label="Deskripsi Singkat" label-for="input-1">
+            <b-form-textarea
+              id="textarea"
+              v-model="text"
+              placeholder="Deskripsikan pekerjaan anda"
+              rows="3"
+              max-rows="6"
+            ></b-form-textarea>
+          </b-form-group>
           <br />
           <hr />
           <button type="submit">Tambah pengalaman kerja</button>
@@ -41,6 +47,9 @@ export default {
 </script>
 
 <style scoped>
+textarea {
+  height: 150px;
+}
 .skills {
   margin-left: 30px;
   padding: 0;
