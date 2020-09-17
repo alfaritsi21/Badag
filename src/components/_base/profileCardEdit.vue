@@ -40,7 +40,7 @@ export default {
   padding: 20px 30px;
   text-align: left;
   box-sizing: border-box;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 .email {
   width: 100%;

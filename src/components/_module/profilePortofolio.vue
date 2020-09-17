@@ -1,5 +1,8 @@
 <template>
   <div>
+    <nav>
+      <Navbar />
+    </nav>
     <b-container fluid class="container">
       <div class="headerBg"></div>
       <main>
@@ -17,12 +20,14 @@
 import Cardprofile from '../_base/profileCard'
 import Protofoliotab from '../_base/portofolioTab'
 import Footer from '../_base/footer'
+import Navbar from '../_base/Navbar'
 export default {
   name: 'Portofolio',
   components: {
     Cardprofile,
     Protofoliotab,
-    Footer
+    Footer,
+    Navbar
   }
 }
 </script>
@@ -33,15 +38,13 @@ export default {
   margin: 0 auto;
   padding-top: 50px;
   width: 100%;
-  /* display: flex;
-  flex-wrap: nowrap;
-  box-sizing: border-box; */
+  background-color: #e5e5e5;
 }
 main {
   text-align: center;
   margin: 0 auto;
-  padding-top: 50px;
   width: 100%;
+  /* height: 100%; */
   display: flex;
   flex-wrap: nowrap;
   box-sizing: border-box;
@@ -62,5 +65,12 @@ footer {
   position: relative;
   bottom: 0;
   left: 0;
+}
+nav {
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 </style>

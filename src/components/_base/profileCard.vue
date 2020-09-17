@@ -1,12 +1,12 @@
 <template>
   <div class="profile">
     <div class="gambar">
-      <img src="../../assets/img/luis.jpg" alt="" class="profileImg" />
+      <img src="../../assets/img/luis.jpg" alt class="profileImg" />
     </div>
     <h4 class="profileName">Louis Tamlinson</h4>
     <p>Web Developer</p>
     <div class="pin">
-      <img src="../../assets/img/pin.png" alt="" />
+      <img src="../../assets/img/pin.png" alt />
       <p>Purwokerto, Jawa Tengah</p>
     </div>
     <p>Freelancer</p>
@@ -18,7 +18,9 @@
     <button type="button">Hire</button>
     <h5>Skill</h5>
     <div class="skill">
-      <div v-for="(item, index) in 10" :key="index"><p>Python</p></div>
+      <div v-for="(item, index) in 10" :key="index">
+        <p>Python</p>
+      </div>
     </div>
     <div class="email">
       <img src="../../assets/img/mail.png" alt="email" />
