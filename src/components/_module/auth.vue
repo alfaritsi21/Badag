@@ -204,7 +204,7 @@ export default {
             .then((result) => {
               alert(result.msg)
               console.log(result.data)
-              this.$router.push('/')
+              this.$router.push('/profile-portofolio')
             })
             .catch((error) => {
               this.msg = error.data.msg
@@ -224,7 +224,7 @@ export default {
             })
         }
       } else if (this.isRegist === true && this.isPt === false) {
-        console.log('Register jobseeker')
+        alert('Register jobseeker')
         this.register(this.formRegister)
           .then((result) => {
             alert(result.data.msg)
@@ -236,7 +236,7 @@ export default {
             alert(this.msg)
           })
       } else {
-        console.log('Register perusahaan')
+        alert('Register perusahaan')
         this.registerPt(this.formRegisterPt)
           .then((result) => {
             alert(result.data.msg)
