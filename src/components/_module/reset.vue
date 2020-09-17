@@ -11,17 +11,11 @@
     <div v-if="isReset === true" class="formHead">
       <div class="formTitel">
         <h4>Reset password</h4>
-        <p>
-          You need to change your password to activate your account.
-        </p>
+        <p>You need to change your password to activate your account.</p>
       </div>
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Kata sandi</p>
-        <input
-          type="password"
-          placeholder="Masukkan kata sandi"
-          v-model="formReset.password"
-        />
+        <input type="password" placeholder="Masukkan kata sandi" v-model="formReset.password" />
         <p>Konfirmasi kata sandi</p>
         <input
           type="password"
@@ -187,4 +181,6 @@ export default {
   width: 100%;
   height: 100%;
 }
+</style>
+<style scoped src="../../assets/css/forgot.css">
 </style>

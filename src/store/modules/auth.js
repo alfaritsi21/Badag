@@ -5,7 +5,8 @@ export default {
     urlApi: process.env.VUE_APP_URL,
     user: {},
     token: localStorage.getItem('token') || null,
-    isPt: false
+    isPt: false,
+    isRegist: false
   },
   mutations: {
     setUser(state, payload) {
@@ -17,7 +18,8 @@ export default {
       state.token = null
     },
     setTrigger(state, payload) {
-      state.isPt = payload
+      state.isPt = payload[1]
+      state.isRegist = payload[0]
     }
   },
   actions: {
@@ -32,7 +34,11 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -46,7 +52,11 @@ export default {
             resolve(response.data)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -58,7 +68,11 @@ export default {
             resolve(response)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
@@ -70,15 +84,26 @@ export default {
             resolve(response)
           })
           .catch(error => {
-            reject(error.response)
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     },
     userRole(context, payload) {
       if (payload === 'public') {
-        context.commit('setTrigger', false)
+        context.commit('setTrigger', [false, false])
       } else {
-        context.commit('setTrigger', true)
+        context.commit('setTrigger', [false, true])
+      }
+    },
+    userRoleRegist(context, payload) {
+      if (payload === 'public') {
+        context.commit('setTrigger', [true, false])
+      } else {
+        context.commit('setTrigger', [true, true])
       }
     },
     interceptorRequest(context) {
@@ -128,6 +153,9 @@ export default {
     },
     isPt(state) {
       return state.isPt
+    },
+    isRegist(state) {
+      return state.isRegist
     }
   }
 }

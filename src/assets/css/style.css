@@ -215,4 +215,64 @@ header {
     color: #fff;
   }
   /* End Section 4 */
+
+  @media (max-width: 768px) {
+    header .main-header h1 {
+        font-size: 32px;
+        width: 300px;
+      }
+      header .main-header p {
+        font-size: 14px;
+        width: 230px;
+      }
+      header .main-header .btn-start {
+        width: 170px;
+        padding: 10px 5px;
+      }
+      header .main-header .rectangle-header {
+        width: 350px;
+        height: 350px;
+      }
+      header .main-header .rectangle-small {
+        position: absolute;
+        top: 290px;
+        right: 300px;
+        width: 80px;
+        height: 80px;
+      }
+      header .main-header .rectangle-yellow {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        left: 50px;
+      }
+      header .main-header .img-header img {
+        width: 350px;
+        height: 350px;
+      }
+
+    /* Section 2 */
+    .why .why-img img {
+        width: 400px;
+        height: 300px;
+        position: absolute;
+        top: 0;
+      }
+      .why .why-img .rectangle-why {
+        width: 400px;
+        height: 300px;
+      }
+      .why .why-img .rectangle-small-why {
+        width: 60px;
+        height: 60px;
+        top: -30px;
+        left: -15px;
+      }
+      .why h2 {
+        font-size: 28px;
+        width: 350px;
+      }
+    /* End Section 2 */
+
+  }
 /* End Landing Page */

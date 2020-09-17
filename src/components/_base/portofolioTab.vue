@@ -188,3 +188,5 @@ export default {
   color: #000000;
 }
 </style>
+<style scoped src="../../assets/css/portoTab.css">
+</style>
