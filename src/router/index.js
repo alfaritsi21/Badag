@@ -9,6 +9,9 @@ import HomePages from '../views/PageHomes.vue'
 import Portofolio from '../components/_module/profilePortofolio.vue'
 import profileCompany from '../components/_module/profileCompany.vue'
 import PageHire from '../views/PageHire.vue'
+import EditProfile from '../components/_module/profileEdit.vue'
+import EditProfilePt from '../components/_module/profilePtEdit.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -51,6 +54,16 @@ const routes = [
     path: '/hire',
     name: 'PageHire',
     component: PageHire
+  },
+  {
+    path: '/profile-edit',
+    name: 'Edit',
+    component: EditProfile
+  },
+  {
+    path: '/profile-pt-edit',
+    name: 'Editpt',
+    component: EditProfilePt
   }
 ]
 

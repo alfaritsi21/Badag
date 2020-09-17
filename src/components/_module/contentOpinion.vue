@@ -1,6 +1,6 @@
 <template>
   <div class="slider-opinion">
-    <h2 class="text-center">Their Opinion About Peworld</h2>
+    <h2 class="text-center">Their Opinion About Badag</h2>
     <carousel :autoplay="true" :nav="false">
       <b-card
         title="Harry Styles"
@@ -13,9 +13,10 @@
         class="mb-2"
         borderra
       >
-        <b-card-text
-          class="text-center"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis dolores enim necessitatibus. Vitae, in.</b-card-text>
+        <b-card-text class="text-center"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis
+          dolores enim necessitatibus. Vitae, in.</b-card-text
+        >
       </b-card>
       <b-card
         title="Harry Styles"
@@ -28,9 +29,10 @@
         class="mb-2"
         borderra
       >
-        <b-card-text
-          class="text-center"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis dolores enim necessitatibus. Vitae, in.</b-card-text>
+        <b-card-text class="text-center"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis
+          dolores enim necessitatibus. Vitae, in.</b-card-text
+        >
       </b-card>
       <b-card
         title="Harry Styles"
@@ -43,9 +45,10 @@
         class="mb-2"
         borderra
       >
-        <b-card-text
-          class="text-center"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis dolores enim necessitatibus. Vitae, in.</b-card-text>
+        <b-card-text class="text-center"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis
+          dolores enim necessitatibus. Vitae, in.</b-card-text
+        >
       </b-card>
       <b-card
         title="Harry Styles"
@@ -58,9 +61,10 @@
         class="mb-2"
         borderra
       >
-        <b-card-text
-          class="text-center"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis dolores enim necessitatibus. Vitae, in.</b-card-text>
+        <b-card-text class="text-center"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis
+          dolores enim necessitatibus. Vitae, in.</b-card-text
+        >
       </b-card>
       <b-card
         title="Harry Styles"
@@ -73,9 +77,10 @@
         class="mb-2"
         borderra
       >
-        <b-card-text
-          class="text-center"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis dolores enim necessitatibus. Vitae, in.</b-card-text>
+        <b-card-text class="text-center"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis
+          dolores enim necessitatibus. Vitae, in.</b-card-text
+        >
       </b-card>
       <b-card
         title="Harry Styles"
@@ -88,9 +93,10 @@
         class="mb-2"
         borderra
       >
-        <b-card-text
-          class="text-center"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis dolores enim necessitatibus. Vitae, in.</b-card-text>
+        <b-card-text class="text-center"
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. At quis
+          dolores enim necessitatibus. Vitae, in.</b-card-text
+        >
       </b-card>
     </carousel>
   </div>
