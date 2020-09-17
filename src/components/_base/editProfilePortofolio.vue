@@ -5,24 +5,31 @@
         <h2 style="color:grey">Portofolio</h2>
         <hr />
         <form action>
-          <p>Nama aplikasi</p>
-          <input type="text" placeholder="Masukan nama aplikasi" />
-          <p>link repository</p>
-          <input type="text" placeholder="Masukan link repository" />
-          <br />
-          <label for="typePorto">Type portofolio</label>
-          <br />
-          <input type="radio" id="appMobile" name="typePorto" />
-          <label for="appMobile">Aplikasi mobile</label>
-          <input type="radio" id="appWeb" name="typePorto" />
-          <label for="appWeb">Aplikasi web</label>
-          <p>Upload gambar</p>
-          <input type="file" placeholder="Upload gambar" />
+          <b-form-group id="fieldset-1" label="Nama aplikasi" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              placeholder="Masukkan nama aplikasi"
+              v-model="name"
+              trim
+              class="mb-2"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group label="Type portofolio">
+            <b-form-radio-group id="radio-group-2" v-model="selected" name="radio-sub-component">
+              <b-form-radio value="first">Aplikasi mobile</b-form-radio>
+              <b-form-radio value="second">Aplikasi web</b-form-radio>
+            </b-form-radio-group>
+          </b-form-group>
+          <div class="mt-3">Upload gambar: {{ file1 ? file1.name : '' }}</div>
+          <b-form-file
+            v-model="file1"
+            :state="Boolean(file1)"
+            placeholder="Choose a file or drop it here..."
+            drop-placeholder="Drop file here..."
+          ></b-form-file>
           <br />
           <hr />
-          <button type="submit">
-            <p>Tambah portofolio</p>
-          </button>
+          <b-button block variant="info">Tambah portofolio</b-button>
         </form>
       </div>
     </div>
@@ -33,7 +40,10 @@
 export default {
   name: 'editProfileExp',
   data() {
-    return {}
+    return {
+      selected: '',
+      file1: null
+    }
   }
 }
 </script>

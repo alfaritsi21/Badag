@@ -5,18 +5,23 @@
         <h2 style="color:grey">Pengalaman kerja</h2>
         <hr />
         <form action>
-          <label for>Posisi</label>
-          <br />
-          <input type="text" placeholder="web developer" />
-          <br />
+          <b-form-group id="fieldset-1" label="Posisi" label-for="input-1">
+            <b-form-input id="input-1" placeholder="web developer" v-model="name" trim class="mb-2"></b-form-input>
+          </b-form-group>
           <div class="pt">
-            <label for>Nama perusahaan</label>
-            <br />
-            <input type="text" placeholder="PT Harus bisa" />
-            <br />
-            <label for>Bulan/tahun</label>
-            <br />
-            <input type="text" placeholder="Januari 2018" />
+            <b-form-group id="fieldset-1" label="Nama perusahaan" label-for="input-1">
+              <b-form-input
+                id="input-1"
+                placeholder="PT Harus bisa"
+                v-model="name"
+                trim
+                class="mb-2"
+              ></b-form-input>
+            </b-form-group>
+            <div>
+              <label for="example-datepicker">Choose a date</label>
+              <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
+            </div>
           </div>
           <br />
           <b-form-group id="fieldset-1" label="Deskripsi Singkat" label-for="input-1">
@@ -30,7 +35,7 @@
           </b-form-group>
           <br />
           <hr />
-          <button type="submit">Tambah pengalaman kerja</button>
+          <b-button block variant="info">Tambah pengalaman kerja</b-button>
         </form>
       </div>
     </div>
