@@ -136,14 +136,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Auth',
   data() {
     return {
       msg: '',
-      isRegist: false,
-      // isPt: false,
+      // isRegist: false,
       isReset: false,
       formLogin: {
         user_email: '',
@@ -176,18 +175,23 @@ export default {
   },
   props: [],
   computed: {
-    ...mapGetters(['userData', 'isPt'])
+    ...mapGetters(['userData', 'isPt', 'isRegist'])
   },
   methods: {
     ...mapActions(['login', 'loginPt', 'register', 'registerPt']),
+    ...mapMutations(['setTrigger']),
     onRegist() {
-      this.isRegist = true
+      if (this.isPt === true) {
+        this.setTrigger([true, true])
+      } else {
+        this.setTrigger([true, false])
+      }
     },
     onLogin() {
-      this.isRegist = false
+      this.setTrigger([false, false])
     },
     onLoginPt() {
-      this.isRegist = false
+      this.setTrigger([false, true])
     },
     onForgot() {
       this.isReset = true
