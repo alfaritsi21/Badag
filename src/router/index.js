@@ -6,6 +6,8 @@ import store from '../store/index'
 import Auth from '../components/_module/auth.vue'
 import Reset from '../components/_module/reset.vue'
 import Portofolio from '../components/_module/profilePortofolio.vue'
+import EditProfile from '../components/_module/profileEdit.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -33,6 +35,11 @@ const routes = [
     path: '/profile-portofolio',
     name: 'Portofolio',
     component: Portofolio
+  },
+  {
+    path: '/profile-edit',
+    name: 'Edit',
+    component: EditProfile
   }
 ]
 
