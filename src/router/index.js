@@ -5,6 +5,7 @@ import About from '../views/About.vue'
 import store from '../store/index'
 import Auth from '../components/_module/auth.vue'
 import Reset from '../components/_module/reset.vue'
+import HomePages from '../views/PageHomes.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/home',
+    name: 'HomePages',
+    component: HomePages
   },
   {
     path: '/about',
