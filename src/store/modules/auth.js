@@ -130,12 +130,12 @@ export default {
             ) {
               localStorage.removeItem('token')
               context.commit('delUser')
-              router.push('/auth')
+              router.push('/')
               alert('Invalid Token, Relogin required')
             } else if (error.response.data.msg === 'jwt expired') {
               localStorage.removeItem('token')
               context.commit('delUser')
-              router.push('/auth')
+              router.push('/')
               alert('Token Expired, Relogin required')
             }
           }

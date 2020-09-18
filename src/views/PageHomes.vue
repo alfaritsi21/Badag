@@ -25,7 +25,7 @@
         </section>
 
         <section class="content-searching">
-          <b-row class="detail-profile">
+          <b-row v-for="(item, index) in 5" :key="index" class="detail-profile">
             <b-col cols="4" md="2" sm="2">
               <img src="../assets/img/img-search.jpg" />
             </b-col>
@@ -40,45 +40,10 @@
               <b-button class="btn-skill">HTML</b-button>
             </b-col>
             <b-col cols="2" md="2" sm="2">
-              <b-button class="btn-lock-profile">Lihat Profile</b-button>
+              <b-button @click="onLihat" class="btn-lock-profile">Lihat Profile</b-button>
             </b-col>
-          </b-row>
-          <hr />
-          <b-row class="detail-profile">
-            <b-col cols="4" md="2" sm="2">
-              <img src="../assets/img/img-search.jpg" />
-            </b-col>
-            <b-col cols="8" md="8" sm="8" class="detail-users">
-              <h4>Username</h4>
-              <p>Detail Jobs</p>
-              <p>
-                <b-icon icon="map"></b-icon>Lorem, ipsum dolor.
-              </p>
-              <b-button class="btn-skill">PHP</b-button>
-              <b-button class="btn-skill">JavaScript</b-button>
-              <b-button class="btn-skill">HTML</b-button>
-            </b-col>
-            <b-col cols="2" md="2" sm="2">
-              <b-button class="btn-lock-profile">Lihat Profile</b-button>
-            </b-col>
-          </b-row>
-          <hr />
-          <b-row class="detail-profile">
-            <b-col cols="4" md="2" sm="2">
-              <img src="../assets/img/img-search.jpg" />
-            </b-col>
-            <b-col cols="8" md="8" sm="8" class="detail-users">
-              <h4>Username</h4>
-              <p>Detail Jobs</p>
-              <p>
-                <b-icon icon="map"></b-icon>Lorem, ipsum dolor.
-              </p>
-              <b-button class="btn-skill">PHP</b-button>
-              <b-button class="btn-skill">JavaScript</b-button>
-              <b-button class="btn-skill">HTML</b-button>
-            </b-col>
-            <b-col cols="2" md="2" sm="2">
-              <b-button class="btn-lock-profile">Lihat Profile</b-button>
+            <b-col cols="12" sm="12" md="12" lg="12">
+              <div :style="[index === 4 ? { borderBottom: 'none' } : null]" class="hr"></div>
             </b-col>
           </b-row>
         </section>
@@ -112,11 +77,20 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  methods: {
+    onLihat() {
+      this.$router.push('/profile-portofolio')
+    }
   }
 }
 </script>
 
 <style scoped>
+.hr {
+  margin-top: 20px;
+  border-bottom: 1px solid #cecece;
+}
 .main-home .top-jobs {
   background: #5e50a1;
   padding: 20px 0;
@@ -163,7 +137,7 @@ export default {
 
 .main-home .content-searching .detail-profile {
   height: 150px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 .main-home .content-searching img {

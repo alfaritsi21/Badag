@@ -216,7 +216,7 @@ export default {
             .then((result) => {
               alert(result.msg)
               console.log(result.data)
-              this.$router.push('/')
+              this.$router.push('/home')
             })
             .catch((error) => {
               this.msg = error.data.msg
