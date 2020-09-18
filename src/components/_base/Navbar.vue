@@ -28,7 +28,7 @@
         </b-col>
         <b-col cols="12" md="6" sm="6">
           <div class="navigation">
-            <div class="img-profile float-right">
+            <div class="img-profile float-right" @click="onProfile">
               <img src="../../assets/img/profile-navbar.png" alt />
             </div>
             <div class="icons float-right">
@@ -43,8 +43,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data() {
+    return {}
+  },
+  computed: {
+    ...mapGetters(['isPt'])
+  },
+  methods: {
+    onProfile() {
+      if (this.isPt === false) {
+        this.$router.push('/profile-portofolio')
+      } else {
+        this.$router.push('/profile-company')
+      }
+    }
+  }
 }
 </script>
 
