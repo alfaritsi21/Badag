@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Auth from './modules/auth'
 import Reset from './modules/reset'
+import ProfileIcon from './modules/profileIcon'
 import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { Auth, Reset },
+  modules: { Auth, Reset, ProfileIcon },
   state: {},
   mutations: {},
   actions: {},

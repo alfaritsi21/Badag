@@ -113,6 +113,16 @@ export default {
         context.commit('setTrigger', [true, true])
       }
     },
+    logout(context, payload) {
+      alert('Anda akan dialihkan ke halaman login')
+      if (context.state.isOn === true) {
+        router.push('/login')
+        localStorage.removeItem('token')
+        context.commit('delUser')
+      } else {
+        return null
+      }
+    },
     interceptorRequest(context) {
       axios.interceptors.request.use(
         function(config) {

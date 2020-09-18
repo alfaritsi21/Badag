@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Navbar',
   components: {},
@@ -51,9 +51,10 @@ export default {
     return {}
   },
   computed: {
-    ...mapGetters(['isPt'])
+    ...mapGetters(['isPt', 'isProfileClick'])
   },
   methods: {
+    ...mapActions(['profileClick']),
     onLogo() {
       this.$router.push('/')
     },
@@ -62,6 +63,11 @@ export default {
         this.$router.push('/profile-portofolio')
       } else {
         this.$router.push('/profile-company')
+      }
+      if (this.isProfileClick === false) {
+        this.profileClick(true)
+      } else {
+        this.profileClick(false)
       }
     },
     onMail() {

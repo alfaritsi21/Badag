@@ -1,5 +1,8 @@
 <template>
   <div>
+    <header>
+      <Profile />
+    </header>
     <nav>
       <Navbar />
     </nav>
@@ -21,13 +24,15 @@ import Cardprofile from '../_base/profileCard'
 import Protofoliotab from '../_base/portofolioTab'
 import Footer from '../_base/footer'
 import Navbar from '../_base/Navbar'
+import Profile from '../_base/modalProfile'
 export default {
   name: 'Portofolio',
   components: {
     Cardprofile,
     Protofoliotab,
     Footer,
-    Navbar
+    Navbar,
+    Profile
   }
 }
 </script>
@@ -71,5 +76,13 @@ nav {
   top: 0;
   left: 0;
   z-index: 1;
+}
+header {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 0px;
+  margin-top: 55px;
+  z-index: 4;
 }
 </style>
