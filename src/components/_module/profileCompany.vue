@@ -18,7 +18,7 @@
           <p
             class="description"
           >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo tenetur temporibus maiores non mollitia ad voluptatibus ex consequuntur voluptas cum?</p>
-          <b-button class="edit-company">Edit Profile</b-button>
+          <b-button class="edit-company" @click="onEdit">Edit Profile</b-button>
           <div class="contact-company">
             <!-- <p>
               <img src="../../assets/img/mail.png" alt />
@@ -59,6 +59,11 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  methods: {
+    onEdit() {
+      this.$router.push('/profile-pt-edit')
+    }
   }
 }
 </script>

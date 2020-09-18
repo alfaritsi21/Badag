@@ -8,7 +8,7 @@
               <b-col cols="6" md="6" sm="6">
                 <img src="../assets/img/img-landing/logo.png" />
               </b-col>
-              <b-col cols="6" md="6" sm="6">
+              <b-col v-if="isLogin === true" cols="6" md="6" sm="6">
                 <!-- <b-button class="btn-sigup float-right">
                   <router-link to="/auth#masuk">Daftar</router-link>
                 </b-button>
@@ -169,7 +169,9 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Home',
   data() {
-    return {}
+    return {
+      isLogin: true
+    }
   },
   components: {
     ContentOpinion,

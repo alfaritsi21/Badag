@@ -76,6 +76,7 @@ export default {
 .navbars .img-profile img {
   border-radius: 100%;
   margin-left: 20px;
+  cursor: pointer;
 }
 
 @media (max-width: 575.98px) {

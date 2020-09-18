@@ -34,12 +34,14 @@ const routes = [
   {
     path: '/auth',
     name: 'Auth',
-    component: Auth
+    component: Auth,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/reset',
     name: 'Reset',
-    component: Reset
+    component: Reset,
+    meta: { requiresVisitor: true }
   },
   {
     path: '/profile-portofolio',
