@@ -15,7 +15,8 @@
       atque, porro non ab nulla, magni minima quis autem odit illum dolorem
       laudantium, optio natus assumenda in veniam illo itaque.
     </p>
-    <button type="button">Hire</button>
+    <button v-if="isPt === true" type="button" @click="onBtn">Hire</button>
+    <button v-if="isPt === false" type="button" @click="onBtn">Edit</button>
     <h5>Skill</h5>
     <div class="skill">
       <div v-for="(item, index) in 10" :key="index">
@@ -42,10 +43,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'ProfileCard',
   data() {
     return {}
+  },
+  computed: {
+    ...mapGetters(['isPt'])
+  },
+  methods: {
+    onBtn() {
+      if (this.isPt === false) {
+        this.$router.push('/profile-edit')
+      } else {
+        this.$router.push('/hire')
+      }
+    }
   }
 }
 </script>
