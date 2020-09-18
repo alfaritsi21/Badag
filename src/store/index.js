@@ -13,7 +13,13 @@ export default new Vuex.Store({
   getters: {},
   plugins: [
     createPersistedState({
-      paths: ['Auth.user', 'Auth.isPt', 'Auth.isRegister', 'Auth.urlApi'],
+      paths: [
+        'Auth.user',
+        'Auth.isPt',
+        'Auth.isRegister',
+        'Auth.isOn',
+        'Auth.urlApi'
+      ],
       storage: window.sessionStorage
     })
   ]

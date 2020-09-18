@@ -22,7 +22,7 @@
       </b-navbar>-->
       <b-row>
         <b-col cols="12" md="6" sm="6">
-          <div class="logo">
+          <div class="logo" @click="onLogo">
             <img src="../../assets/img/img-landing/logo.png" />
           </div>
         </b-col>
@@ -33,7 +33,7 @@
             </div>
             <div class="icons float-right">
               <b-icon icon="bell"></b-icon>
-              <b-icon icon="envelope"></b-icon>
+              <b-icon icon="envelope" @click="onMail" class="mail"></b-icon>
             </div>
           </div>
         </b-col>
@@ -46,6 +46,7 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Navbar',
+  components: {},
   data() {
     return {}
   },
@@ -53,11 +54,21 @@ export default {
     ...mapGetters(['isPt'])
   },
   methods: {
+    onLogo() {
+      this.$router.push('/')
+    },
     onProfile() {
       if (this.isPt === false) {
         this.$router.push('/profile-portofolio')
       } else {
         this.$router.push('/profile-company')
+      }
+    },
+    onMail() {
+      if (this.isPt === false) {
+        this.$router.push('/chat')
+      } else {
+        this.$router.push('/chat')
       }
     }
   }
@@ -66,6 +77,7 @@ export default {
 
 <style scoped>
 .navbars {
+  position: relative;
   background: #fff;
   padding: 20px 0;
 }
@@ -78,7 +90,13 @@ export default {
   margin-left: 20px;
   cursor: pointer;
 }
-
+.modal {
+  width: 200px;
+  height: 200px;
+  background-color: orchid;
+  position: relative;
+  z-index: 5;
+}
 @media (max-width: 575.98px) {
   .navbars .logo img {
     display: none;
