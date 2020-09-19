@@ -14,30 +14,30 @@
             <input type="text" placeholder="Search for any skill" />
             <b-icon icon="search"></b-icon>
             <b-dropdown id="dropdown-1" text="Sort" right class="m-md-2 sorting" variant="outline">
-              <b-dropdown-item>Sorting Berdasarkan Nama</b-dropdown-item>
-              <b-dropdown-item>Sorting Berdasarkan Skill</b-dropdown-item>
-              <b-dropdown-item>Sorting Berdasarkan Lokasi</b-dropdown-item>
-              <b-dropdown-item>Sorting Berdasarkan Freelance</b-dropdown-item>
-              <b-dropdown-item>Sorting Berdasarkan Fulltime</b-dropdown-item>
+              <b-dropdown-item @click="sorting('name')">Sorting Berdasarkan Nama</b-dropdown-item>
+              <b-dropdown-item @click="sorting('skill')">Sorting Berdasarkan Skill</b-dropdown-item>
+              <b-dropdown-item @click="sorting('location')">Sorting Berdasarkan Lokasi</b-dropdown-item>
+              <b-dropdown-item @click="sorting('freelance')">Sorting Berdasarkan Freelance</b-dropdown-item>
+              <b-dropdown-item @click="sorting('fulltime')">Sorting Berdasarkan Fulltime</b-dropdown-item>
             </b-dropdown>
-            <b-button class="btn-search">Search</b-button>
+            <b-button class="btn-search" @click="searching(value)">Search</b-button>
           </div>
         </section>
 
         <section class="content-searching">
-          <b-row v-for="(item, index) in 5" :key="index" class="detail-profile">
+          <b-row v-for="(item, index) in users" :key="index" class="detail-profile">
             <b-col cols="4" md="2" sm="2">
-              <img src="../assets/img/img-search.jpg" />
+              <img :src="urlAPI + item.user_image" />
             </b-col>
             <b-col cols="8" md="8" sm="8" class="detail-users">
-              <h4>Username</h4>
-              <p>Detail Jobs</p>
+              <h4>{{item.user_name}}</h4>
+              <p>{{item.user_job}}</p>
               <p>
-                <b-icon icon="map"></b-icon>Lorem, ipsum dolor.
+                <b-icon icon="map"></b-icon>
+                {{item.user_location}}
               </p>
-              <b-button class="btn-skill">PHP</b-button>
-              <b-button class="btn-skill">JavaScript</b-button>
-              <b-button class="btn-skill">HTML</b-button>
+              <b-button class="btn-skill">{{ item.skills.indexOf(0)}}</b-button>
+              <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
               <b-button @click="onLihat" class="btn-lock-profile">Lihat Profile</b-button>
@@ -51,8 +51,9 @@
         <section class="paginations">
           <b-pagination
             v-model="currentPage"
-            :total-rows="rows"
-            :per-page="perPage"
+            :total-rows="totalPage"
+            :per-page="limit"
+            @change="handlePageChange"
             first-text="First"
             prev-text="Prev"
             next-text="Next"
@@ -72,16 +73,58 @@
 <script>
 import Navbar from '../components/_base/Navbar.vue'
 import Footer from '../components/_base/footer'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'PageHomes',
+  data() {
+    return {
+      urlAPI: process.env.VUE_APP_URL,
+      currentPage: 1
+    }
+  },
   components: {
     Navbar,
     Footer
   },
+  created() {
+    this.getDataUsers()
+  },
   methods: {
+    ...mapActions(['getDataUsers']),
+    ...mapMutations(['changePage', 'sortUsers']),
+    handlePageChange(numberPage) {
+      this.$router.push(`?page=${numberPage}`)
+      this.changePage(numberPage)
+      this.getDataUsers()
+    },
+    sorting(value) {
+      if (value === 'name') {
+        this.sortText = 'Sorting Berdasarkan Nama'
+      } else if (value === 'skill') {
+        this.sortText = 'Sorting Berdasarkan Skill'
+      } else if (value === 'location') {
+        this.sortText = 'Sorting Berdasarkan Lokasi'
+      } else if (value === 'freelance') {
+        this.sortText = 'Sorting Berdasarkan Freelance'
+      } else if (value === 'fulltime') {
+        this.sortText = 'Sorting Berdasarkan Fulltime'
+      }
+      this.sortUsers(value)
+      this.getDataUsers()
+      this.$router.push(`?sort=${value}`)
+    },
     onLihat() {
       this.$router.push('/profile-portofolio')
     }
+  },
+  computed: {
+    ...mapGetters({
+      users: 'getDataUser',
+      totalPage: 'getTotalPage',
+      limit: 'getLimit',
+      sort: 'getSortUsers',
+      search: 'getSearch'
+    })
   }
 }
 </script>
