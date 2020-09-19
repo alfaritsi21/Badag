@@ -27,11 +27,22 @@ export default {
         .get(
           `${process.env.VUE_APP_URL}home?page=${context.state.page}&limit=${context.state.limit}&sort=${context.state.sort}&search=${context.state.search}`
         )
-        .then((response) => {
+        .then(response => {
           console.log(response.data)
           context.commit('setDataUsers', response.data)
         })
-        .catch((error) => {
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    getUser(context, payload) {
+      axios
+        .get(`${process.env.VUE_APP_URL}users/1`)
+        .then(response => {
+          console.log(response.data)
+          // context.commit('setDataUsers', response.data)
+        })
+        .catch(error => {
           console.log(error)
         })
     }

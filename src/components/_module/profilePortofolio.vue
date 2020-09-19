@@ -79,7 +79,7 @@ nav {
 }
 header {
   width: 100%;
-  height: 200px;
+  height: 10px;
   position: absolute;
   top: 0px;
   margin-top: 55px;

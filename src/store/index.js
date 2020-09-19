@@ -8,8 +8,7 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { Auth, Reset, Users },
-  modules: { Auth, Reset, ProfileIcon },
+  modules: { Auth, Reset, Users, ProfileIcon },
   state: {},
   mutations: {},
   actions: {},

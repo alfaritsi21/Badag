@@ -15,12 +15,30 @@
       </div>
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Kata sandi</p>
-        <input type="password" placeholder="Masukkan kata sandi" v-model="formReset.password" />
+        <input
+          v-if="isPt === false"
+          type="password"
+          placeholder="Masukkan kata sandi pribadi"
+          v-model="formReset.user_password"
+        />
+        <input
+          v-else
+          type="password"
+          placeholder="Masukkan kata sandi company"
+          v-model="formResetPt.company_password"
+        />
         <p>Konfirmasi kata sandi</p>
         <input
+          v-if="isPt === false"
           type="password"
-          placeholder="Masukkan konfirmasi kata sandi"
-          v-model="formReset.password_comfirm"
+          placeholder="Masukkan konfirmasi kata sandi pribadi"
+          v-model="formReset.re_password"
+        />
+        <input
+          v-else
+          type="password"
+          placeholder="Masukkan konfirmasi kata sandi company"
+          v-model="formResetPt.re_password"
         />
         <br />
         <button type="submit">Reset password</button>
@@ -30,20 +48,37 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Reset',
   data() {
     return {
       isReset: true,
       formReset: {
-        user_email: ''
+        user_password: '',
+        re_password: ''
+      },
+      formResetPt: {
+        company_password: '',
+        re_password: ''
       }
     }
   },
+  computed: {
+    ...mapGetters(['isPt'])
+  },
   methods: {
+    ...mapActions(['forgot', 'forgotPt']),
     onSubmitReset() {
-      console.log('Reset success')
-      this.$router.push('/')
+      if (this.isPt === false) {
+        alert('reset sebagai worker')
+        this.forgot(this.formReset)
+        // this.$router.push('/')
+      } else {
+        alert('reset sebagai company')
+        this.forgotPt(this.formResetPt)
+        // this.$router.push('/')
+      }
     }
   }
 }

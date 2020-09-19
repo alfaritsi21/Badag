@@ -69,6 +69,7 @@ export default {
     },
     register(context, payload) {
       return new Promise((resolve, reject) => {
+        console.log(payload)
         axios
           .post(`${context.state.urlApi}register`, payload)
           .then(response => {
@@ -116,7 +117,7 @@ export default {
     logout(context, payload) {
       alert('Anda akan dialihkan ke halaman login')
       if (context.state.isOn === true) {
-        router.push('/login')
+        router.push('/auth')
         localStorage.removeItem('token')
         context.commit('delUser')
       } else {
