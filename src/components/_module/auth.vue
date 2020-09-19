@@ -268,11 +268,27 @@ export default {
       if (this.isPt === false) {
         alert('reset sebagai worker')
         this.checkForgotEmail(this.user_email)
+        // .then((result) => {
+        //   alert(result.msg)
+        //   console.log(result.data)
         this.$router.push('/reset')
+        // })
+        // .catch((error) => {
+        //   this.msg = error.data.msg
+        //   alert(this.msg)
+        // })
       } else {
         alert('reset sebagai company')
         this.checkForgotEmail(this.company_email)
+        // .then((result) => {
+        //   alert(result.msg)
+        //   console.log(result.data)
         this.$router.push('/reset')
+        // })
+        // .catch((error) => {
+        //   this.msg = error.data.msg
+        //   alert(this.msg)
+        // })
       }
     },
     onLogo() {

@@ -73,11 +73,23 @@ export default {
       if (this.isPt === false) {
         alert('reset sebagai worker')
         this.forgot(this.formReset)
-        // this.$router.push('/')
+          .then((result) => {
+            alert(result.msg)
+            this.$router.push('/')
+          })
+          .catch((error) => {
+            alert(error)
+          })
       } else {
         alert('reset sebagai company')
         this.forgotPt(this.formResetPt)
-        // this.$router.push('/')
+          .then((result) => {
+            alert(result.msg)
+            this.$router.push('/')
+          })
+          .catch((error) => {
+            alert(error)
+          })
       }
     }
   }

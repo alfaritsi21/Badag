@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ProfilePt />
     <Navbar />
     <main>
       <b-container>
@@ -54,11 +55,13 @@
 <script>
 import Navbar from '../_base/Navbar'
 import Footer from '../_base/footer'
+import ProfilePt from '../_base/modalProfilePt'
 export default {
   name: 'profileCompany',
   components: {
     Navbar,
-    Footer
+    Footer,
+    ProfilePt
   },
   methods: {
     onEdit() {

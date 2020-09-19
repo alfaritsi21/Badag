@@ -55,6 +55,7 @@ export default {
           .post(`${context.state.urlApi}users/login-company`, payload)
           .then(response => {
             context.commit('setUser', response.data.data)
+            context.commit('setLogin', true)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
           })
@@ -116,6 +117,7 @@ export default {
     },
     logout(context, payload) {
       alert('Anda akan dialihkan ke halaman login')
+      console.log(context.state.isOn)
       if (context.state.isOn === true) {
         router.push('/auth')
         localStorage.removeItem('token')

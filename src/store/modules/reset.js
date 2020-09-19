@@ -19,7 +19,6 @@ export default {
       context.commit('setEmailForgot', payload)
     },
     forgot(context, payload) {
-      console.log(context.state.emailReset)
       return new Promise((resolve, reject) => {
         axios
           .patch(
@@ -29,21 +28,18 @@ export default {
           .then(response => {
             context.commit('setCheckReset', response.data.data)
             resolve(response.data)
-            console.log(response.data)
           })
           .catch(error => {
             if (error.response === undefined) {
               alert('Tidak dapat terhubung ke server')
             } else {
-              reject(error.response)
+              reject(error.response.data.msg)
               alert(error.response.data.msg)
             }
           })
       })
     },
     forgotPt(context, payload) {
-      console.log(context.state.emailReset)
-      console.log(payload)
       return new Promise((resolve, reject) => {
         axios
           .patch(
@@ -53,13 +49,12 @@ export default {
           .then(response => {
             context.commit('setCheckReset', response.data.data)
             resolve(response.data)
-            console.log(response.data)
           })
           .catch(error => {
             if (error.response === undefined) {
               alert('Tidak dapat terhubung ke server')
             } else {
-              reject(error.response)
+              reject(error.response.data.msg)
               alert(error.response.data.msg)
             }
           })
