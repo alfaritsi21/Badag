@@ -11,6 +11,7 @@ import profileCompany from '../components/_module/profileCompany.vue'
 import PageHire from '../views/PageHire.vue'
 import EditProfile from '../components/_module/profileEdit.vue'
 import EditProfilePt from '../components/_module/profilePtEdit.vue'
+import ChatRoom from '../components/_module/chatRoomPage.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +73,11 @@ const routes = [
     name: 'Editpt',
     component: EditProfilePt,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/chat',
+    name: 'ChatRoom',
+    component: ChatRoom
   }
 ]
 

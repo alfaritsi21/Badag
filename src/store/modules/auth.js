@@ -6,7 +6,8 @@ export default {
     user: {},
     token: localStorage.getItem('token') || null,
     isPt: false,
-    isRegist: false
+    isRegist: false,
+    isOn: false
   },
   mutations: {
     setUser(state, payload) {
@@ -16,10 +17,15 @@ export default {
     delUser(state) {
       state.user = {}
       state.token = null
+      state.isPt = false
+      state.isOn = false
     },
     setTrigger(state, payload) {
       state.isPt = payload[1]
       state.isRegist = payload[0]
+    },
+    setLogin(state, payload) {
+      state.isOn = payload
     }
   },
   actions: {
@@ -30,6 +36,7 @@ export default {
           .post(`${context.state.urlApi}users/login-user`, payload)
           .then(response => {
             context.commit('setUser', response.data.data)
+            context.commit('setLogin', true)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
           })
@@ -106,6 +113,16 @@ export default {
         context.commit('setTrigger', [true, true])
       }
     },
+    logout(context, payload) {
+      alert('Anda akan dialihkan ke halaman login')
+      if (context.state.isOn === true) {
+        router.push('/login')
+        localStorage.removeItem('token')
+        context.commit('delUser')
+      } else {
+        return null
+      }
+    },
     interceptorRequest(context) {
       axios.interceptors.request.use(
         function(config) {
@@ -156,6 +173,9 @@ export default {
     },
     isRegist(state) {
       return state.isRegist
+    },
+    isLogin2(state) {
+      return state.isOn
     }
   }
 }

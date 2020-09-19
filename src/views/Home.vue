@@ -8,7 +8,7 @@
               <b-col cols="6" md="6" sm="6">
                 <img src="../assets/img/img-landing/logo.png" />
               </b-col>
-              <b-col v-if="isLogin === true" cols="6" md="6" sm="6">
+              <b-col v-if="isLogin2 === false" cols="6" md="6" sm="6">
                 <!-- <b-button class="btn-sigup float-right">
                   <router-link to="/auth#masuk">Daftar</router-link>
                 </b-button>
@@ -46,7 +46,7 @@
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                   euismod ipsum et dui rhoncus auctor
                 </p>
-                <b-button class="btn-start">Mulai Dari Sekarang</b-button>
+                <b-button class="btn-start" @click="onMulai">Mulai Dari Sekarang</b-button>
               </b-col>
               <b-col cols="12" md="6" sm="6" class="header-right">
                 <div class="img-header">
@@ -149,7 +149,7 @@
               <h1>Lorem ipsum dolor sit amet.</h1>
             </b-col>
             <b-col cols="6" md="6" sm="6">
-              <b-button class="btn-sign-now float-right">Mulai Dari Sekarang</b-button>
+              <b-button class="btn-sign-now float-right" @click="onMulai">Mulai Dari Sekarang</b-button>
             </b-col>
           </b-row>
         </div>
@@ -165,21 +165,29 @@
 <script>
 import ContentOpinion from '../components/_module/contentOpinion'
 import Footer from '../components/_base/footer'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Home',
   data() {
-    return {
-      isLogin: true
-    }
+    return {}
   },
   components: {
     ContentOpinion,
     Footer
   },
   computer: {},
+  computed: {
+    ...mapGetters(['isPt', 'isLogin2'])
+  },
   methods: {
     ...mapActions(['userRole', 'userRoleRegist']),
+    onMulai() {
+      if (this.isPt === false) {
+        this.$router.push('/profile-portofolio')
+      } else {
+        this.$router.push('/home')
+      }
+    },
     onLogin(val) {
       this.userRole(val)
       this.$router.push('/auth')
