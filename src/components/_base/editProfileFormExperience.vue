@@ -5,10 +5,9 @@
         <h2 style="color:grey">Skill</h2>
         <hr />
         <b-input-group>
-          <b-form-input></b-form-input>
-
+          <b-form-input placeholder="type" v-model="skill"></b-form-input>
           <template v-slot:append>
-            <b-button class="skill-button">Button</b-button>
+            <b-button class="skill-button" @click="addSkill">Tambah</b-button>
           </template>
         </b-input-group>
       </div>
@@ -18,11 +17,27 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'editProfileForm',
   data() {
     return {
-      btnClick: false
+      btnClick: false,
+      skill: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['userData'])
+  },
+  methods: {
+    ...mapActions(['addSkills']),
+    addSkill() {
+      // console.log(this.userData.user_id)
+      const data = {
+        user_id: this.userData.user_id,
+        skill: this.skill
+      }
+      this.addSkills(data)
     }
   }
 }

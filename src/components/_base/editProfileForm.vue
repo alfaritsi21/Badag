@@ -4,61 +4,85 @@
       <div class="content">
         <h2 style="color:grey">Data Diri</h2>
         <hr />
-        <b-form-group id="fieldset-1" label="Nama Lengkap" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            placeholder="Masukkan Nama Lengkap"
-            v-model="name"
-            trim
-            class="mb-2"
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group id="fieldset-1" label="Job Desk" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            placeholder="Masukkan Job Desk"
-            v-model="name"
-            trim
-            class="mb-2"
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group id="fieldset-1" label="Domisili" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            placeholder="Masukkan Domisili"
-            v-model="name"
-            trim
-            class="mb-2"
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group id="fieldset-1" label="Tempat Kerja" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            placeholder="Masukkan Tempat Kerja"
-            v-model="name"
-            trim
-            class="mb-2"
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group id="fieldset-1" label="Deskripsi Singkat" label-for="input-1">
-          <b-form-textarea
-            id="textarea"
-            v-model="text"
-            placeholder="Tuliskan Deskripsi Singkat"
-            rows="3"
-            max-rows="6"
-          ></b-form-textarea>
-        </b-form-group>
+        <form action>
+          <b-form-group id="fieldset-1" label="Nama Lengkap" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              placeholder="Masukkan Nama Lengkap"
+              v-model="form.user_name"
+              trim
+              class="mb-2"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="fieldset-1" label="Job Desk" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              placeholder="Masukkan Job Desk"
+              v-model="form.user_job"
+              trim
+              class="mb-2"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="fieldset-1" label="Domisili" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              placeholder="Masukkan Domisili"
+              v-model="form.user_location"
+              trim
+              class="mb-2"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="fieldset-1" label="Tempat Kerja" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              placeholder="Masukkan Tempat Kerja"
+              v-model="form.user_work_location"
+              trim
+              class="mb-2"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="fieldset-1" label="Deskripsi Singkat" label-for="input-1">
+            <b-form-textarea
+              id="textarea"
+              v-model="form.user_description"
+              placeholder="Tuliskan Deskripsi Singkat"
+              rows="3"
+              max-rows="6"
+              v-on:keyup.enter="submit"
+            ></b-form-textarea>
+          </b-form-group>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'editProfileForm',
   data() {
-    return {}
+    return {
+      form: {
+        user_name: '',
+        user_job: '',
+        user_time_job: 1,
+        user_location: '',
+        user_work_location: '',
+        user_description: ''
+      }
+    }
+  },
+  computed: {
+    ...mapGetters([])
+  },
+  methods: {
+    ...mapActions({
+      addBioForm: 'addBioForm'
+    }),
+    submit() {
+      this.addBioForm(this.form)
+    }
   }
 }
 </script>
