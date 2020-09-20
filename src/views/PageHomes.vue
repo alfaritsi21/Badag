@@ -45,7 +45,7 @@
               <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
-              <b-button @click="onLihat" class="btn-lock-profile">Lihat Profile</b-button>
+              <b-button @click="onLihat(item)" class="btn-lock-profile">Lihat Profile</b-button>
             </b-col>
             <b-col cols="12" sm="12" md="12" lg="12">
               <div :style="[index === 4 ? { borderBottom: 'none' } : null]" class="hr"></div>
@@ -98,7 +98,7 @@ export default {
     this.getDataUsers()
   },
   methods: {
-    ...mapActions(['getDataUsers', 'searcinghUsers']),
+    ...mapActions(['getDataUsers', 'searcinghUsers', 'selectedDataWorker']),
     ...mapMutations(['changePage', 'sortUsers', 'searchUsers']),
     handlePageChange(numberPage) {
       this.$router.push(`?page=${numberPage}`)
@@ -127,7 +127,8 @@ export default {
       this.$router.push(`?search=${form}`)
       this.changePage(1)
     },
-    onLihat() {
+    onLihat(item) {
+      this.selectedDataWorker(item)
       this.$router.push('/profile-portofolio')
     }
   },

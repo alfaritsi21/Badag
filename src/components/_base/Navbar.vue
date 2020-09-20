@@ -33,7 +33,7 @@
           <div class="navigation">
             <div
               class="img-profile float-right"
-              v-bind:style="{ backgroundImage: 'url(http://127.0.0.1:3001/2020-09-20T05-52-25.684Z-starky-sapling.png)' }"
+              v-bind:style="{backgroundImage: `url(${urlApi}${userData.company_image})`}"
               @click="onProfile"
             ></div>
             <div class="icons float-right">

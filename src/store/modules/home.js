@@ -2,12 +2,15 @@ import axios from 'axios'
 
 export default {
   state: {
+    urlApi: process.env.VUE_APP_URL,
     search: '',
     totalPage: '',
     page: 1,
     limit: 3,
     sort: '',
-    dataUsers: []
+    dataUsers: [],
+    selectedWorker: {},
+    workerProfile: {}
   },
   mutations: {
     setDataUsers(state, payload) {
@@ -22,6 +25,12 @@ export default {
     },
     searchUsers(state, payload) {
       state.search = payload
+    },
+    setSelectedWorker(state, payload) {
+      state.selectedWorker = payload
+    },
+    setSelectedWorkerProfile(state, payload) {
+      state.workerProfile = payload
     }
   },
   actions: {
@@ -35,20 +44,20 @@ export default {
           context.commit('setDataUsers', response.data)
         })
         .catch(error => {
-          console.log(error)
+          console.log(error.data.msg)
         })
     },
-    getUser(context, payload) {
-      axios
-        .get(`${process.env.VUE_APP_URL}users/1`)
-        .then(response => {
-          console.log(response.data)
-          // context.commit('setDataUsers', response.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
+    // getUser(context, payload) {
+    //   axios
+    //     .get(`${process.env.VUE_APP_URL}users/1`)
+    //     .then(response => {
+    //       console.log(response.data)
+    //       // context.commit('setDataUsers', response.data)
+    //     })
+    //     .catch(error => {
+    //       console.log(error.data.msg)
+    //     })
+    // },
     searcinghUsers(context, payload) {
       return new Promise((resolve, reject) => {
         axios
@@ -59,7 +68,28 @@ export default {
             context.commit('searchUsers', response.data)
           })
           .catch(error => {
-            console.log(error)
+            console.log(error.data.msg)
+          })
+      })
+    },
+    selectedDataWorker(context, payload) {
+      // console.log(payload)
+      context.commit('setSelectedWorker', payload)
+    },
+    selectedWorkerProfile(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${context.state.urlApi}users/${payload.user_id}`)
+          .then(response => {
+            resolve(response.data)
+            context.commit('setSelectedWorkerProfile', response.data.data)
+          })
+          .catch(error => {
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
           })
       })
     }
@@ -82,6 +112,12 @@ export default {
     },
     getTotalPage(state) {
       return state.totalPage
+    },
+    getSelectedWorker(state) {
+      return state.selectedWorker
+    },
+    getWorkerProfile(state) {
+      return state.workerProfile
     }
   }
 }
