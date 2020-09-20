@@ -1,30 +1,60 @@
 <template>
-  <div class="profile">
-    <div class="title">
-      <h3 @click="onPorto">Portofolio</h3>
-      <h3 @click="onExp">Pengalaman kerja</h3>
-    </div>
-    <div class="content">
-      <div v-if="isPorto === true" class="portofolio">
-        <div class="loopBorder" v-for="(item, index) in getFullUserData.portofolio" :key="index">
-          <div
-            class="imgPorto"
-            v-bind:style="{ backgroundImage: `url(${urlApi}${item.image_app})` }"
-          ></div>
-          <p>{{item.app_name}}</p>
+  <div class="wall">
+    <div v-if="isPt === false" class="profile">
+      <div class="title">
+        <h3 @click="onPorto">Portofolio</h3>
+        <h3 @click="onExp">Pengalaman kerja</h3>
+      </div>
+      <div class="content">
+        <div v-if="isPorto === true" class="portofolio">
+          <div class="loopBorder" v-for="(item, index) in getFullUserData.portofolio" :key="index">
+            <div
+              class="imgPorto"
+              v-bind:style="{ backgroundImage: `url(${urlApi}${item.image_app})` }"
+            ></div>
+            <p>{{item.app_name}}</p>
+          </div>
+        </div>
+        <div v-if="isExp === true" class="experience">
+          <div class="expLoop" v-for="(item, index) in getFullUserData.experience" :key="index">
+            <div
+              class="imgJob"
+              v-bind:style=" item.logo === undefined ? { backgroundImage: 'none', backgroundColor: 'red'} : { backgroundImage: `url(${urlApi}${item.logo})` }"
+            ></div>
+            <div class="jobDesc">
+              <p>{{item.position}}</p>
+              <p>{{item.company}}</p>
+              <p>{{item.date}}- {{item.date}} 1 month</p>
+              <p>{{item.description}}</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div v-if="isExp === true" class="experience">
-        <div class="expLoop" v-for="(item, index) in getFullUserData.experience" :key="index">
-          <div
-            class="imgJob"
-            v-bind:style=" item.logo === undefined ? { backgroundImage: 'none', backgroundColor: 'red'} : { backgroundImage: `url(${urlApi}${item.logo})` }"
-          ></div>
-          <div class="jobDesc">
-            <p>{{item.position}}</p>
-            <p>{{item.company}}</p>
-            <p>{{item.date}}- {{item.date}} 1 month</p>
-            <p>{{item.description}}</p>
+    </div>
+    <div v-if="isPt === true" class="profile">
+      <div class="title">
+        <h3 @click="onPorto">Portofolio</h3>
+        <h3 @click="onExp">Pengalaman kerja</h3>
+      </div>
+      <div class="content">
+        <div v-if="isPorto === true" class="portofolio">
+          <div class="loopBorder" v-for="(item, index) in 3" :key="index">
+            <div
+              class="imgPorto"
+              v-bind:style="{ backgroundImage: 'url(http://127.0.0.1:3001/2020-09-20T05-52-25.684Z-starky-sapling.png)' }"
+            ></div>
+            <p>Kontainer santai</p>
+          </div>
+        </div>
+        <div v-if="isExp === true" class="experience">
+          <div class="expLoop" v-for="(item, index) in 3" :key="index">
+            <div class="imgJob"></div>
+            <div class="jobDesc">
+              <p>Frontend</p>
+              <p>Tokopedia</p>
+              <p>20 januari 2017- 20 february 2018 | 1 tahun</p>
+              <p>jadi kurir</p>
+            </div>
           </div>
         </div>
       </div>
@@ -47,7 +77,7 @@ export default {
     this.getDataUsers()
   },
   computed: {
-    ...mapGetters(['userData', 'getFullUserData'])
+    ...mapGetters(['userData', 'getFullUserData', 'isPt'])
   },
   methods: {
     ...mapActions(['userLoginData']),
@@ -74,6 +104,9 @@ export default {
 </script>
 
 <style scoped>
+.wall {
+  border: 1px solid rgba(0, 0, 0, 0);
+}
 .expLoop {
   margin: 0;
   height: 175px;
@@ -84,6 +117,7 @@ export default {
   margin-bottom: 30px;
   display: flex;
   flex-wrap: wrap;
+  background-color: rgb(255, 255, 255);
 }
 .imgJob {
   width: 63px;
@@ -125,6 +159,7 @@ export default {
   padding: 0;
   position: relative;
   width: 730px;
+  height: 100%;
   border-radius: 5px;
   padding: 20px 30px;
   text-align: left;

@@ -1,6 +1,6 @@
 <template>
   <div class="navbars">
-    <b-container>
+    <b-container v-if="isPt === false">
       <b-row>
         <b-col cols="12" md="6" sm="6">
           <div class="logo" @click="onLogo">
@@ -12,6 +12,28 @@
             <div
               class="img-profile float-right"
               v-bind:style="{ backgroundImage: `url(${urlApi}${getFullUserData.image})` }"
+              @click="onProfile"
+            ></div>
+            <div class="icons float-right">
+              <b-icon icon="bell"></b-icon>
+              <b-icon icon="envelope" @click="onMail" class="mail"></b-icon>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+    <b-container v-if="isPt === true">
+      <b-row>
+        <b-col cols="12" md="6" sm="6">
+          <div class="logo" @click="onLogo">
+            <img src="../../assets/img/img-landing/logo.png" />
+          </div>
+        </b-col>
+        <b-col cols="12" md="6" sm="6">
+          <div class="navigation">
+            <div
+              class="img-profile float-right"
+              v-bind:style="{ backgroundImage: 'url(http://127.0.0.1:3001/2020-09-20T05-52-25.684Z-starky-sapling.png)' }"
               @click="onProfile"
             ></div>
             <div class="icons float-right">

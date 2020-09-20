@@ -1,39 +1,81 @@
 <template>
-  <div class="profile">
-    <div class="gambar">
-      <img v-bind:src="`${urlApi}${getFullUserData.image}`" alt class="profileImg" />
-    </div>
-    <h4 class="profileName">{{getFullUserData.name}}</h4>
-    <p>{{getFullUserData.job}}</p>
-    <div class="pin">
-      <img src="../../assets/img/pin.png" alt />
-      <p>{{getFullUserData.place}}, Indonesia</p>
-    </div>
-    <p>{{getFullUserData.job_time === 0 ? 'freelancer' : 'fulltime'}}</p>
-    <p>{{getFullUserData.user_description}}</p>
-    <button v-if="isPt === true" type="button" @click="onBtn">Hire</button>
-    <button v-if="isPt === false" type="button" @click="onBtn">Edit</button>
-    <h5>Skill</h5>
-    <div class="skill">
-      <div v-for="(item, index) in getFullUserData.skills" :key="index">
-        <p>{{item}}</p>
+  <div>
+    <div v-if="isPt === false" class="profile">
+      <div class="gambar">
+        <img v-bind:src="`${urlApi}${getFullUserData.image}`" alt class="profileImg" />
+      </div>
+      <h4 class="profileName">{{getFullUserData.name}}</h4>
+      <p>{{getFullUserData.job}}</p>
+      <div class="pin">
+        <img src="../../assets/img/pin.png" alt />
+        <p>{{getFullUserData.place}}, Indonesia</p>
+      </div>
+      <p>{{getFullUserData.job_time === 0 ? 'freelancer' : 'fulltime'}}</p>
+      <p>{{getFullUserData.user_description}}</p>
+      <button v-if="isPt === true" type="button" @click="onBtn">Hire</button>
+      <button v-if="isPt === false" type="button" @click="onBtn">Edit</button>
+      <h5>Skill</h5>
+      <div class="skill">
+        <div v-for="(item, index) in getFullUserData.skills" :key="index">
+          <p>{{item}}</p>
+        </div>
+      </div>
+      <div class="email">
+        <img src="../../assets/img/mail.png" alt="email" />
+        <p>{{getFullUserData.email}}</p>
+      </div>
+      <div class="insta">
+        <img src="../../assets/img/instagram.png" alt="insta" />
+        <p>{{getFullUserData.instagram === undefined ? 'none' :getFullUserData.instagram}}</p>
+      </div>
+      <div class="github">
+        <img src="../../assets/img/github.png" alt="github" />
+        <p>{{getFullUserData.github === undefined ? 'none' :getFullUserData.github}}</p>
+      </div>
+      <div class="gitlab">
+        <img src="../../assets/img/gitlab.png" alt="gitlab" />
+        <p>{{getFullUserData.gitlab === undefined ? 'none' :getFullUserData.gitlab}}</p>
       </div>
     </div>
-    <div class="email">
-      <img src="../../assets/img/mail.png" alt="email" />
-      <p>{{getFullUserData.email}}</p>
-    </div>
-    <div class="insta">
-      <img src="../../assets/img/instagram.png" alt="insta" />
-      <p>{{getFullUserData.instagram === undefined ? 'none' :getFullUserData.instagram}}</p>
-    </div>
-    <div class="github">
-      <img src="../../assets/img/github.png" alt="github" />
-      <p>{{getFullUserData.github === undefined ? 'none' :getFullUserData.github}}</p>
-    </div>
-    <div class="gitlab">
-      <img src="../../assets/img/gitlab.png" alt="gitlab" />
-      <p>{{getFullUserData.gitlab === undefined ? 'none' :getFullUserData.gitlab}}</p>
+    <div v-if="isPt === true" class="profile">
+      <div class="gambar">
+        <img
+          src="http://127.0.0.1:3001/2020-09-20T05-52-25.684Z-starky-sapling.png"
+          alt
+          class="profileImg"
+        />
+      </div>
+      <h4 class="profileName">Jamet</h4>
+      <p>pekerjaan</p>
+      <div class="pin">
+        <img src="../../assets/img/pin.png" alt />
+        <p>Jakarta, Indonesia</p>
+      </div>
+      <p>fulltime</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt temporibus autem commodi adipisci, nam tenetur.</p>
+      <button v-if="isPt === true" type="button" @click="onBtn">Hire</button>
+      <h5>Skill</h5>
+      <div class="skill">
+        <div v-for="(item, index) in 3" :key="index">
+          <p>java</p>
+        </div>
+      </div>
+      <div class="email">
+        <img src="../../assets/img/mail.png" alt="email" />
+        <p>a1.sad@gmail.com</p>
+      </div>
+      <div class="insta">
+        <img src="../../assets/img/instagram.png" alt="insta" />
+        <p>@a.bber</p>
+      </div>
+      <div class="github">
+        <img src="../../assets/img/github.png" alt="github" />
+        <p>@a.bbe/github</p>
+      </div>
+      <div class="gitlab">
+        <img src="../../assets/img/gitlab.png" alt="gitlab" />
+        <p>@a.bbe/gitlab</p>
+      </div>
     </div>
   </div>
 </template>
