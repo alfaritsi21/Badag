@@ -1,21 +1,30 @@
 <template>
   <div class="profile">
     <div class="gambar">
-      <img src="../../assets/img/luis.jpg" alt class="profileImg" />
+      <img v-bind:src="`${urlApi}${getFullUserData.image}`" alt class="profileImg" />
     </div>
     <div class="gambar">
       <p class="h4 mb-2" style="color:grey">
+        <input v-if="isEdit === true" type="file" @change="browse" />
+        <br v-if="isEdit === true" />
         <b-icon icon="pencil" class="mr-2" @click="editImg"></b-icon>
         <span @click="editImg">Edit</span>
       </p>
     </div>
-    <h4 class="profileName">Louis Tamlinson</h4>
-    <p>Web Developer</p>
+    <h4 class="profileName">{{getFullUserData.name}}</h4>
+    <p>{{getFullUserData.job}}</p>
     <div class="pin">
       <img src="../../assets/img/pin.png" alt />
-      <p>Purwokerto, Jawa Tengah</p>
+      <p>{{getFullUserData.place}}, Indonesia</p>
     </div>
-    <p>Freelancer</p>
+    <b-form-input
+      id="input-1"
+      :placeholder="getFullUserData.job_time === 0 ? 'freelancer' : 'fulltime'"
+      v-model="job_time"
+      trim
+      class="mb-2"
+      v-on:keyup.enter="enter"
+    ></b-form-input>
     <div>
       <b-button block class="prime-button" @click="addBio">Simpan</b-button>
       <b-button block class="cancel-button">Batal</b-button>
@@ -28,19 +37,53 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ProfileCardEdit',
   data() {
-    return {}
+    return {
+      urlApi: process.env.VUE_APP_URL,
+      isEdit: false,
+      job_time: '',
+      profile_image: ''
+    }
+  },
+  created() {
+    this.getDataUsers()
   },
   computed: {
-    ...mapGetters(['userData'])
+    ...mapGetters(['userData', 'getFullUserData'])
   },
   methods: {
-    ...mapActions(['addBiografi']),
+    ...mapActions([
+      'addBiografi',
+      'jobTime',
+      'profilePicture',
+      'userLoginData'
+    ]),
     ...mapMutations([]),
+    getDataUsers() {
+      this.userLoginData()
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+        })
+    },
     addBio() {
       this.addBiografi(this.userData.user_id)
     },
     editImg() {
-      console.log('edit img nampilin input file')
+      if (this.isEdit === false) {
+        this.isEdit = true
+      } else {
+        this.isEdit = false
+      }
+    },
+    enter() {
+      // this.addBioForm(this.form)
+      this.jobTime(this.job_time)
+    },
+    browse(event) {
+      const form = { image: event.target.files[0] }
+      this.profilePicture([form, this.userData.user_id])
     }
   }
 }

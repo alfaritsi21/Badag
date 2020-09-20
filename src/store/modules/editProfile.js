@@ -6,7 +6,8 @@ export default {
     dataSkill: {},
     dataExperience: {},
     dataPortofolio: {},
-    dataBio: {}
+    dataBio: {},
+    inputJob: ''
   },
   mutations: {
     setDataBiografi(state, payload) {
@@ -23,6 +24,9 @@ export default {
     },
     setDataBio(state, payload) {
       state.dataBio = payload
+    },
+    setJobTime(state, payload) {
+      state.inputJob = payload
     }
   },
   actions: {
@@ -82,8 +86,22 @@ export default {
         })
     },
     addBioForm(context, payload) {
-      //   console.log(payload)
       context.commit('setDataBio', payload)
+    },
+    jobTime(context, payload) {
+      context.commit('setJobTime', payload)
+    },
+    profilePicture(context, payload) {
+      axios
+        .patch(`${context.state.urlApi}users/${payload[1]}`, payload[0])
+        .then(response => {
+          //   resolve(response.data)
+          alert(response.data.msg)
+        })
+        .catch(error => {
+          //   reject(error.response.data.msg)
+          alert(error.response.data.msg)
+        })
     }
   },
   getters: {
@@ -95,6 +113,9 @@ export default {
     },
     getDataPortofolio(state) {
       return state.dataPortofolio
+    },
+    getDataJobTime(state) {
+      return state.inputJob
     }
   }
 }

@@ -1,25 +1,6 @@
 <template>
   <div class="navbars">
     <b-container>
-      <!-- <b-navbar toggleable="lg">
-        <b-navbar-brand>
-          <img src="../../assets/img/img-landing/logo.png" />
-        </b-navbar-brand>
-
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="ml-auto" style="font-size: 20px;">
-            <div class="icons">
-              <b-icon icon="bell"></b-icon>
-              <b-icon icon="envelope"></b-icon>
-            </div>
-            <div class="img-profile">
-              <img src="../../assets/img/profile-navbar.png" alt />
-            </div>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>-->
       <b-row>
         <b-col cols="12" md="6" sm="6">
           <div class="logo" @click="onLogo">
@@ -28,9 +9,11 @@
         </b-col>
         <b-col cols="12" md="6" sm="6">
           <div class="navigation">
-            <div class="img-profile float-right" @click="onProfile">
-              <img src="../../assets/img/profile-navbar.png" alt />
-            </div>
+            <div
+              class="img-profile float-right"
+              v-bind:style="{ backgroundImage: `url(${urlApi}${getFullUserData.image})` }"
+              @click="onProfile"
+            ></div>
             <div class="icons float-right">
               <b-icon icon="bell"></b-icon>
               <b-icon icon="envelope" @click="onMail" class="mail"></b-icon>
@@ -48,13 +31,27 @@ export default {
   name: 'Navbar',
   components: {},
   data() {
-    return {}
+    return {
+      urlApi: process.env.VUE_APP_URL
+    }
+  },
+  created() {
+    this.getDataUsers()
   },
   computed: {
-    ...mapGetters(['isPt', 'isProfileClick'])
+    ...mapGetters(['isPt', 'isProfileClick', 'userData', 'getFullUserData'])
   },
   methods: {
-    ...mapActions(['profileClick']),
+    ...mapActions(['profileClick', 'userLoginData']),
+    getDataUsers() {
+      this.userLoginData()
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+        })
+    },
     onLogo() {
       this.$router.push('/')
     },
@@ -82,6 +79,25 @@ export default {
 </script>
 
 <style scoped>
+.img-profile {
+  border: 1px solid rgb(92, 92, 92);
+  top: 3px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  position: relative;
+  background-size: cover;
+  background-repeat: round;
+  box-shadow: 2px 3px 10px rgba(70, 70, 70, 0.671);
+  /* background-image: url(http://127.0.0.1:3001/2020-09-20T05-52-25.684Z-starky-sapling.png); */
+}
+.img-profile:hover {
+  border: 1px solid rgb(32, 32, 32);
+  box-shadow: 1px 1px 7px rgba(46, 46, 46, 0.671);
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
 .navbars {
   position: relative;
   background: #fff;

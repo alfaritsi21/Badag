@@ -1,58 +1,70 @@
 <template>
   <div class="profile">
     <div class="gambar">
-      <img src="../../assets/img/luis.jpg" alt class="profileImg" />
+      <img v-bind:src="`${urlApi}${getFullUserData.image}`" alt class="profileImg" />
     </div>
-    <h4 class="profileName">Louis Tamlinson</h4>
-    <p>Web Developer</p>
+    <h4 class="profileName">{{getFullUserData.name}}</h4>
+    <p>{{getFullUserData.job}}</p>
     <div class="pin">
       <img src="../../assets/img/pin.png" alt />
-      <p>Purwokerto, Jawa Tengah</p>
+      <p>{{getFullUserData.place}}, Indonesia</p>
     </div>
-    <p>Freelancer</p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam rerum
-      atque, porro non ab nulla, magni minima quis autem odit illum dolorem
-      laudantium, optio natus assumenda in veniam illo itaque.
-    </p>
+    <p>{{getFullUserData.job_time === 0 ? 'freelancer' : 'fulltime'}}</p>
+    <p>{{getFullUserData.user_description}}</p>
     <button v-if="isPt === true" type="button" @click="onBtn">Hire</button>
     <button v-if="isPt === false" type="button" @click="onBtn">Edit</button>
     <h5>Skill</h5>
     <div class="skill">
-      <div v-for="(item, index) in 10" :key="index">
-        <p>Python</p>
+      <div v-for="(item, index) in getFullUserData.skills" :key="index">
+        <p>{{item}}</p>
       </div>
     </div>
     <div class="email">
       <img src="../../assets/img/mail.png" alt="email" />
-      <p>Louisarmstrong@gmail.com</p>
+      <p>{{getFullUserData.email}}</p>
     </div>
     <div class="insta">
       <img src="../../assets/img/instagram.png" alt="insta" />
-      <p>@Louisarm11</p>
+      <p>{{getFullUserData.instagram === undefined ? 'none' :getFullUserData.instagram}}</p>
     </div>
     <div class="github">
       <img src="../../assets/img/github.png" alt="github" />
-      <p>@Louisarmstr</p>
+      <p>{{getFullUserData.github === undefined ? 'none' :getFullUserData.github}}</p>
     </div>
     <div class="gitlab">
       <img src="../../assets/img/gitlab.png" alt="gitlab" />
-      <p>@Louisarmstrong</p>
+      <p>{{getFullUserData.gitlab === undefined ? 'none' :getFullUserData.gitlab}}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ProfileCard',
   data() {
-    return {}
+    return {
+      urlApi: process.env.VUE_APP_URL
+    }
+  },
+  created() {
+    this.getDataUsers()
   },
   computed: {
-    ...mapGetters(['isPt'])
+    ...mapGetters(['isPt', 'userData', 'getFullUserData'])
   },
   methods: {
+    ...mapActions(['userLoginData']),
+    ...mapMutations([]),
+    getDataUsers() {
+      this.userLoginData()
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+        })
+    },
     onBtn() {
       if (this.isPt === false) {
         this.$router.push('/profile-edit')
