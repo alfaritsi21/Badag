@@ -1,20 +1,24 @@
 <template>
   <div>
+    <nav>
+      <Navbar />
+    </nav>
     <ProfilePt />
-    <Navbar />
     <main>
       <b-container>
         <div class="company-latar">
           <img :src="urlAPI + dataCompany.company_image" alt="Foto Profile" />
           <p class="float-right">
-            <b-icon icon="pencil-fill"></b-icon>Ubah Latar
+            <b-icon icon="pencil-fill" @click="editImg"></b-icon>
+            <span @click="editImg">Ubah Latar</span>
           </p>
         </div>
         <div class="main-company text-center">
           <h3>{{dataCompany.company_name}}</h3>
           <h6>{{dataCompany.company_position}}</h6>
           <p>
-            <b-icon icon="map"></b-icon>Purwokerto, Jawa Tengah
+            <b-icon icon="map"></b-icon>
+            {{dataCompany.company_place}}
           </p>
           <p class="description">{{dataCompany.company_description}}</p>
           <b-button class="edit-company" @click="setCompany(dataCompany)">Edit Profile</b-button>
@@ -53,8 +57,8 @@
 <script>
 import Navbar from '../_base/Navbar'
 import Footer from '../_base/footer'
-import { mapGetters } from 'vuex'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 import ProfilePt from '../_base/modalProfilePt'
 export default {
@@ -98,6 +102,9 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    editImg() {
+      console.log('edit img nampilin input file')
     },
     setCompany(data) {
       this.form = {

@@ -1,32 +1,78 @@
 <template>
   <div class="profile">
     <div class="gambar">
-      <img src="../../assets/img/luis.jpg" alt class="profileImg" />
+      <img :src="urlAPI +  dataCompany.company_image" alt="Foto Profile" class="profileImg" />
     </div>
     <div class="gambar">
       <p class="h4 mb-2" style="color:grey">
-        <b-icon icon="pencil" class="mr-2"></b-icon>Edit
+        <input v-if="isEdit === true" type="file" @change="browse" />
+        <br v-if="isEdit === true" />
+        <b-icon icon="pencil" class="mr-2" @click="editImg"></b-icon>
+        <span @click="editImg">Edit</span>
       </p>
     </div>
-    <h4 class="profileName">PT Martabat Jaya Abadi</h4>
-    <p>Financial</p>
+    <h4 class="profileName">{{dataCompany.company_name}}A</h4>
+    <p>{{dataCompany.company_field}}A</p>
     <div class="pin">
       <img src="../../assets/img/pin.png" alt />
-      <p>Purwokerto, Jawa Tengah</p>
+      <p>{{dataCompany.company_place}}</p>
     </div>
-    <p>Freelancer</p>
+    <p>{{dataCompany.company_position}}</p>
     <div>
-      <b-button block class="prime-button" @click="patchCompany()">Simpan</b-button>
+      <b-button block class="prime-button" @click="addCom">Simpan</b-button>
       <b-button block class="cancel-button">Batal</b-button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import axios from 'axios'
+
 export default {
   name: 'ProfilePtCardEdit',
   data() {
-    return {}
+    return {
+      urlAPI: process.env.VUE_APP_URL,
+      dataCompany: []
+    }
+  },
+  computed: {
+    ...mapGetters({
+      company: 'userData'
+    })
+  },
+  created() {
+    this.getDataCompany()
+  },
+  methods: {
+    ...mapActions(['addCompany', 'pictureCompany']),
+    ...mapMutations([]),
+    getDataCompany() {
+      axios
+        .get(`${process.env.VUE_APP_URL}company/${this.company.company_id}`)
+        .then((response) => {
+          this.dataCompany = response.data.data
+          console.log(this.dataCompany)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    addCom() {
+      this.addCompany(this.userData.company_id)
+    },
+    editImg() {
+      if (this.isEdit === false) {
+        this.isEdit = true
+      } else {
+        this.isEdit = false
+      }
+    },
+    browse(event) {
+      const form = { image: event.target.files[0] }
+      this.pictureCompany([form, this.userData.company_id])
+    }
   }
 }
 </script>

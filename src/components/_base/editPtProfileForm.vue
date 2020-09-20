@@ -8,8 +8,9 @@
           <b-form-input
             id="input-1"
             placeholder="Masukkan nama perusahaan"
-            v-model="companys.company_name"
+            v-model="form.company_name"
             trim
+            required
             class="mb-2"
           ></b-form-input>
         </b-form-group>
@@ -17,8 +18,9 @@
           <b-form-input
             id="input-1"
             placeholder="Masukkan bidang perusahaan ex: Financial"
-            v-model="companys.company_field"
+            v-model="form.company_field"
             trim
+            required
             class="mb-2"
           ></b-form-input>
         </b-form-group>
@@ -26,8 +28,9 @@
           <b-form-input
             id="input-1"
             placeholder="Masukan kota"
-            v-model="companys.company_place"
+            v-model="form.company_place"
             trim
+            required
             class="mb-2"
           ></b-form-input>
         </b-form-group>
@@ -36,16 +39,19 @@
             id="textarea"
             placeholder="Tuliskan deskripsi singkat perusahaan"
             rows="3"
+            required
             max-rows="6"
-          >{{companys.company_description}}</b-form-textarea>
+            v-model="form.company_description"
+          >{{form.company_description}}</b-form-textarea>
         </b-form-group>
         <b-form-group id="fieldset-1" label="Email" label-for="input-1">
           <b-form-input
             type="email"
             id="input-1"
             placeholder="Masukkan email"
-            v-model="companys.company_email"
+            v-model="form.company_email"
             trim
+            required
             class="mb-2"
           ></b-form-input>
         </b-form-group>
@@ -53,8 +59,9 @@
           <b-form-input
             id="input-1"
             placeholder="Masukkan nama instagram"
-            v-model="companys.company_instagram"
+            v-model="form.company_instagram"
             trim
+            required
             class="mb-2"
           ></b-form-input>
         </b-form-group>
@@ -63,8 +70,9 @@
             type="number"
             id="input-1"
             placeholder="Masukkan nomor telepon"
-            v-model="companys.company_phone"
+            v-model="form.company_phone"
             trim
+            required
             class="mb-2"
           ></b-form-input>
         </b-form-group>
@@ -72,9 +80,11 @@
           <b-form-input
             id="input-1"
             placeholder="Masukkan nama linkedin"
-            v-model="companys.company_linkedin"
+            v-model="form.company_linkedin"
             trim
+            required
             class="mb-2"
+            v-on:keyup.enter="submit"
           ></b-form-input>
         </b-form-group>
       </div>
@@ -83,15 +93,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'editPtProfileForm',
   data() {
     return {
-      company_id: '',
-      companys: [],
+      // company_id: '',
+      // companys: [],
       form: {
         company_name: '',
         company_field: '',
@@ -104,50 +113,26 @@ export default {
       }
     }
   },
-  created() {
-    this.getDataCompany()
-  },
   methods: {
-    getDataCompany() {
-      axios
-        .get(`${process.env.VUE_APP_URL}company/${this.company.company_id}`)
-        .then((response) => {
-          this.companys = response.data.data
-          console.log(this.companys)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    setCompany(data) {
-      this.form = {
-        company_name: data.company_name,
-        company_field: data.company_field,
-        company_place: data.company_place,
-        company_description: data.company_description,
-        company_email: data.company_email,
-        company_instagram: data.company_instagram,
-        company_linkedin: data.company_linkedin,
-        company_phone: data.company_phone
+    ...mapActions({
+      addComForm: 'addComForm'
+    }),
+    submit() {
+      // this.addComForm(this.form)
+      if (
+        this.form.company_name.length < 1 ||
+        this.form.company_field.length < 1 ||
+        this.form.company_place.length < 1 ||
+        this.form.company_description.length < 1 ||
+        this.form.company_email.length < 1 ||
+        this.form.company_instagram.length < 1 ||
+        this.form.company_phone.length < 1 ||
+        this.form.company_linkedin.length < 1
+      ) {
+        alert('all input field must be filled')
+      } else {
+        this.addComForm(this.form)
       }
-      this.company_id = data.company_id
-      console.log(this.form)
-    },
-    patchCompany() {
-      console.log(this.form)
-      console.log(this.company_id)
-      axios
-        .patch(
-          `${process.env.VUE_APP_URL}company/profile/${this.company.company_id}`,
-          this.form
-        )
-        .then((response) => {
-          console.log(response)
-          // this.inMsg = response.data.msg
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     }
   },
   computed: {
