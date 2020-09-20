@@ -127,7 +127,18 @@
       </div>
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Email</p>
-        <input type="email" placeholder="Masukkan alamat emali" v-model="formReset.user_email" />
+        <input
+          v-if="isPt === false "
+          type="email"
+          placeholder="Masukkan alamat emali pribadi"
+          v-model="user_email"
+        />
+        <input
+          v-else
+          type="email"
+          placeholder="Masukkan alamat emali company"
+          v-model="company_email"
+        />
         <br />
         <button type="submit">Send password reset email</button>
       </form>
@@ -142,7 +153,6 @@ export default {
   data() {
     return {
       msg: '',
-      // isRegist: false,
       isReset: false,
       formLogin: {
         user_email: '',
@@ -168,9 +178,8 @@ export default {
         password: '',
         re_password: ''
       },
-      formReset: {
-        user_email: ''
-      }
+      user_email: '',
+      company_email: ''
     }
   },
   props: [],
@@ -178,7 +187,13 @@ export default {
     ...mapGetters(['userData', 'isPt', 'isRegist'])
   },
   methods: {
-    ...mapActions(['login', 'loginPt', 'register', 'registerPt']),
+    ...mapActions([
+      'login',
+      'loginPt',
+      'register',
+      'registerPt',
+      'checkForgotEmail'
+    ]),
     ...mapMutations(['setTrigger']),
     onRegist() {
       if (this.isPt === true) {
@@ -250,8 +265,31 @@ export default {
       }
     },
     onSubmitReset() {
-      console.log('Sending email success')
-      this.$router.push('/reset')
+      if (this.isPt === false) {
+        alert('reset sebagai worker')
+        this.checkForgotEmail(this.user_email)
+        // .then((result) => {
+        //   alert(result.msg)
+        //   console.log(result.data)
+        this.$router.push('/reset')
+        // })
+        // .catch((error) => {
+        //   this.msg = error.data.msg
+        //   alert(this.msg)
+        // })
+      } else {
+        alert('reset sebagai company')
+        this.checkForgotEmail(this.company_email)
+        // .then((result) => {
+        //   alert(result.msg)
+        //   console.log(result.data)
+        this.$router.push('/reset')
+        // })
+        // .catch((error) => {
+        //   this.msg = error.data.msg
+        //   alert(this.msg)
+        // })
+      }
     },
     onLogo() {
       this.$router.push('/')

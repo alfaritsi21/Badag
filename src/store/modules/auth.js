@@ -55,6 +55,7 @@ export default {
           .post(`${context.state.urlApi}users/login-company`, payload)
           .then(response => {
             context.commit('setUser', response.data.data)
+            context.commit('setLogin', true)
             localStorage.setItem('token', response.data.data.token)
             resolve(response.data)
           })
@@ -69,6 +70,7 @@ export default {
     },
     register(context, payload) {
       return new Promise((resolve, reject) => {
+        console.log(payload)
         axios
           .post(`${context.state.urlApi}register`, payload)
           .then(response => {
@@ -115,8 +117,9 @@ export default {
     },
     logout(context, payload) {
       alert('Anda akan dialihkan ke halaman login')
+      console.log(context.state.isOn)
       if (context.state.isOn === true) {
-        router.push('/login')
+        router.push('/auth')
         localStorage.removeItem('token')
         context.commit('delUser')
       } else {

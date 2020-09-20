@@ -109,6 +109,7 @@ export default {
   padding: 20px 30px;
   text-align: left;
   background-color: white;
+  z-index: 3;
 }
 .title {
   position: relative;

@@ -8,7 +8,7 @@
           <b-form-input></b-form-input>
 
           <template v-slot:append>
-            <b-button class="skill-button">Simpan</b-button>
+            <b-button class="skill-button" @click="addSkill">Simpan</b-button>
           </template>
         </b-input-group>
       </div>
@@ -21,6 +21,11 @@ export default {
   name: 'editProfileForm',
   data() {
     return {}
+  },
+  methods: {
+    addSkill() {
+      console.log('add')
+    }
   }
 }
 </script>

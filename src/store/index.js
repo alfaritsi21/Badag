@@ -5,11 +5,12 @@ import Reset from './modules/reset'
 import Users from './modules/home'
 import ProfileIcon from './modules/profileIcon'
 import ProfileCompany from './modules/profileCompany'
+import EditProfile from './modules/editProfile'
 import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules: { Auth, Reset, Users, ProfileIcon, ProfileCompany },
+  modules: { Auth, Reset, Users, ProfileIcon, EditProfile, ProfileCompany },
   state: {},
   mutations: {},
   actions: {},

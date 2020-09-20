@@ -180,8 +180,9 @@ export default {
     ...mapGetters(['isPt', 'isLogin2'])
   },
   methods: {
-    ...mapActions(['userRole', 'userRoleRegist']),
+    ...mapActions(['userRole', 'userRoleRegist', 'getUser']),
     onMulai() {
+      this.getUser()
       if (this.isPt === false) {
         this.$router.push('/profile-portofolio')
       } else {

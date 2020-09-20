@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ProfilePt />
     <Navbar />
     <main>
       <b-container>
@@ -55,6 +56,7 @@ import Footer from '../_base/footer'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 
+import ProfilePt from '../_base/modalProfilePt'
 export default {
   name: 'profileCompany',
   data() {
@@ -76,7 +78,8 @@ export default {
   },
   components: {
     Navbar,
-    Footer
+    Footer,
+    ProfilePt
   },
   created() {
     this.getDataCompany()

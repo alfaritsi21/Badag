@@ -5,7 +5,8 @@
     </div>
     <div class="gambar">
       <p class="h4 mb-2" style="color:grey">
-        <b-icon icon="pencil" class="mr-2"></b-icon>Edit
+        <b-icon icon="pencil" class="mr-2" @click="editImg"></b-icon>
+        <span @click="editImg">Edit</span>
       </p>
     </div>
     <h4 class="profileName">Louis Tamlinson</h4>
@@ -16,22 +17,40 @@
     </div>
     <p>Freelancer</p>
     <div>
-      <b-button block class="prime-button">Simpan</b-button>
+      <b-button block class="prime-button" @click="addBio">Simpan</b-button>
       <b-button block class="cancel-button">Batal</b-button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'ProfileCardEdit',
   data() {
     return {}
+  },
+  computed: {
+    ...mapGetters(['userData'])
+  },
+  methods: {
+    ...mapActions(['addBiografi']),
+    ...mapMutations([]),
+    addBio() {
+      this.addBiografi(this.userData.user_id)
+    },
+    editImg() {
+      console.log('edit img nampilin input file')
+    }
   }
 }
 </script>
 
 <style scoped>
+.mr-2,
+.h4 span {
+  cursor: pointer;
+}
 .profile {
   padding: 0;
   position: relative;
