@@ -19,6 +19,9 @@ export default {
     },
     sortUsers(state, payload) {
       state.sort = payload
+    },
+    searchUsers(state, payload) {
+      state.search = payload
     }
   },
   actions: {
@@ -34,10 +37,24 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+    },
+    searcinghUsers(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(
+            `${process.env.VUE_APP_URL}home?page=${context.state.page}&limit=${context.state.limit}&sort=${context.state.sort}&search=${context.state.search}`
+          )
+          .then(response => {
+            context.commit('searchUsers', response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      })
     }
   },
   getters: {
-    getSearch(state) {
+    getSearchUsers(state) {
       return state.search
     },
     getLimit(state) {

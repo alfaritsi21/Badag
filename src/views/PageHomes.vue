@@ -11,7 +11,12 @@
       <b-container>
         <section class="akses-search">
           <div class="searching">
-            <input type="text" placeholder="Search for any skill" />
+            <input
+              type="text"
+              placeholder="Search for any skill"
+              v-model="form.skills"
+              v-on:keyup.enter="searching(form.skills)"
+            />
             <b-icon icon="search"></b-icon>
             <b-dropdown id="dropdown-1" text="Sort" right class="m-md-2 sorting" variant="outline">
               <b-dropdown-item @click="sorting('name')">Sorting Berdasarkan Nama</b-dropdown-item>
@@ -20,7 +25,7 @@
               <b-dropdown-item @click="sorting('freelance')">Sorting Berdasarkan Freelance</b-dropdown-item>
               <b-dropdown-item @click="sorting('fulltime')">Sorting Berdasarkan Fulltime</b-dropdown-item>
             </b-dropdown>
-            <b-button class="btn-search" @click="searching(value)">Search</b-button>
+            <b-button class="btn-search" @click="searching(form.skills)">Search</b-button>
           </div>
         </section>
 
@@ -36,7 +41,7 @@
                 <b-icon icon="map"></b-icon>
                 {{item.user_location}}
               </p>
-              <b-button class="btn-skill">{{ item.skills.indexOf(0)}}</b-button>
+              <b-button class="btn-skill">{{ item.skills}}</b-button>
               <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
@@ -79,7 +84,10 @@ export default {
   data() {
     return {
       urlAPI: process.env.VUE_APP_URL,
-      currentPage: 1
+      currentPage: 1,
+      form: {
+        skills: ''
+      }
     }
   },
   components: {
@@ -90,8 +98,8 @@ export default {
     this.getDataUsers()
   },
   methods: {
-    ...mapActions(['getDataUsers']),
-    ...mapMutations(['changePage', 'sortUsers']),
+    ...mapActions(['getDataUsers', 'searcinghUsers']),
+    ...mapMutations(['changePage', 'sortUsers', 'searchUsers']),
     handlePageChange(numberPage) {
       this.$router.push(`?page=${numberPage}`)
       this.changePage(numberPage)
@@ -112,6 +120,12 @@ export default {
       this.sortUsers(value)
       this.getDataUsers()
       this.$router.push(`?sort=${value}`)
+    },
+    searching(form) {
+      this.searchUsers(form)
+      this.getDataUsers()
+      this.$router.push(`?search=${form}`)
+      this.changePage(1)
     },
     onLihat() {
       this.$router.push('/profile-portofolio')

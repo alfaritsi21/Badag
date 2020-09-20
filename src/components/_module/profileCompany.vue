@@ -4,21 +4,19 @@
     <main>
       <b-container>
         <div class="company-latar">
-          <img src="../../assets/img/luis.jpg" alt srcset />
+          <img :src="urlAPI + dataCompany.company_image" alt="Foto Profile" />
           <p class="float-right">
             <b-icon icon="pencil-fill"></b-icon>Ubah Latar
           </p>
         </div>
         <div class="main-company text-center">
-          <h3>PT Martabat Jaya Abadi</h3>
-          <h6>Jobs Desc</h6>
+          <h3>{{dataCompany.company_name}}</h3>
+          <h6>{{dataCompany.company_position}}</h6>
           <p>
             <b-icon icon="map"></b-icon>Purwokerto, Jawa Tengah
           </p>
-          <p
-            class="description"
-          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo tenetur temporibus maiores non mollitia ad voluptatibus ex consequuntur voluptas cum?</p>
-          <b-button class="edit-company" @click="onEdit">Edit Profile</b-button>
+          <p class="description">{{dataCompany.company_description}}</p>
+          <b-button class="edit-company" @click="setCompany(dataCompany)">Edit Profile</b-button>
           <div class="contact-company">
             <!-- <p>
               <img src="../../assets/img/mail.png" alt />
@@ -37,10 +35,10 @@
                 <img src="../../assets/img/in.png" alt style="padding-top: 20px;" />
               </b-col>
               <b-col cols="7" md="7" sm="7" class="text-left">
-                <p>martabatjaya@gmail.com</p>
-                <p>martabat_jaya</p>
-                <p>0821-8190-1821</p>
-                <p>Martabat Jaya Abadi</p>
+                <p>{{dataCompany.company_email}}</p>
+                <p>@{{dataCompany.company_instagram}}</p>
+                <p>{{dataCompany.company_phone}}</p>
+                <p>{{dataCompany.company_linkedin}}</p>
               </b-col>
             </b-row>
           </div>
@@ -54,16 +52,70 @@
 <script>
 import Navbar from '../_base/Navbar'
 import Footer from '../_base/footer'
+import { mapGetters } from 'vuex'
+import axios from 'axios'
+
 export default {
   name: 'profileCompany',
+  data() {
+    return {
+      company_id: '',
+      urlAPI: process.env.VUE_APP_URL,
+      dataCompany: [],
+      form: {
+        company_name: '',
+        company_field: '',
+        company_place: '',
+        company_description: '',
+        company_email: '',
+        company_instagram: '',
+        company_linkedin: '',
+        company_phone: ''
+      }
+    }
+  },
   components: {
     Navbar,
     Footer
   },
+  created() {
+    this.getDataCompany()
+  },
   methods: {
     onEdit() {
       this.$router.push('/profile-pt-edit')
+    },
+    getDataCompany() {
+      axios
+        .get(`${process.env.VUE_APP_URL}company/${this.company.company_id}`)
+        .then((response) => {
+          this.dataCompany = response.data.data
+          console.log(this.dataCompany)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    setCompany(data) {
+      this.form = {
+        company_name: data.company_name,
+        company_field: data.company_field,
+        company_place: data.company_place,
+        company_description: data.company_description,
+        company_email: data.company_email,
+        company_instagram: data.company_instagram,
+        company_linkedin: data.company_linkedin,
+        company_phone: data.company_phone
+      }
+      this.company_id = data.company_id
+      this.$router.push('/profile-pt-edit')
+      console.log(this.form)
     }
+  },
+  computed: {
+    ...mapGetters({
+      company: 'userData'
+    })
   }
 }
 </script>

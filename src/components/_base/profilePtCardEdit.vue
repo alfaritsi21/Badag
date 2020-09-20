@@ -16,7 +16,7 @@
     </div>
     <p>Freelancer</p>
     <div>
-      <b-button block class="prime-button">Simpan</b-button>
+      <b-button block class="prime-button" @click="patchCompany()">Simpan</b-button>
       <b-button block class="cancel-button">Batal</b-button>
     </div>
   </div>
