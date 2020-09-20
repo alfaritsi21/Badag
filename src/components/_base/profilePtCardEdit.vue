@@ -11,8 +11,8 @@
         <span @click="editImg">Edit</span>
       </p>
     </div>
-    <h4 class="profileName">{{dataCompany.company_name}}A</h4>
-    <p>{{dataCompany.company_field}}A</p>
+    <h4 class="profileName">{{dataCompany.company_name}}</h4>
+    <p>{{dataCompany.company_field}}</p>
     <div class="pin">
       <img src="../../assets/img/pin.png" alt />
       <p>{{dataCompany.company_place}}</p>
@@ -82,11 +82,13 @@ export default {
   padding: 0;
   position: relative;
   width: 350px;
+  height: 400px;
   border-radius: 5px;
   padding: 20px 30px;
   text-align: left;
   box-sizing: border-box;
   background-color: rgb(255, 255, 255);
+  margin: 0 0 150px 0;
 }
 .email {
   width: 100%;
@@ -183,5 +185,11 @@ export default {
   font-size: 20px;
   position: relative;
   text-align: left;
+}
+
+@media (max-width: 575.98px) {
+  .profile {
+    margin: 0 0 50px 0;
+  }
 }
 </style>

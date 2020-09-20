@@ -76,7 +76,6 @@ export default {
 
 <style scoped>
 .skills {
-  margin-left: 30px;
   padding: 0;
   position: relative;
   width: 730px;
@@ -84,9 +83,16 @@ export default {
   padding: 20px 30px;
   text-align: left;
   background-color: white;
+  margin: 0 0 150px 0;
 }
 
 .content {
   position: relative;
+}
+
+@media (max-width: 575.98px) {
+  .skills {
+    width: 350px;
+  }
 }
 </style>

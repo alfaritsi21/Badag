@@ -53,4 +53,13 @@ nav {
   left: 0;
   z-index: 3;
 }
+
+@media (max-width: 575.98px) {
+  .container {
+    margin: 0 0 100px 0;
+  }
+  footer {
+    display: none;
+  }
+}
 </style>

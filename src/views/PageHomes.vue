@@ -145,6 +145,9 @@ export default {
 </script>
 
 <style scoped>
+main {
+  padding: 50px 0;
+}
 .hr {
   margin-top: 20px;
   border-bottom: 1px solid #cecece;
@@ -167,7 +170,7 @@ export default {
 .main-home .searching {
   background: #fff;
   padding: 10px 0;
-  margin: 50px 0;
+  margin: 0 0 50px 0;
   border-radius: 8px;
 }
 
@@ -227,9 +230,9 @@ export default {
 }
 /* End content-searching */
 
-.main-home .paginations {
-  margin-bottom: 50px;
-}
+/* .main-home .paginations {
+  margin-bottom: 10px;
+} */
 
 @media (max-width: 575.98px) {
   .main-home .content-searching {
@@ -277,7 +280,7 @@ export default {
   }
 
   .main-home .paginations {
-    padding: 50px 0;
+    padding: 50px 0 80px 0;
   }
 
   .footer {

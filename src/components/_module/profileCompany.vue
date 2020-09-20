@@ -50,7 +50,9 @@
         </div>
       </b-container>
     </main>
-    <Footer />
+    <footer class="footer">
+      <Footer />
+    </footer>
   </div>
 </template>
 
@@ -184,5 +186,44 @@ main .main-company img {
 }
 main .main-company .contact-company p {
   margin-left: 10px;
+}
+
+@media (max-width: 575.98px) {
+  main {
+    padding: 50px 0 150px 0;
+  }
+  main .company-latar {
+    background: #fff;
+  }
+  main .company-latar img {
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 40%;
+    left: 35%;
+  }
+  main .main-company h3 {
+    font-size: 18px;
+  }
+  main .main-company h6 {
+    font-size: 14px;
+  }
+  main .main-company p {
+    font-size: 12px;
+  }
+  main .main-company .description {
+    width: 300px;
+    margin: 0 auto;
+  }
+  .footer {
+    display: none;
+  }
+  main .main-company img {
+    display: block;
+    margin-left: 25%;
+  }
+  main .main-company .contact-company p {
+    margin: 0 0 23px -80px;
+  }
 }
 </style>

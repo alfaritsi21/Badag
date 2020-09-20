@@ -81,7 +81,7 @@ textarea {
   height: 150px;
 }
 .skills {
-  margin-left: 30px;
+  margin: 0 0 0 0;
   padding: 0;
   position: relative;
   width: 730px;
@@ -93,5 +93,11 @@ textarea {
 
 .content {
   position: relative;
+}
+
+@media (max-width: 575.98px) {
+  .skills {
+    width: 350px;
+  }
 }
 </style>
