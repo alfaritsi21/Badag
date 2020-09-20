@@ -150,9 +150,10 @@ export default {
     position: fixed;
     bottom: 0px;
     background: #fff;
-    z-index: 1;
-    padding: 25px 125px 25px 0;
-    width: 100%;
+    z-index: 999;
+    padding: 25px 125px 30px 0;
+    /* padding: 0 auto; */
+    width: 375px;
     margin-left: -15px;
     display: block;
     box-shadow: 0px -6px 20px rgba(175, 175, 175, 0.25);

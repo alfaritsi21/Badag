@@ -155,11 +155,10 @@ export default {
   margin: 15px 0 0 0;
 }
 .profile {
-  margin-left: 30px;
+  margin: 0 0 50px 30px;
   padding: 0;
   position: relative;
-  width: 730px;
-  height: 100%;
+  width: 768px;
   border-radius: 5px;
   padding: 20px 30px;
   text-align: left;
@@ -243,6 +242,25 @@ export default {
   font-size: 13px;
   color: #000000;
 }
+
+@media (max-width: 575.98px) {
+  .profile {
+    margin: 0 0 150px 0;
+    width: 100%;
+    z-index: 0;
+  }
+  .title h3:nth-of-type(1) {
+    padding: 0 20px;
+    margin: 0;
+    font-size: 16px;
+  }
+  .title h3:nth-of-type(2) {
+    padding: 0 20px;
+    margin: 0;
+    font-size: 16px;
+  }
+}
 </style>
+
 <style scoped src="../../assets/css/portoTab.css">
 </style>

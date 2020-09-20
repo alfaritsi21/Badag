@@ -45,7 +45,7 @@ export default {
 
 <style scoped>
 .skills {
-  margin-left: 30px;
+  margin: 0 0 0 0;
   padding: 0;
   position: relative;
   width: 730px;
@@ -56,7 +56,7 @@ export default {
 }
 
 .experience {
-  margin-left: 30px;
+  margin: 0 0 0 0;
   padding: 0;
   position: relative;
   width: 730px;
@@ -77,5 +77,11 @@ textarea {
 
 .skill-button {
   background-color: #fbb017;
+}
+
+@media (max-width: 575.98px) {
+  .skills {
+    width: 350px;
+  }
 }
 </style>

@@ -191,7 +191,7 @@ export default {
   margin: 15px 0 0 0;
 }
 .profile {
-  margin-left: 30px;
+  margin: 0 0 100px 0;
   padding: 0;
   position: relative;
   width: 730px;
@@ -280,5 +280,12 @@ export default {
 
 textarea {
   height: 150px;
+}
+
+@media (max-width: 575.98px) {
+  .profile {
+    width: 100%;
+    margin: 0 0 150px 0;
+  }
 }
 </style>

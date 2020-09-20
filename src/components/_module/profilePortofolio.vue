@@ -6,13 +6,23 @@
     <nav>
       <Navbar />
     </nav>
-    <b-container fluid class="container">
-      <div class="headerBg"></div>
-      <div class="main">
-        <Cardprofile />
-        <Protofoliotab />
-      </div>
-    </b-container>
+    <div class="hero">
+      <b-container class="container">
+        <div class="headerBg"></div>
+        <b-row>
+          <b-col cols="12" md="4" sm="12">
+            <div class="main">
+              <Cardprofile />
+            </div>
+          </b-col>
+          <b-col cols="12" md="4" sm="12">
+            <div class="main">
+              <Protofoliotab />
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
     <footer>
       <Footer />
     </footer>
@@ -38,12 +48,15 @@ export default {
 </script>
 
 <style scoped>
+.hero {
+  background-color: #e5e5e5;
+}
 .container {
   text-align: center;
   margin: 0 auto;
   padding-top: 50px;
   width: 100%;
-  background-color: #e5e5e5;
+  /* background-color: #e5e5e5; */
 }
 .main {
   text-align: center;
@@ -84,5 +97,14 @@ header {
   top: 0px;
   margin-top: 55px;
   z-index: 4;
+}
+
+@media (max-width: 575.98px) {
+  footer {
+    display: none;
+  }
+  .hero {
+    background-color: #e5e5e5;
+  }
 }
 </style>

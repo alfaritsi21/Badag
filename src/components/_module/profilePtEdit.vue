@@ -3,13 +3,21 @@
     <nav>
       <Navbar />
     </nav>
-    <b-container fluid class="container">
-      <div class="headerBg"></div>
-      <ProfilePtCardEdit />
-      <div class="form-edit">
-        <EditPtProfileForm class="mb-0" />
-      </div>
-    </b-container>
+    <div class="hero">
+      <b-container fluid class="container">
+        <div class="headerBg"></div>
+        <b-row>
+          <b-col cols="12" md="4" sm="12">
+            <ProfilePtCardEdit />
+          </b-col>
+          <b-col cols="12" md="4" sm="12">
+            <div class="form-edit">
+              <EditPtProfileForm class="mb-0" />
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
     <footer>
       <Footer />
     </footer>
@@ -34,6 +42,9 @@ export default {
 </script>
 
 <style scoped>
+.hero {
+  background-color: #e5e5e5;
+}
 .container {
   text-align: center;
   margin: 0 auto;
@@ -42,7 +53,7 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   box-sizing: border-box;
-  background-color: #e5e5e5;
+  /* background-color: #e5e5e5; */
 }
 .headerBg {
   background-color: #5e50a1;
@@ -71,5 +82,11 @@ nav {
   top: 0;
   left: 0;
   z-index: 1;
+}
+
+@media (max-width: 575.98px) {
+  footer {
+    display: none;
+  }
 }
 </style>

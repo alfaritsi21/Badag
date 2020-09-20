@@ -3,6 +3,12 @@ header {
     padding: 10px 0;
   }
   
+  header .home-page span {
+    font-size:32px;
+    font-weight:bold;
+    color:linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(31,166,222,1) 63%); 
+  }
+
   header nav {
     padding: 20px 0;
   }
@@ -195,7 +201,7 @@ header {
   
   .sign-now h1 {
     color: #fff;
-    width: 300px;
+    width: 500px;
   }
   
   .sign-now .btn-sign-now {
@@ -275,4 +281,121 @@ header {
     /* End Section 2 */
 
   }
+
+@media (max-width: 575.98px) {
+  header .main-header h1 {
+    margin-top: 0px;
+  }
+  .btn-group, .btn-group-vertical {
+    margin: 2px 0;
+  }
+  header .main-header .btn-start {
+    margin: 0 0 50px 0;
+  }
+  header .main-header .rectangle-header {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+  header .main-header .rectangle-small {
+    position: absolute;
+    top: 250px;
+    right: 290px;
+    width: 70px;
+    height: 70px;
+  }
+  header .main-header .rectangle-yellow {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 70px;
+  }
+  header .main-header .img-header img {
+    width: 300px;
+    height: 300px;
+    margin: 0 20px;
+  }
+  /* Section 2 */
+  .why {
+    margin: 100px 0;
+  }
+  .why .why-img img {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    margin: 0 20px;
+  }
+  .why .why-img .rectangle-why {
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  .why .why-img .rectangle-small-why {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+  }
+  .why h2 {
+    font-size: 24px;
+    width: 250px;
+    margin: 20px 0 10px 0;
+  }
+  /* End Section 2 */
+
+  /* Section 3 */
+
+  .skill {
+    margin: 100px 0;
+  }
+
+  .skill h2 {
+    font-size: 24px;
+  }
+
+  .skill p {
+    font-size: 14px;
+  }
+
+  .skill .img-skill img {
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    margin: 20px;
+  }
+  
+  .skill .img-skill .rectangle-skill {
+    width: 300px;
+    height: 250px;
+    margin: 20px auto;
+  }
+  
+  .skill .img-skill .rectangle-skill-small {
+    width: 60px;
+    height: 60px;
+    background: #fbb017;
+    position: absolute;
+    top: -10px;
+    right: 10px;
+  }
+  /* End Section 3 */
+
+  /* Section 4 */
+  .sign-now {
+    margin: 100px 0;
+  }
+  
+  .sign-now .banner {
+    background: #5e50a1;
+    padding: 50px;
+    border-radius: 40px 8px;
+  }
+  
+  .sign-now h1 {
+    font-size: 24px;
+    width: 280px;
+  }
+}
 /* End Landing Page */

@@ -1,7 +1,10 @@
 <template>
   <div class="footer">
-    <img src="../../assets/img/img-landing/logo-white.png" />
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quae, ea repellat quaerat amet quam!</p>
+    <img src="../../assets/logo.png" style="width:50px;margin-bottom:30px;" />
+    <span style="font-size:32px;
+    font-weight:bold;
+    color:rgba(31,166,222,1); ">ADAG</span>
+    <p>BADAG Technology adalah situs Job Portal Digital, dimana tempat untuk para Jobseeker mencari pekerjaan yang berkualiatas.</p>
     <hr />
     <b-row>
       <b-col cols="6" md="6" sm="6">

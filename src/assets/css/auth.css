@@ -86,7 +86,7 @@
     margin-bottom: 20px;
   }
 }
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
   .container {
     margin: 0;
     padding: 0;
@@ -129,5 +129,8 @@
   }
   .authForm {
     top: 0px;
+  }
+  .leftBg {
+    display: none;
   }
 }

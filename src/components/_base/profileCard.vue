@@ -128,6 +128,7 @@ export default {
   text-align: left;
   box-sizing: border-box;
   background-color: white;
+  margin: 0 0 150px 0;
 }
 .email {
   width: 100%;
@@ -285,5 +286,12 @@ export default {
   font-size: 20px;
   position: relative;
   text-align: left;
+}
+
+@media (max-width: 575.98px) {
+  .profile {
+    margin: 0 0 50px 0;
+    width: 340px;
+  }
 }
 </style>

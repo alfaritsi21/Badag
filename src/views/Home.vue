@@ -6,7 +6,8 @@
           <nav>
             <b-row>
               <b-col cols="6" md="6" sm="6">
-                <img src="../assets/img/img-landing/logo.png" />
+                <img src="../assets/logo.png" style="width:50px;margin-bottom:30px;" />
+                <span>ADAG</span>
               </b-col>
               <b-col v-if="isLogin2 === false" cols="6" md="6" sm="6">
                 <!-- <b-button class="btn-sigup float-right">
@@ -41,11 +42,8 @@
           <div class="main-header">
             <b-row>
               <b-col cols="12" md="6" sm="6" class="header-left">
-                <h1>Talenta terbaik negri untuk perubahan revolusi 4.0</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                  euismod ipsum et dui rhoncus auctor
-                </p>
+                <h1>Talenta Terbaik Negri Untuk Perubahan Revolusi 4.0</h1>
+                <p>BADAG Technology adalah situs Job Portal Digital, dimana tempat untuk para Jobseeker mencari pekerjaan yang berkualiatas.</p>
                 <b-button class="btn-start" @click="onMulai">Mulai Dari Sekarang</b-button>
               </b-col>
               <b-col cols="12" md="6" sm="6" class="header-right">
@@ -71,18 +69,18 @@
             </div>
           </b-col>
           <b-col cols="12" md="6" sm="6">
-            <h2>Kenapa harus mencari tallent di peworld</h2>
+            <h2>Kenapa harus mencari tallent di BADAG Technology</h2>
             <p class="p">
-              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Lorem ipsum dolor sit.
+              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Sumber Daya Manusia Yang Berkualiatas
             </p>
             <p class="p">
-              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Lorem ipsum dolor sit.
+              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Banyak Perusahaan Ternama
             </p>
             <p class="p">
-              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Lorem ipsum dolor sit.
+              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Cepat, Simple, dan Progresif
             </p>
             <p class="p">
-              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Lorem ipsum dolor sit.
+              <b-icon class="icons" icon="check-circle-fill" style="color: #7952b3;"></b-icon>Dijamin Dapat Kerja
             </p>
           </b-col>
         </b-row>
@@ -92,10 +90,7 @@
         <b-row>
           <b-col cols="12" md="6" sm="6">
             <h2>Skill Tallent</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas
-              voluptas atque nisi nulla illum!
-            </p>
+            <p>Menyambut revolusi 4.0, Kami menyediakan tallent dengan berbagi skill yang Up To Date. Diantaranya :</p>
             <b-row>
               <b-col cols="6" md="6" sm="6">
                 <p class="p">
@@ -145,10 +140,10 @@
       <section class="sign-now">
         <div class="banner">
           <b-row>
-            <b-col cols="6" md="6" sm="6">
-              <h1>Lorem ipsum dolor sit amet.</h1>
+            <b-col cols="12" md="6" sm="6">
+              <h1>Saatnta Bergabung Dengan BADAG Technology</h1>
             </b-col>
-            <b-col cols="6" md="6" sm="6">
+            <b-col cols="12" md="6" sm="6">
               <b-button class="btn-sign-now float-right" @click="onMulai">Mulai Dari Sekarang</b-button>
             </b-col>
           </b-row>
