@@ -34,47 +34,43 @@
       </div>
       <div class="gitlab">
         <img src="../../assets/img/gitlab.png" alt="gitlab" />
-        <p>{{getFullUserData.gitlab === undefined ? 'none' :getFullUserData.gitlab}}</p>
+        <p>{{getFullUserData.linkedin === undefined ? 'none' :getFullUserData.linkedin}}</p>
       </div>
     </div>
     <div v-if="isPt === true" class="profile">
       <div class="gambar">
-        <img
-          src="http://127.0.0.1:3001/2020-09-20T05-52-25.684Z-starky-sapling.png"
-          alt
-          class="profileImg"
-        />
+        <img v-bind:src="`${urlApi}${getWorkerProfile.image}`" alt class="profileImg" />
       </div>
-      <h4 class="profileName">Jamet</h4>
-      <p>pekerjaan</p>
+      <h4 class="profileName">{{getWorkerProfile.name}}</h4>
+      <p>{{getWorkerProfile.job}}</p>
       <div class="pin">
         <img src="../../assets/img/pin.png" alt />
-        <p>Jakarta, Indonesia</p>
+        <p>{{getWorkerProfile.place}}, Indonesia</p>
       </div>
-      <p>fulltime</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt temporibus autem commodi adipisci, nam tenetur.</p>
+      <p>{{getWorkerProfile.job_time === 0 ? 'freelancer' : 'fulltime'}}</p>
+      <p>{{getWorkerProfile.user_description}}</p>
       <button v-if="isPt === true" type="button" @click="onBtn">Hire</button>
       <h5>Skill</h5>
       <div class="skill">
-        <div v-for="(item, index) in 3" :key="index">
-          <p>java</p>
+        <div v-for="(item, index) in getWorkerProfile.skills" :key="index">
+          <p>{{item}}</p>
         </div>
       </div>
       <div class="email">
         <img src="../../assets/img/mail.png" alt="email" />
-        <p>a1.sad@gmail.com</p>
+        <p>{{getWorkerProfile.email}}</p>
       </div>
       <div class="insta">
         <img src="../../assets/img/instagram.png" alt="insta" />
-        <p>@a.bber</p>
+        <p>{{getWorkerProfile.instagram === '' ? 'none' :getWorkerProfile.instagram}}</p>
       </div>
       <div class="github">
         <img src="../../assets/img/github.png" alt="github" />
-        <p>@a.bbe/github</p>
+        <p>{{getWorkerProfile.github === '' ? 'none' :getWorkerProfile.github}}</p>
       </div>
       <div class="gitlab">
         <img src="../../assets/img/gitlab.png" alt="gitlab" />
-        <p>@a.bbe/gitlab</p>
+        <p>{{getWorkerProfile.linkedin === '' ? 'none' :getWorkerProfile.linkedin}}</p>
       </div>
     </div>
   </div>
@@ -91,12 +87,19 @@ export default {
   },
   created() {
     this.getDataUsers()
+    this.getWorkerData()
   },
   computed: {
-    ...mapGetters(['isPt', 'userData', 'getFullUserData'])
+    ...mapGetters([
+      'isPt',
+      'userData',
+      'getFullUserData',
+      'getSelectedWorker',
+      'getWorkerProfile'
+    ])
   },
   methods: {
-    ...mapActions(['userLoginData']),
+    ...mapActions(['userLoginData', 'selectedWorkerProfile']),
     ...mapMutations([]),
     getDataUsers() {
       this.userLoginData()
@@ -113,6 +116,15 @@ export default {
       } else {
         this.$router.push('/hire')
       }
+    },
+    getWorkerData() {
+      this.selectedWorkerProfile(this.getSelectedWorker)
+        .then((response) => {
+          // console.log(response)
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+        })
     }
   }
 }
