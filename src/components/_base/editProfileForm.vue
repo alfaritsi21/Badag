@@ -45,7 +45,7 @@
             <b-form-textarea
               id="textarea"
               v-model="form.user_description"
-              placeholder="Tuliskan Deskripsi Singkat"
+              placeholder="Tekan enter setelah selesai mengetik..."
               rows="3"
               max-rows="6"
               v-on:keyup.enter="submit"
@@ -66,7 +66,7 @@ export default {
       form: {
         user_name: '',
         user_job: '',
-        user_time_job: 1,
+        user_time_job: null,
         user_location: '',
         user_work_location: '',
         user_description: ''
@@ -74,14 +74,34 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([])
+    ...mapGetters(['getDataJobTime'])
   },
   methods: {
     ...mapActions({
       addBioForm: 'addBioForm'
     }),
     submit() {
-      this.addBioForm(this.form)
+      if (
+        this.form.user_name.length < 1 ||
+        this.form.user_job === '' ||
+        this.form.user_location.length < 1 ||
+        this.form.user_work_location.length < 1 ||
+        this.form.user_description.length < 1
+      ) {
+        alert('all input field must be filled')
+      } else {
+        if (this.getDataJobTime === 'freelance') {
+          this.form.user_time_job = 0
+          this.addBioForm(this.form)
+        } else if (this.getDataJobTime === 'fulltime') {
+          this.form.user_time_job = 1
+          this.addBioForm(this.form)
+        } else {
+          alert(
+            'invalid input (fulltime / freelance ?), masukan ulang input & gunakan huruf kecil'
+          )
+        }
+      }
     }
   }
 }

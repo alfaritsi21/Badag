@@ -7,9 +7,13 @@ export default {
     token: localStorage.getItem('token') || null,
     isPt: false,
     isRegist: false,
-    isOn: false
+    isOn: false,
+    fullData: {}
   },
   mutations: {
+    setFullUserData(state, payload) {
+      state.fullData = payload
+    },
     setUser(state, payload) {
       state.user = payload
       state.token = payload.token
@@ -29,6 +33,23 @@ export default {
     }
   },
   actions: {
+    userLoginData(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${context.state.urlApi}users/${context.state.user.user_id}`)
+          .then(response => {
+            context.commit('setFullUserData', response.data.data)
+            resolve(response.data)
+          })
+          .catch(error => {
+            if (error.response === undefined) {
+              alert('Tidak dapat terhubung ke server')
+            } else {
+              reject(error.response)
+            }
+          })
+      })
+    },
     login(context, payload) {
       //   console.log([payload, context.state.urlApi])
       return new Promise((resolve, reject) => {
@@ -165,6 +186,9 @@ export default {
     }
   },
   getters: {
+    getFullUserData(state) {
+      return state.fullData
+    },
     isLogin(state) {
       return state.token !== null
     },

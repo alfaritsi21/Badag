@@ -6,24 +6,25 @@
     </div>
     <div class="content">
       <div v-if="isPorto === true" class="portofolio">
-        <div class="loopBorder" v-for="(item, index) in 9" :key="index">
-          <div class="imgPorto"></div>
-          <p>Social media app</p>
+        <div class="loopBorder" v-for="(item, index) in getFullUserData.portofolio" :key="index">
+          <div
+            class="imgPorto"
+            v-bind:style="{ backgroundImage: `url(${urlApi}${item.image_app})` }"
+          ></div>
+          <p>{{item.app_name}}</p>
         </div>
       </div>
       <div v-if="isExp === true" class="experience">
-        <div class="expLoop" v-for="(item, index) in 2" :key="index">
-          <div class="imgJob"></div>
+        <div class="expLoop" v-for="(item, index) in getFullUserData.experience" :key="index">
+          <div
+            class="imgJob"
+            v-bind:style=" item.logo === undefined ? { backgroundImage: 'none', backgroundColor: 'red'} : { backgroundImage: `url(${urlApi}${item.logo})` }"
+          ></div>
           <div class="jobDesc">
-            <p>Engineer</p>
-            <p>Tokopedia</p>
-            <p>July 2019 - January 2020 6 month</p>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui,
-              deleniti! Vitae, quasi natus a blanditiis delectus cumque maxime
-              rerum? Dignissimos architecto ducimus quae velit consequuntur.
-              Voluptate, nam animi? Reiciendis, totam.
-            </p>
+            <p>{{item.position}}</p>
+            <p>{{item.company}}</p>
+            <p>{{item.date}}- {{item.date}} 1 month</p>
+            <p>{{item.description}}</p>
           </div>
         </div>
       </div>
@@ -32,15 +33,34 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Portofoliotab',
   data() {
     return {
+      urlApi: process.env.VUE_APP_URL,
       isPorto: true,
       isExp: false
     }
   },
+  created() {
+    this.getDataUsers()
+  },
+  computed: {
+    ...mapGetters(['userData', 'getFullUserData'])
+  },
   methods: {
+    ...mapActions(['userLoginData']),
+    ...mapMutations([]),
+    getDataUsers() {
+      this.userLoginData()
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error.data.msg)
+        })
+    },
     onPorto() {
       this.isPorto = true
       this.isExp = false
