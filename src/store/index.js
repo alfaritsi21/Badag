@@ -7,6 +7,7 @@ import ProfileIcon from './modules/profileIcon'
 import ProfileCompany from './modules/profileCompany'
 import EditProfile from './modules/editProfile'
 import Hiring from './modules/hiring'
+import Chat from './modules/chat'
 import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     ProfileIcon,
     EditProfile,
     ProfileCompany,
-    Hiring
+    Hiring,
+    Chat
   },
   state: {},
   mutations: {},

@@ -75,7 +75,11 @@ export default {
         })
     },
     onLogo() {
-      this.$router.push('/')
+      if (this.isPt === false) {
+        this.$router.push('/profile-portofolio')
+      } else {
+        this.$router.push('/home')
+      }
     },
     onProfile() {
       if (this.isPt === false) {
