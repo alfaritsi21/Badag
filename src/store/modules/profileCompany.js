@@ -19,18 +19,23 @@ export default {
   },
   actions: {
     addCompany(context, payload) {
-      axios
-        .patch(`${process.env.VUE_APP_URL}company/profile/${payload}`, context.state.dataCom)
-        .then(response => {
-          context.commit('setDataCompany', response.data.data)
-          console.log(response.data)
-          console.log(payload)
-          alert(response.data.msg)
-        })
-        .catch(error => {
-          alert(error.response.data.msg)
-          console.log(error.response.data.msg)
-        })
+      return new Promise((resolve, reject) => {
+        axios
+          .patch(
+            `${process.env.VUE_APP_URL}company/profile/${payload}`,
+            context.state.dataCom
+          )
+          .then(response => {
+            context.commit('setDataCompany', response.data.data)
+            alert(response.data.msg)
+            resolve(response.data.msg)
+          })
+          .catch(error => {
+            alert(error.response.data.msg)
+            reject(error.response.data.msg)
+            console.log(error.response.data.msg)
+          })
+      })
     },
     addComForm(context, payload) {
       console.log(payload)
@@ -38,7 +43,10 @@ export default {
     },
     pictureCompany(context, payload) {
       axios
-        .patch(`${process.env.VUE_APP_URL}company/profile-image/${payload[1]}`, payload[0])
+        .patch(
+          `${process.env.VUE_APP_URL}company/profile-image/${payload[1]}`,
+          payload[0]
+        )
         .then(response => {
           //   resolve(response.data)
           alert(response.data.msg)
@@ -49,6 +57,5 @@ export default {
         })
     }
   },
-  getters: {
-  }
+  getters: {}
 }

@@ -141,7 +141,7 @@
         <div class="banner">
           <b-row>
             <b-col cols="12" md="6" sm="6">
-              <h1>Saatnta Bergabung Dengan BADAG Technology</h1>
+              <h1>Saatnya Bergabung Dengan BADAG Technology</h1>
             </b-col>
             <b-col cols="12" md="6" sm="6">
               <b-button class="btn-sign-now float-right" @click="onMulai">Mulai Dari Sekarang</b-button>

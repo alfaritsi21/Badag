@@ -51,7 +51,6 @@ export default {
       })
     },
     login(context, payload) {
-      //   console.log([payload, context.state.urlApi])
       return new Promise((resolve, reject) => {
         axios
           .post(`${context.state.urlApi}users/login-user`, payload)
