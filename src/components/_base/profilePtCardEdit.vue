@@ -35,7 +35,10 @@ export default {
     return {
       urlAPI: process.env.VUE_APP_URL,
       dataCompany: [],
-      isEdit: false
+      isEdit: false,
+      form: {
+        image: ''
+      }
     }
   },
   computed: {
@@ -71,8 +74,10 @@ export default {
       }
     },
     browse(event) {
-      const form = { image: event.target.files[0] }
-      this.pictureCompany([form, this.company.company_id])
+      this.form.image = event.target.files[0]
+      const data = new FormData()
+      data.append('image', this.form.image)
+      this.pictureCompany([data, this.company.company_id])
     }
   }
 }

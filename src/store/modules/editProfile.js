@@ -92,6 +92,7 @@ export default {
       context.commit('setJobTime', payload)
     },
     profilePicture(context, payload) {
+      console.log(payload[0])
       axios
         .patch(`${context.state.urlApi}users/${payload[1]}`, payload[0])
         .then(response => {

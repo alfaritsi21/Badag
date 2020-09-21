@@ -64,8 +64,13 @@ export default {
     ...mapActions(['addPortofolio']),
     addPorto() {
       this.form.user_id = this.userData.user_id
-      console.log(this.form)
-      this.addPortofolio(this.form)
+      const data = new FormData()
+      data.append('user_id', this.form.user_id)
+      data.append('app_name', this.form.app_name)
+      data.append('link_repository', this.form.link_repository)
+      data.append('type_portofolio', this.form.type_portofolio)
+      data.append('image', this.form.image)
+      this.addPortofolio(data)
     },
     fileUpload(event) {
       this.form.image = event.target.files[0]
