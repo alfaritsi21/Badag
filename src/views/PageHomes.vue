@@ -68,7 +68,6 @@
                 <b-icon icon="map"></b-icon>
                 {{ item.user_location }}
               </p>
-              <!-- <b-button class="btn-skill">{{ item.skills}}</b-button> -->
               <b-badge class="btn-skill">{{
                 item.skills.split(',')[0]
               }}</b-badge>
@@ -117,8 +116,6 @@
               <b-badge class="btn-skill">{{
                 item.skills.split(',')[15]
               }}</b-badge>
-              <b-button class="btn-skill">{{ item.skills }}</b-button>
-              <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
               <b-button @click="onLihat(item)" class="btn-lock-profile"
@@ -299,7 +296,7 @@ main {
 }
 
 .main-home .content-searching .detail-profile {
-  height: 150px;
+  height: 175px;
   margin-bottom: 40px;
 }
 
