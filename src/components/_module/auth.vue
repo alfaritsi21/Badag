@@ -249,11 +249,8 @@ export default {
     onSubmit() {
       if (this.isRegist === false) {
         if (this.isPt === false) {
-          // alert('login public')
           this.login(this.formLogin)
             .then(result => {
-              // alert(result.msg)
-              // console.log(result.data)
               this.$swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -273,15 +270,10 @@ export default {
                 showConfirmButton: false,
                 timer: 1500
               })
-              //   this.msg = error.data.msg
-              //   alert(this.msg)
             })
         } else {
-          // alert('login company')
           this.loginPt(this.formLoginPt)
             .then(result => {
-              // alert(result.msg)
-              // console.log(result)
               this.$swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -294,8 +286,6 @@ export default {
               }, 1000)
             })
             .catch(error => {
-              // this.msg = error.data.msg
-              // alert(this.msg)
               this.$swal.fire({
                 position: 'center',
                 icon: 'error',
@@ -306,7 +296,6 @@ export default {
             })
         }
       } else if (this.isRegist === true && this.isPt === false) {
-        // alert('Register jobseeker')
         this.register(this.formRegister)
           .then(result => {
             this.$swal.fire({
@@ -319,12 +308,8 @@ export default {
             setTimeout(() => {
               this.$router.push('/')
             }, 1000)
-            // alert(result.data.msg)
-            // console.log(result.data)
           })
           .catch(error => {
-            // this.msg = error.data.msg
-            // alert(this.msg)
             this.$swal.fire({
               position: 'center',
               icon: 'error',
@@ -334,7 +319,6 @@ export default {
             })
           })
       } else {
-        // alert('Register perusahaan')
         this.registerPt(this.formRegisterPt)
           .then(result => {
             this.$swal.fire({
@@ -347,12 +331,8 @@ export default {
             setTimeout(() => {
               this.$router.push('/')
             })
-            // alert(result.data.msg)
-            // console.log(result.data)
           })
           .catch(error => {
-            // this.msg = error.data.msg
-            // alert(this.msg)
             this.$swal.fire({
               position: 'center',
               icon: 'error',
@@ -365,29 +345,11 @@ export default {
     },
     onSubmitReset() {
       if (this.isPt === false) {
-        alert('reset sebagai worker')
         this.checkForgotEmail(this.user_email)
-        // .then((result) => {
-        //   alert(result.msg)
-        //   console.log(result.data)
         this.$router.push('/reset')
-        // })
-        // .catch((error) => {
-        //   this.msg = error.data.msg
-        //   alert(this.msg)
-        // })
       } else {
-        alert('reset sebagai company')
         this.checkForgotEmail(this.company_email)
-        // .then((result) => {
-        //   alert(result.msg)
-        //   console.log(result.data)
         this.$router.push('/reset')
-        // })
-        // .catch((error) => {
-        //   this.msg = error.data.msg
-        //   alert(this.msg)
-        // })
       }
     },
     onLogo() {
