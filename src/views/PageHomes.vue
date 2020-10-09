@@ -18,37 +18,64 @@
               v-on:keyup.enter="searching(form.skills)"
             />
             <b-icon icon="search"></b-icon>
-            <b-dropdown id="dropdown-1" text="Sort" right class="m-md-2 sorting" variant="outline">
-              <b-dropdown-item @click="sorting('name')">Sorting Berdasarkan Nama</b-dropdown-item>
-              <b-dropdown-item @click="sorting('skill')">Sorting Berdasarkan Skill</b-dropdown-item>
-              <b-dropdown-item @click="sorting('location')">Sorting Berdasarkan Lokasi</b-dropdown-item>
-              <b-dropdown-item @click="sorting('freelance')">Sorting Berdasarkan Freelance</b-dropdown-item>
-              <b-dropdown-item @click="sorting('fulltime')">Sorting Berdasarkan Fulltime</b-dropdown-item>
+            <b-dropdown
+              id="dropdown-1"
+              text="Sort"
+              right
+              class="m-md-2 sorting"
+              variant="outline"
+            >
+              <b-dropdown-item @click="sorting('name')"
+                >Sorting Berdasarkan Nama</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('skill')"
+                >Sorting Berdasarkan Skill</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('location')"
+                >Sorting Berdasarkan Lokasi</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('freelance')"
+                >Sorting Berdasarkan Freelance</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('fulltime')"
+                >Sorting Berdasarkan Fulltime</b-dropdown-item
+              >
             </b-dropdown>
-            <b-button class="btn-search" @click="searching(form.skills)">Search</b-button>
+            <b-button class="btn-search" @click="searching(form.skills)"
+              >Search</b-button
+            >
           </div>
         </section>
 
         <section class="content-searching">
-          <b-row v-for="(item, index) in users" :key="index" class="detail-profile">
+          <b-row
+            v-for="(item, index) in users"
+            :key="index"
+            class="detail-profile"
+          >
             <b-col cols="4" md="2" sm="2">
               <img :src="urlAPI + item.user_image" />
             </b-col>
             <b-col cols="8" md="8" sm="8" class="detail-users">
-              <h4>{{item.user_name}}</h4>
-              <p>{{item.user_job}}</p>
+              <h4>{{ item.user_name }}</h4>
+              <p>{{ item.user_job }}</p>
               <p>
                 <b-icon icon="map"></b-icon>
-                {{item.user_location}}
+                {{ item.user_location }}
               </p>
-              <b-button class="btn-skill">{{ item.skills}}</b-button>
+              <b-button class="btn-skill">{{ item.skills }}</b-button>
               <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
-              <b-button @click="onLihat(item)" class="btn-lock-profile">Lihat Profile</b-button>
+              <b-button @click="onLihat(item)" class="btn-lock-profile"
+                >Lihat Profile</b-button
+              >
             </b-col>
             <b-col cols="12" sm="12" md="12" lg="12">
-              <div :style="[index === 4 ? { borderBottom: 'none' } : null]" class="hr"></div>
+              <div
+                :style="[index === 4 ? { borderBottom: 'none' } : null]"
+                class="hr"
+              ></div>
             </b-col>
           </b-row>
         </section>
@@ -96,10 +123,31 @@ export default {
   },
   created() {
     this.getDataUsers()
+    this.loadData()
   },
   methods: {
     ...mapActions(['getDataUsers', 'searcinghUsers', 'selectedDataWorker']),
     ...mapMutations(['changePage', 'sortUsers', 'searchUsers']),
+    loadData() {
+      console.log(this.getFullUserData)
+      if (
+        this.getFullUserData.company_image === '' ||
+        this.getFullUserData.company_place === null ||
+        this.getFullUserData.company_instagram === null ||
+        this.getFullUserData.company_linkedin === null ||
+        this.getFullUserData.company_description === null ||
+        this.getFullUserData.company_field === null
+      ) {
+        this.$bvToast.toast('Lengkapi data perusahaan anda terlebih dahulu !', {
+          title: 'Warning',
+          variant: 'danger',
+          solid: true
+        })
+        setTimeout(() => {
+          this.$router.push('/profile-pt-edit')
+        }, 2000)
+      }
+    },
     handlePageChange(numberPage) {
       this.$router.push(`?page=${numberPage}`)
       this.changePage(numberPage)
@@ -138,7 +186,8 @@ export default {
       totalPage: 'getTotalPage',
       limit: 'getLimit',
       sort: 'getSortUsers',
-      search: 'getSearch'
+      search: 'getSearch',
+      getFullUserData: 'getFullUserData'
     })
   }
 }

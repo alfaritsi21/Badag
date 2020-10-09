@@ -157,7 +157,6 @@ export default {
     },
     logout(context, payload) {
       alert('Anda akan dialihkan ke halaman login')
-      console.log(context.state.isOn)
       if (context.state.isOn === true) {
         router.push('/auth')
         localStorage.removeItem('token')
