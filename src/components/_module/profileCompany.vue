@@ -14,14 +14,16 @@
           </p>
         </div>
         <div class="main-company text-center">
-          <h3>{{dataCompany.company_name}}</h3>
-          <h6>{{dataCompany.company_position}}</h6>
+          <h3>{{ dataCompany.company_name }}</h3>
+          <h6>{{ dataCompany.company_position }}</h6>
           <p>
             <b-icon icon="map"></b-icon>
-            {{dataCompany.company_place}}
+            {{ dataCompany.company_place }}
           </p>
-          <p class="description">{{dataCompany.company_description}}</p>
-          <b-button class="edit-company" @click="setCompany(dataCompany)">Edit Profile</b-button>
+          <p class="description">{{ dataCompany.company_description }}</p>
+          <b-button class="edit-company" @click="setCompany(dataCompany)"
+            >Edit Profile</b-button
+          >
           <div class="contact-company">
             <!-- <p>
               <img src="../../assets/img/mail.png" alt />
@@ -33,17 +35,33 @@
             </p>-->
             <b-row>
               <b-col cols="5" md="5" sm="5">
-                <img src="../../assets/img/mail.png" alt style="padding: 0 0;" />
-                <img src="../../assets/img/instagram.png" alt style="padding-top: 17px;" />
-                <img src="../../assets/img/phone.png" alt style="padding-top: 17px;" />
+                <img
+                  src="../../assets/img/mail.png"
+                  alt
+                  style="padding: 0 0;"
+                />
+                <img
+                  src="../../assets/img/instagram.png"
+                  alt
+                  style="padding-top: 17px;"
+                />
+                <img
+                  src="../../assets/img/phone.png"
+                  alt
+                  style="padding-top: 17px;"
+                />
                 <!-- <img src="../../assets/img/i.png" alt /> -->
-                <img src="../../assets/img/in.png" alt style="padding-top: 20px;" />
+                <img
+                  src="../../assets/img/in.png"
+                  alt
+                  style="padding-top: 20px;"
+                />
               </b-col>
               <b-col cols="7" md="7" sm="7" class="text-left">
-                <p>{{dataCompany.company_email}}</p>
-                <p>@{{dataCompany.company_instagram}}</p>
-                <p>{{dataCompany.company_phone}}</p>
-                <p>{{dataCompany.company_linkedin}}</p>
+                <p>{{ dataCompany.company_email }}</p>
+                <p>@{{ dataCompany.company_instagram }}</p>
+                <p>{{ dataCompany.company_phone }}</p>
+                <p>{{ dataCompany.company_linkedin }}</p>
               </b-col>
             </b-row>
           </div>
@@ -60,7 +78,7 @@
 import Navbar from '../_base/Navbar'
 import Footer from '../_base/footer'
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 import ProfilePt from '../_base/modalProfilePt'
 export default {
@@ -91,17 +109,18 @@ export default {
     this.getDataCompany()
   },
   methods: {
+    ...mapActions(['getFullUserData']),
     onEdit() {
       this.$router.push('/profile-pt-edit')
     },
     getDataCompany() {
       axios
         .get(`${process.env.VUE_APP_URL}company/${this.company.company_id}`)
-        .then((response) => {
+        .then(response => {
           this.dataCompany = response.data.data
           console.log(this.dataCompany)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
         })
     },

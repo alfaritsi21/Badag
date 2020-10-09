@@ -6,11 +6,19 @@
           <h5>Chat</h5>
           <hr />
           <div v-if="msgCount > 0">
-            <div class="sender" v-for="(item, index) in getListChatWorker" :key="index">
-              <img @click="onMsg(item)" src="../../assets/img/propict.png" alt />
+            <div
+              class="sender"
+              v-for="(item, index) in getListChatWorker"
+              :key="index"
+            >
+              <img
+                @click="onMsg(item)"
+                v-bind:src="`${urlApi}${item.company_image}`"
+                alt="#"
+              />
               <div class="isi">
-                <h6>PT [...]</h6>
-                <p>haloo..</p>
+                <h6>{{ item.company_name }}</h6>
+                <p>You've got messagge</p>
               </div>
             </div>
           </div>
@@ -21,18 +29,35 @@
         </div>
         <div class="room">
           <div v-if="msgClick === true" class="profile">
-            <img v-bind:src="`${urlApi}${getRoomChatData[0].company_image}`" alt="#" />
-            <h4>{{getRoomChatData[0].company_name}}</h4>
+            <img
+              v-bind:src="`${urlApi}${getRoomChatData[0].company_image}`"
+              alt="#"
+            />
+            <h4>{{ getRoomChatData[0].company_name }}</h4>
           </div>
           <div v-if="msgClick === true" class="chat">
-            <div class="msgRow" v-for="(item, index) in getRoomChatData" :key="index">
+            <div
+              class="msgRow"
+              v-for="(item, index) in getRoomChatData"
+              :key="index"
+            >
               <div
                 class="msg"
-                :style="[index %2 ? {justifyContent: 'flex-Start'} : {justifyContent: 'flex-End'}]"
+                :style="[
+                  item.sender !== userData.user_id
+                    ? { justifyContent: 'flex-Start' }
+                    : { justifyContent: 'flex-End' }
+                ]"
               >
                 <p
-                  :style="[index %2 ? { textAlign: 'right'} : { textAlign: 'left'}]"
-                >{{item.message}}</p>
+                  :style="[
+                    item.sender !== userData.user_id
+                      ? { textAlign: 'right', borderColor: 'red' }
+                      : { textAlign: 'left', borderColor: 'blue' }
+                  ]"
+                >
+                  {{ item.message }}
+                </p>
               </div>
             </div>
           </div>
@@ -64,11 +89,19 @@
           <h5>Chat</h5>
           <hr />
           <div v-if="msgCount > 0">
-            <div class="sender" v-for="(item, index) in 5" :key="index">
-              <img @click="onMsg" src="../../assets/img/propict.png" alt />
+            <div
+              class="sender"
+              v-for="(item, index) in getListChatCompany"
+              :key="index"
+            >
+              <img
+                @click="onMsg(item)"
+                v-bind:src="`${urlApi}${item.user_image}`"
+                alt="#"
+              />
               <div class="isi">
-                <h6>Jonas adam ada madfaw adsa</h6>
-                <p>Permisi kak, mau tanya...</p>
+                <h6>{{ item.user_name }}</h6>
+                <p>You've got message...</p>
               </div>
             </div>
           </div>
@@ -79,18 +112,35 @@
         </div>
         <div class="room">
           <div v-if="msgClick === true" class="profile">
-            <img src="../../assets/img/propict.png" alt="#" />
-            <h4>Jonas adam</h4>
+            <img
+              v-bind:src="`${urlApi}${getRoomChatData[0].user_image}`"
+              alt="#"
+            />
+            <h4>{{ getRoomChatData[0].user_name }}</h4>
           </div>
           <div v-if="msgClick === true" class="chat">
-            <div class="msgRow" v-for="(item, index) in 11" :key="index">
+            <div
+              class="msgRow"
+              v-for="(item, index) in getRoomChatData"
+              :key="index"
+            >
               <div
                 class="msg"
-                :style="[index %2 ? {justifyContent: 'flex-Start'} : {justifyContent: 'flex-End'}]"
+                :style="[
+                  item.sender !== userData.company_id
+                    ? { justifyContent: 'flex-Start' }
+                    : { justifyContent: 'flex-End' }
+                ]"
               >
                 <p
-                  :style="[index %2 ? { textAlign: 'right'} : { textAlign: 'left'}]"
-                >Permisi kak, mau tanya kalo gini kalo gini kalo gini jadi kalo gitu bagaimana kak?</p>
+                  :style="[
+                    item.sender !== userData.company_id
+                      ? { textAlign: 'right', borderColor: 'red' }
+                      : { textAlign: 'left', borderColor: 'blue' }
+                  ]"
+                >
+                  {{ item.message }}
+                </p>
               </div>
             </div>
           </div>
@@ -180,39 +230,55 @@ export default {
         roomchat_id: item.id_roomchat
       }
       this.chatRoom(form)
-      console.log(item)
     },
     getDataUsers() {
       this.userLoginData()
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
+        .then(response => {})
+        .catch(error => {
           console.log(error.data.msg)
         })
     },
     getWorkerData() {
       this.selectedWorkerProfile(this.getSelectedWorker)
-        .then((response) => {
-          // console.log(response)
-        })
-        .catch((error) => {
+        .then(response => {})
+        .catch(error => {
           console.log(error.data.msg)
         })
     },
     onSend() {
-      const data = {
+      const data1 = {
         roomchat_id: this.getRoomId.roomchat_id,
         sender: this.form1.user_id,
         receive: this.getRoomChatData[0].company_id,
         message: this.message,
         role_id: this.getRoomChatData[0].roleid_user
       }
-      this.sendMessage(data)
-        .then((response) => {})
-        .catch((error) => {
-          console.log(error.data.msg)
-        })
+
+      const data2 = {
+        roomchat_id: this.getRoomId.roomchat_id,
+        sender: this.form2.company_id,
+        receive: this.getRoomChatData[0].user_id,
+        message: this.message,
+        role_id: this.getRoomChatData[0].roleid_company
+      }
+
+      if (this.isPt === false) {
+        this.sendMessage(data1)
+          .then(response => {
+            this.message = ''
+          })
+          .catch(error => {
+            console.log(error.data.msg)
+          })
+      } else {
+        this.sendMessage(data2)
+          .then(response => {
+            this.message = ''
+          })
+          .catch(error => {
+            console.log(error.data.msg)
+          })
+      }
     },
     onWindow() {
       this.msgClick = false
@@ -227,5 +293,4 @@ export default {
 }
 </script>
 
-<style scoped src="../../assets/css/chat.css">
-</style>
+<style scoped src="../../assets/css/chat.css"></style>

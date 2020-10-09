@@ -34,7 +34,11 @@ export default {
   data() {
     return {
       urlAPI: process.env.VUE_APP_URL,
-      dataCompany: []
+      dataCompany: [],
+      isEdit: false,
+      form: {
+        image: ''
+      }
     }
   },
   computed: {
@@ -60,7 +64,7 @@ export default {
         })
     },
     addCom() {
-      this.addCompany(this.userData.company_id)
+      this.addCompany(this.company.company_id)
     },
     editImg() {
       if (this.isEdit === false) {
@@ -70,8 +74,10 @@ export default {
       }
     },
     browse(event) {
-      const form = { image: event.target.files[0] }
-      this.pictureCompany([form, this.userData.company_id])
+      this.form.image = event.target.files[0]
+      const data = new FormData()
+      data.append('image', this.form.image)
+      this.pictureCompany([data, this.company.company_id])
     }
   }
 }
@@ -82,7 +88,6 @@ export default {
   padding: 0;
   position: relative;
   width: 350px;
-  height: 400px;
   border-radius: 5px;
   padding: 20px 30px;
   text-align: left;

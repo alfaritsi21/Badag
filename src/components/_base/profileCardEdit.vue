@@ -41,7 +41,10 @@ export default {
       urlApi: process.env.VUE_APP_URL,
       isEdit: false,
       job_time: '',
-      profile_image: ''
+      profile_image: '',
+      form: {
+        image: ''
+      }
     }
   },
   created() {
@@ -82,8 +85,11 @@ export default {
       this.jobTime(this.job_time)
     },
     browse(event) {
-      const form = { image: event.target.files[0] }
-      this.profilePicture([form, this.userData.user_id])
+      this.form.image = event.target.files[0]
+      const data = new FormData()
+      data.append('image', this.form.image)
+      this.profilePicture([data, this.userData.user_id])
+      // this.profilePicture([this.form.image, this.userData.user_id])
     }
   }
 }

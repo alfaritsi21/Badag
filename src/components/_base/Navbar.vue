@@ -11,7 +11,9 @@
           <div class="navigation">
             <div
               class="img-profile float-right"
-              v-bind:style="{ backgroundImage: `url(${urlApi}${getFullUserData.image})` }"
+              v-bind:style="{
+                backgroundImage: `url(${urlApi}${getFullUserData.image})`
+              }"
               @click="onProfile"
             ></div>
             <div class="icons float-right">
@@ -33,7 +35,9 @@
           <div class="navigation">
             <div
               class="img-profile float-right"
-              v-bind:style="{backgroundImage: `url(${urlApi}${userData.company_image})`}"
+              v-bind:style="{
+                backgroundImage: `url(${urlApi}${getFullUserData.company_image})`
+              }"
               @click="onProfile"
             ></div>
             <div class="icons float-right">
@@ -67,10 +71,8 @@ export default {
     ...mapActions(['profileClick', 'userLoginData']),
     getDataUsers() {
       this.userLoginData()
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
+        .then(response => {})
+        .catch(error => {
           console.log(error.data.msg)
         })
     },

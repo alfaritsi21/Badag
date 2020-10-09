@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Cardprofile from '../_base/profileCard'
 import Protofoliotab from '../_base/portofolioTab'
 import Footer from '../_base/footer'
@@ -43,6 +44,33 @@ export default {
     Footer,
     Navbar,
     Profile
+  },
+  created() {
+    this.loadData()
+  },
+  computed: {
+    ...mapGetters(['getFullUserData'])
+  },
+  methods: {
+    ...mapActions([]),
+    loadData() {
+      if (
+        this.getFullUserData.image === '' ||
+        this.getFullUserData.job === '' ||
+        this.getFullUserData.place === '' ||
+        this.getFullUserData.user_description === null ||
+        this.getFullUserData.work_location === null
+      ) {
+        this.$bvToast.toast('Lengkapi data diri anda terlebih dahulu !', {
+          title: 'Warning',
+          variant: 'danger',
+          solid: true
+        })
+        setTimeout(() => {
+          this.$router.push('/profile-edit')
+        }, 2000)
+      }
+    }
   }
 }
 </script>

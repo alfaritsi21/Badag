@@ -63,6 +63,7 @@
                 <span v-if="item.user_time_job === 0">(Freelance)</span>
                 <span v-if="item.user_time_job === 1">(Fulltime)</span>
               </p>
+              <p>{{ item.user_job }}</p>
               <p>
                 <b-icon icon="map"></b-icon>
                 {{ item.user_location }}
@@ -116,6 +117,7 @@
               <b-badge class="btn-skill">{{
                 item.skills.split(',')[15]
               }}</b-badge>
+              <b-button class="btn-skill">{{ item.skills }}</b-button>
               <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
@@ -175,10 +177,31 @@ export default {
   },
   created() {
     this.getDataUsers()
+    this.loadData()
   },
   methods: {
     ...mapActions(['getDataUsers', 'searcinghUsers', 'selectedDataWorker']),
     ...mapMutations(['changePage', 'sortUsers', 'searchUsers']),
+    loadData() {
+      console.log(this.getFullUserData)
+      if (
+        this.getFullUserData.company_image === '' ||
+        this.getFullUserData.company_place === null ||
+        this.getFullUserData.company_instagram === null ||
+        this.getFullUserData.company_linkedin === null ||
+        this.getFullUserData.company_description === null ||
+        this.getFullUserData.company_field === null
+      ) {
+        this.$bvToast.toast('Lengkapi data perusahaan anda terlebih dahulu !', {
+          title: 'Warning',
+          variant: 'danger',
+          solid: true
+        })
+        setTimeout(() => {
+          this.$router.push('/profile-pt-edit')
+        }, 2000)
+      }
+    },
     handlePageChange(numberPage) {
       this.$router.push(`?page=${numberPage}`)
       this.changePage(numberPage)
@@ -217,7 +240,8 @@ export default {
       totalPage: 'getTotalPage',
       limit: 'getLimit',
       sort: 'getSortUsers',
-      search: 'getSearch'
+      search: 'getSearch',
+      getFullUserData: 'getFullUserData'
     })
   }
 }
