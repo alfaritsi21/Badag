@@ -57,13 +57,29 @@
         </div>
         <div v-if="isRegist === true && isPt === false" class="register">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegister.name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegister.name"
+          />
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat email" v-model="formRegister.email" />
+          <input
+            type="email"
+            placeholder="Masukkan alamat email"
+            v-model="formRegister.email"
+          />
           <p>No handphone</p>
-          <input type="number" placeholder="Masukkan no handphone" v-model="formRegister.phone" />
+          <input
+            type="number"
+            placeholder="Masukkan no handphone"
+            v-model="formRegister.phone"
+          />
           <p>Kata sandi</p>
-          <input type="password" placeholder="Masukkan kata sandi" v-model="formRegister.password" />
+          <input
+            type="password"
+            placeholder="Masukkan kata sandi"
+            v-model="formRegister.password"
+          />
           <p>Konfirmasi kata sandi</p>
           <input
             type="password"
@@ -79,9 +95,17 @@
         </div>
         <div v-if="isRegist === true && isPt === true" class="registerPt">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegisterPt.name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegisterPt.name"
+          />
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat email" v-model="formRegisterPt.email" />
+          <input
+            type="email"
+            placeholder="Masukkan alamat email"
+            v-model="formRegisterPt.email"
+          />
           <p>Perusahaan</p>
           <input
             type="text"
@@ -95,7 +119,11 @@
             v-model="formRegisterPt.position"
           />
           <p>No handphone</p>
-          <input type="number" placeholder="Masukkan no handphone" v-model="formRegisterPt.phone" />
+          <input
+            type="number"
+            placeholder="Masukkan no handphone"
+            v-model="formRegisterPt.phone"
+          />
           <p>Kata sandi</p>
           <input
             type="password"
@@ -128,7 +156,7 @@
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Email</p>
         <input
-          v-if="isPt === false "
+          v-if="isPt === false"
           type="email"
           placeholder="Masukkan alamat emali pribadi"
           v-model="user_email"
@@ -244,7 +272,8 @@ export default {
           .then((result) => {
             alert(result.data.msg)
             console.log(result.data)
-            this.$router.push('/')
+            this.$router.push('/auth')
+            // this.$router.push('/auth#masuk')
           })
           .catch((error) => {
             this.msg = error.data.msg
@@ -256,7 +285,8 @@ export default {
           .then((result) => {
             alert(result.data.msg)
             console.log(result.data)
-            this.$router.push('/')
+            this.$router.push('/auth')
+            // this.$router.push('/auth#masuk')
           })
           .catch((error) => {
             this.msg = error.data.msg

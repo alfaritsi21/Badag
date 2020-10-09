@@ -75,7 +75,8 @@ export default {
         this.forgot(this.formReset)
           .then((result) => {
             alert(result.msg)
-            this.$router.push('/')
+            this.$router.push('/auth')
+            // this.$router.push('/auth#masuk')
           })
           .catch((error) => {
             alert(error)
@@ -85,7 +86,8 @@ export default {
         this.forgotPt(this.formResetPt)
           .then((result) => {
             alert(result.msg)
-            this.$router.push('/')
+            this.$router.push('/auth')
+            // this.$router.push('/auth#masuk')
           })
           .catch((error) => {
             alert(error)
