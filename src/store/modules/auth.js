@@ -34,21 +34,41 @@ export default {
   },
   actions: {
     userLoginData(context, payload) {
-      return new Promise((resolve, reject) => {
-        axios
-          .get(`${context.state.urlApi}users/${context.state.user.user_id}`)
-          .then(response => {
-            context.commit('setFullUserData', response.data.data)
-            resolve(response.data)
-          })
-          .catch(error => {
-            if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
-            } else {
-              reject(error.response)
-            }
-          })
-      })
+      if (context.state.isPt === false) {
+        return new Promise((resolve, reject) => {
+          axios
+            .get(`${context.state.urlApi}users/${context.state.user.user_id}`)
+            .then(response => {
+              context.commit('setFullUserData', response.data.data)
+              resolve(response.data)
+            })
+            .catch(error => {
+              if (error.response === undefined) {
+                alert('Tidak dapat terhubung ke server')
+              } else {
+                reject(error.response)
+              }
+            })
+        })
+      } else {
+        return new Promise((resolve, reject) => {
+          axios
+            .get(
+              `${context.state.urlApi}company/${context.state.user.company_id}`
+            )
+            .then(response => {
+              context.commit('setFullUserData', response.data.data)
+              resolve(response.data)
+            })
+            .catch(error => {
+              if (error.response === undefined) {
+                alert('Tidak dapat terhubung ke server')
+              } else {
+                reject(error.response)
+              }
+            })
+        })
+      }
     },
     login(context, payload) {
       return new Promise((resolve, reject) => {

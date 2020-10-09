@@ -56,7 +56,6 @@ export default {
           .then(response => {
             context.commit('setChatWorker', response.data.data)
             resolve(response.data.msg)
-            console.log(response.data.data)
           })
           .catch(error => {
             if (error.response === undefined) {
@@ -75,7 +74,6 @@ export default {
           .then(response => {
             context.commit('setChatCompany', response.data.data)
             resolve(response.data.msg)
-            console.log(response.data.data)
           })
           .catch(error => {
             if (error.response === undefined) {
