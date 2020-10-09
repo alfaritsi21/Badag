@@ -8,7 +8,7 @@
               <b-col cols="6" md="6" sm="6">
                 <img
                   src="../assets/logo.png"
-                  style="width:50px;margin-bottom:30px;"
+                  style="width: 50px; margin-bottom: 30px"
                 />
                 <span>ADAG</span>
               </b-col>
@@ -95,7 +95,7 @@
               <b-icon
                 class="icons"
                 icon="check-circle-fill"
-                style="color: #7952b3;"
+                style="color: #7952b3"
               ></b-icon
               >Sumber Daya Manusia Yang Berkualiatas
             </p>
@@ -103,7 +103,7 @@
               <b-icon
                 class="icons"
                 icon="check-circle-fill"
-                style="color: #7952b3;"
+                style="color: #7952b3"
               ></b-icon
               >Banyak Perusahaan Ternama
             </p>
@@ -111,7 +111,7 @@
               <b-icon
                 class="icons"
                 icon="check-circle-fill"
-                style="color: #7952b3;"
+                style="color: #7952b3"
               ></b-icon
               >Cepat, Simple, dan Progresif
             </p>
@@ -119,7 +119,7 @@
               <b-icon
                 class="icons"
                 icon="check-circle-fill"
-                style="color: #7952b3;"
+                style="color: #7952b3"
               ></b-icon
               >Dijamin Dapat Kerja
             </p>
@@ -272,13 +272,33 @@ export default {
     },
     onLogin(val) {
       this.userRole(val)
-      this.$router.push('/auth')
-      alert(`Anda akan login sebagai ${val}`)
+      this.makeToastLogin(val)
+      setTimeout(() => {
+        this.$router.push('/auth')
+      }, 1000)
+      // alert(`Anda akan login sebagai ${val}`)
     },
     onRegister(val) {
       this.userRoleRegist(val)
-      this.$router.push('/auth')
-      alert(`Anda akan register sebagai ${val}`)
+      this.makeToast(val)
+      setTimeout(() => {
+        this.$router.push('/auth')
+      }, 1000)
+      // alert(`Anda akan register sebagai ${val}`)
+    },
+    makeToast(variant = null, val) {
+      this.$bvToast.toast('Wellcome Back!', {
+        title: `Register ${variant || 'info'}`,
+        variant: 'info',
+        solid: true
+      })
+    },
+    makeToastLogin(variant = null, val) {
+      this.$bvToast.toast('Wellcome Back!', {
+        title: `Login ${variant || 'info'}`,
+        variant: 'info',
+        solid: true
+      })
     }
   }
 }

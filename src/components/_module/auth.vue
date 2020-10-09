@@ -223,6 +223,13 @@ export default {
       'checkForgotEmail'
     ]),
     ...mapMutations(['setTrigger']),
+    makeToast(variant = null, val) {
+      this.$bvToast.toast('Wellcome Back!', {
+        title: `Register ${variant || 'info'}`,
+        variant: 'info',
+        solid: true
+      })
+    },
     onRegist() {
       if (this.isPt === true) {
         this.setTrigger([true, true])
@@ -242,55 +249,117 @@ export default {
     onSubmit() {
       if (this.isRegist === false) {
         if (this.isPt === false) {
-          alert('login public')
+          // alert('login public')
           this.login(this.formLogin)
             .then(result => {
-              alert(result.msg)
-              console.log(result.data)
-              this.$router.push('/profile-portofolio')
+              // alert(result.msg)
+              // console.log(result.data)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: result.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              setTimeout(() => {
+                this.$router.push('/profile-portofolio')
+              }, 1000)
             })
             .catch(error => {
-              this.msg = error.data.msg
-              alert(this.msg)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: error.data.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              //   this.msg = error.data.msg
+              //   alert(this.msg)
             })
         } else {
-          alert('login company')
+          // alert('login company')
           this.loginPt(this.formLoginPt)
             .then(result => {
-              alert(result.msg)
-              console.log(result.data)
-              this.$router.push('/home')
+              // alert(result.msg)
+              // console.log(result)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: result.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              setTimeout(() => {
+                this.$router.push('/home')
+              }, 1000)
             })
             .catch(error => {
-              this.msg = error.data.msg
-              alert(this.msg)
+              // this.msg = error.data.msg
+              // alert(this.msg)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: error.data.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
             })
         }
       } else if (this.isRegist === true && this.isPt === false) {
-        alert('Register jobseeker')
+        // alert('Register jobseeker')
         this.register(this.formRegister)
           .then(result => {
-            alert(result.data.msg)
-            console.log(result.data)
-            this.$router.push('/auth')
-            // this.$router.push('/auth#masuk')
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: result.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 1000)
+            // alert(result.data.msg)
+            // console.log(result.data)
           })
           .catch(error => {
-            this.msg = error.data.msg
-            alert(this.msg)
+            // this.msg = error.data.msg
+            // alert(this.msg)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
       } else {
-        alert('Register perusahaan')
+        // alert('Register perusahaan')
         this.registerPt(this.formRegisterPt)
           .then(result => {
-            alert(result.data.msg)
-            console.log(result.data)
-            this.$router.push('/auth')
-            // this.$router.push('/auth#masuk')
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: result.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              this.$router.push('/')
+            })
+            // alert(result.data.msg)
+            // console.log(result.data)
           })
           .catch(error => {
-            this.msg = error.data.msg
-            alert(this.msg)
+            // this.msg = error.data.msg
+            // alert(this.msg)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
       }
     },

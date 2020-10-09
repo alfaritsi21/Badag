@@ -156,7 +156,8 @@ export default {
       }
     },
     logout(context, payload) {
-      alert('Anda akan dialihkan ke halaman login')
+      // alert('Anda akan dialihkan ke halaman login')
+      console.log(context.state.isOn)
       if (context.state.isOn === true) {
         router.push('/auth')
         localStorage.removeItem('token')
@@ -167,21 +168,21 @@ export default {
     },
     interceptorRequest(context) {
       axios.interceptors.request.use(
-        function(config) {
+        function (config) {
           config.headers.Authorization = `Bearer ${context.state.token}`
           return config
         },
-        function(error) {
+        function (error) {
           return Promise.reject(error)
         }
       )
     },
     interceptorResponse(context) {
       axios.interceptors.response.use(
-        function(response) {
+        function (response) {
           return response
         },
-        function(error) {
+        function (error) {
           if (error.response.status === 400) {
             if (
               error.response.data.msg === 'invalid token' ||

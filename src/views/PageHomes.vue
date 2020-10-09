@@ -58,11 +58,65 @@
             </b-col>
             <b-col cols="8" md="8" sm="8" class="detail-users">
               <h4>{{ item.user_name }}</h4>
+              <p>
+                {{ item.user_job }}
+                <span v-if="item.user_time_job === 0">(Freelance)</span>
+                <span v-if="item.user_time_job === 1">(Fulltime)</span>
+              </p>
               <p>{{ item.user_job }}</p>
               <p>
                 <b-icon icon="map"></b-icon>
                 {{ item.user_location }}
               </p>
+              <!-- <b-button class="btn-skill">{{ item.skills}}</b-button> -->
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[0]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[1]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[2]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[3]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[4]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[5]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[6]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[7]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[8]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[9]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[10]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[11]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[12]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[13]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[14]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[15]
+              }}</b-badge>
               <b-button class="btn-skill">{{ item.skills }}</b-button>
               <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
@@ -268,6 +322,7 @@ main {
   background: rgba(251, 176, 23, 0.6);
   border: 1px solid rgba(251, 176, 23, 0.6);
   margin-right: 10px;
+  padding: 10px 20px;
 }
 
 .main-home .content-searching .btn-lock-profile {
