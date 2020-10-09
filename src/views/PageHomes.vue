@@ -129,7 +129,6 @@ export default {
     ...mapActions(['getDataUsers', 'searcinghUsers', 'selectedDataWorker']),
     ...mapMutations(['changePage', 'sortUsers', 'searchUsers']),
     loadData() {
-      console.log(this.getFullUserData)
       if (
         this.getFullUserData.company_image === '' ||
         this.getFullUserData.company_place === null ||

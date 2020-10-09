@@ -244,24 +244,24 @@ export default {
         if (this.isPt === false) {
           alert('login public')
           this.login(this.formLogin)
-            .then((result) => {
+            .then(result => {
               alert(result.msg)
               console.log(result.data)
               this.$router.push('/profile-portofolio')
             })
-            .catch((error) => {
+            .catch(error => {
               this.msg = error.data.msg
               alert(this.msg)
             })
         } else {
           alert('login company')
           this.loginPt(this.formLoginPt)
-            .then((result) => {
+            .then(result => {
               alert(result.msg)
               console.log(result.data)
               this.$router.push('/home')
             })
-            .catch((error) => {
+            .catch(error => {
               this.msg = error.data.msg
               alert(this.msg)
             })
@@ -269,26 +269,26 @@ export default {
       } else if (this.isRegist === true && this.isPt === false) {
         alert('Register jobseeker')
         this.register(this.formRegister)
-          .then((result) => {
+          .then(result => {
             alert(result.data.msg)
             console.log(result.data)
             this.$router.push('/auth')
             // this.$router.push('/auth#masuk')
           })
-          .catch((error) => {
+          .catch(error => {
             this.msg = error.data.msg
             alert(this.msg)
           })
       } else {
         alert('Register perusahaan')
         this.registerPt(this.formRegisterPt)
-          .then((result) => {
+          .then(result => {
             alert(result.data.msg)
             console.log(result.data)
             this.$router.push('/auth')
             // this.$router.push('/auth#masuk')
           })
-          .catch((error) => {
+          .catch(error => {
             this.msg = error.data.msg
             alert(this.msg)
           })
@@ -736,5 +736,4 @@ export default {
   height: 100%;
 }
 </style>
-<style scoped src="../../assets/css/auth.css">
-</style>
+<style scoped src="../../assets/css/auth.css"></style>
