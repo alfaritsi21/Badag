@@ -57,13 +57,29 @@
         </div>
         <div v-if="isRegist === true && isPt === false" class="register">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegister.name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegister.name"
+          />
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat email" v-model="formRegister.email" />
+          <input
+            type="email"
+            placeholder="Masukkan alamat email"
+            v-model="formRegister.email"
+          />
           <p>No handphone</p>
-          <input type="number" placeholder="Masukkan no handphone" v-model="formRegister.phone" />
+          <input
+            type="number"
+            placeholder="Masukkan no handphone"
+            v-model="formRegister.phone"
+          />
           <p>Kata sandi</p>
-          <input type="password" placeholder="Masukkan kata sandi" v-model="formRegister.password" />
+          <input
+            type="password"
+            placeholder="Masukkan kata sandi"
+            v-model="formRegister.password"
+          />
           <p>Konfirmasi kata sandi</p>
           <input
             type="password"
@@ -79,9 +95,17 @@
         </div>
         <div v-if="isRegist === true && isPt === true" class="registerPt">
           <p>Nama</p>
-          <input type="text" placeholder="Masukkan nama panjang" v-model="formRegisterPt.name" />
+          <input
+            type="text"
+            placeholder="Masukkan nama panjang"
+            v-model="formRegisterPt.name"
+          />
           <p>Email</p>
-          <input type="email" placeholder="Masukkan alamat email" v-model="formRegisterPt.email" />
+          <input
+            type="email"
+            placeholder="Masukkan alamat email"
+            v-model="formRegisterPt.email"
+          />
           <p>Perusahaan</p>
           <input
             type="text"
@@ -95,7 +119,11 @@
             v-model="formRegisterPt.position"
           />
           <p>No handphone</p>
-          <input type="number" placeholder="Masukkan no handphone" v-model="formRegisterPt.phone" />
+          <input
+            type="number"
+            placeholder="Masukkan no handphone"
+            v-model="formRegisterPt.phone"
+          />
           <p>Kata sandi</p>
           <input
             type="password"
@@ -128,7 +156,7 @@
       <form class="resetForm" @submit.prevent="onSubmitReset">
         <p>Email</p>
         <input
-          v-if="isPt === false "
+          v-if="isPt === false"
           type="email"
           placeholder="Masukkan alamat emali pribadi"
           v-model="user_email"
@@ -195,6 +223,13 @@ export default {
       'checkForgotEmail'
     ]),
     ...mapMutations(['setTrigger']),
+    makeToast(variant = null, val) {
+      this.$bvToast.toast('Wellcome Back!', {
+        title: `Register ${variant || 'info'}`,
+        variant: 'info',
+        solid: true
+      })
+    },
     onRegist() {
       if (this.isPt === true) {
         this.setTrigger([true, true])
@@ -214,53 +249,117 @@ export default {
     onSubmit() {
       if (this.isRegist === false) {
         if (this.isPt === false) {
-          alert('login public')
+          // alert('login public')
           this.login(this.formLogin)
             .then((result) => {
-              alert(result.msg)
-              console.log(result.data)
-              this.$router.push('/profile-portofolio')
+              // alert(result.msg)
+              // console.log(result.data)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: result.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              setTimeout(() => {
+                this.$router.push('/profile-portofolio')
+              }, 1000)
             })
             .catch((error) => {
-              this.msg = error.data.msg
-              alert(this.msg)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: error.data.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              //   this.msg = error.data.msg
+              //   alert(this.msg)
             })
         } else {
-          alert('login company')
+          // alert('login company')
           this.loginPt(this.formLoginPt)
             .then((result) => {
-              alert(result.msg)
-              console.log(result.data)
-              this.$router.push('/home')
+              // alert(result.msg)
+              // console.log(result)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: result.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              setTimeout(() => {
+                this.$router.push('/home')
+              }, 1000)
             })
             .catch((error) => {
-              this.msg = error.data.msg
-              alert(this.msg)
+              // this.msg = error.data.msg
+              // alert(this.msg)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: error.data.msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
             })
         }
       } else if (this.isRegist === true && this.isPt === false) {
-        alert('Register jobseeker')
+        // alert('Register jobseeker')
         this.register(this.formRegister)
           .then((result) => {
-            alert(result.data.msg)
-            console.log(result.data)
-            this.$router.push('/')
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: result.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 1000)
+            // alert(result.data.msg)
+            // console.log(result.data)
           })
           .catch((error) => {
-            this.msg = error.data.msg
-            alert(this.msg)
+            // this.msg = error.data.msg
+            // alert(this.msg)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
       } else {
-        alert('Register perusahaan')
+        // alert('Register perusahaan')
         this.registerPt(this.formRegisterPt)
           .then((result) => {
-            alert(result.data.msg)
-            console.log(result.data)
-            this.$router.push('/')
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: result.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              this.$router.push('/')
+            })
+            // alert(result.data.msg)
+            // console.log(result.data)
           })
           .catch((error) => {
-            this.msg = error.data.msg
-            alert(this.msg)
+            // this.msg = error.data.msg
+            // alert(this.msg)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error.data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
       }
     },

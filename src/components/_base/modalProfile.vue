@@ -20,7 +20,23 @@ export default {
   methods: {
     ...mapActions(['logout']),
     onLogout() {
-      this.logout()
+      // this.logout()
+      this.$swal
+        .fire({
+          title: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Yes',
+          denyButtonText: 'Cancel'
+        })
+        .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.$swal.fire('See you again!', '', 'success')
+            this.logout()
+          }
+        })
     }
   }
 }

@@ -18,37 +18,116 @@
               v-on:keyup.enter="searching(form.skills)"
             />
             <b-icon icon="search"></b-icon>
-            <b-dropdown id="dropdown-1" text="Sort" right class="m-md-2 sorting" variant="outline">
-              <b-dropdown-item @click="sorting('name')">Sorting Berdasarkan Nama</b-dropdown-item>
-              <b-dropdown-item @click="sorting('skill')">Sorting Berdasarkan Skill</b-dropdown-item>
-              <b-dropdown-item @click="sorting('location')">Sorting Berdasarkan Lokasi</b-dropdown-item>
-              <b-dropdown-item @click="sorting('freelance')">Sorting Berdasarkan Freelance</b-dropdown-item>
-              <b-dropdown-item @click="sorting('fulltime')">Sorting Berdasarkan Fulltime</b-dropdown-item>
+            <b-dropdown
+              id="dropdown-1"
+              text="Sort"
+              right
+              class="m-md-2 sorting"
+              variant="outline"
+            >
+              <b-dropdown-item @click="sorting('name')"
+                >Sorting Berdasarkan Nama</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('skill')"
+                >Sorting Berdasarkan Skill</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('location')"
+                >Sorting Berdasarkan Lokasi</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('freelance')"
+                >Sorting Berdasarkan Freelance</b-dropdown-item
+              >
+              <b-dropdown-item @click="sorting('fulltime')"
+                >Sorting Berdasarkan Fulltime</b-dropdown-item
+              >
             </b-dropdown>
-            <b-button class="btn-search" @click="searching(form.skills)">Search</b-button>
+            <b-button class="btn-search" @click="searching(form.skills)"
+              >Search</b-button
+            >
           </div>
         </section>
 
         <section class="content-searching">
-          <b-row v-for="(item, index) in users" :key="index" class="detail-profile">
+          <b-row
+            v-for="(item, index) in users"
+            :key="index"
+            class="detail-profile"
+          >
             <b-col cols="4" md="2" sm="2">
               <img :src="urlAPI + item.user_image" />
             </b-col>
             <b-col cols="8" md="8" sm="8" class="detail-users">
-              <h4>{{item.user_name}}</h4>
-              <p>{{item.user_job}}</p>
+              <h4>{{ item.user_name }}</h4>
+              <p>
+                {{ item.user_job }}
+                <span v-if="item.user_time_job === 0">(Freelance)</span>
+                <span v-if="item.user_time_job === 1">(Fulltime)</span>
+              </p>
               <p>
                 <b-icon icon="map"></b-icon>
-                {{item.user_location}}
+                {{ item.user_location }}
               </p>
-              <b-button class="btn-skill">{{ item.skills}}</b-button>
+              <!-- <b-button class="btn-skill">{{ item.skills}}</b-button> -->
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[0]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[1]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[2]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[3]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[4]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[5]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[6]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[7]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[8]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[9]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[10]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[11]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[12]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[13]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[14]
+              }}</b-badge>
+              <b-badge class="btn-skill">{{
+                item.skills.split(',')[15]
+              }}</b-badge>
               <!-- <b-button class="btn-skill">{{ item.skills.split(',')}}</b-button> -->
             </b-col>
             <b-col cols="2" md="2" sm="2">
-              <b-button @click="onLihat(item)" class="btn-lock-profile">Lihat Profile</b-button>
+              <b-button @click="onLihat(item)" class="btn-lock-profile"
+                >Lihat Profile</b-button
+              >
             </b-col>
             <b-col cols="12" sm="12" md="12" lg="12">
-              <div :style="[index === 4 ? { borderBottom: 'none' } : null]" class="hr"></div>
+              <div
+                :style="[index === 4 ? { borderBottom: 'none' } : null]"
+                class="hr"
+              ></div>
             </b-col>
           </b-row>
         </section>
@@ -220,6 +299,7 @@ main {
   background: rgba(251, 176, 23, 0.6);
   border: 1px solid rgba(251, 176, 23, 0.6);
   margin-right: 10px;
+  padding: 10px 20px;
 }
 
 .main-home .content-searching .btn-lock-profile {
