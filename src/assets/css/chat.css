@@ -27,7 +27,6 @@
   position: absolute;
   left: 0;
   text-align: left;
-  z-index: 2;
   border-radius: 5px;
   box-shadow: 2px 3px 10px rgba(34, 34, 34, 0.582);
   z-index: 2;
@@ -256,8 +255,8 @@
     width: 25px;
   }
   .type input {
-  height: 40px;
-  width: 85%;
-  margin-right: 20px;
-}
+    height: 40px;
+    width: 85%;
+    margin-right: 20px;
+  }
 }
