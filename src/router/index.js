@@ -93,7 +93,7 @@ router.beforeEach((to, from, next) => {
     // if not, redirect to landing page.
     if (!store.getters.isLogin) {
       next({
-        path: '/'
+        path: '/auth'
       })
     } else {
       next()

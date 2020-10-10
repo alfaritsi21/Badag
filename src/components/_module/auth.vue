@@ -306,7 +306,7 @@ export default {
               timer: 1500
             })
             setTimeout(() => {
-              this.$router.push('/Auth#masuk')
+              this.$router.push('/')
             }, 1000)
           })
           .catch(error => {
@@ -329,7 +329,7 @@ export default {
               timer: 1500
             })
             setTimeout(() => {
-              this.$router.push('/Auth#masuk')
+              this.$router.push('/')
             })
           })
           .catch(error => {
