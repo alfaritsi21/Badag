@@ -7,16 +7,20 @@
           <b-col cols="4" md="4" sm="4">
             <div class="user-info">
               <div class="user-img">
-                <img v-bind:src="`${urlApi}${getWorkerProfile.image}`" alt class="profileImg" />
+                <img
+                  v-bind:src="`${urlApi}${getWorkerProfile.image}`"
+                  alt
+                  class="profileImg"
+                />
               </div>
-              <h2>{{getWorkerProfile.name}}</h2>
-              <h6>{{getWorkerProfile.job}}</h6>
+              <h2>{{ getWorkerProfile.name }}</h2>
+              <h6>{{ getWorkerProfile.job }}</h6>
               <div class="img-location">
                 <img src="../assets/img/pin.png" alt />
               </div>
-              <p>{{getWorkerProfile.place}}, Indonesia</p>
+              <p>{{ getWorkerProfile.place }}, Indonesia</p>
               <div class="deskripsi">
-                <p>{{getWorkerProfile.user_description}}</p>
+                <p>{{ getWorkerProfile.user_description }}</p>
               </div>
               <div class="skill">
                 <h2>Skill</h2>
@@ -24,14 +28,19 @@
                   class="btn-skill"
                   v-for="(item, index) in getWorkerProfile.skills"
                   :key="index"
-                >{{item}}</b-button>
+                  >{{ item }}</b-button
+                >
               </div>
             </div>
           </b-col>
           <b-col cols="8" md="8" sm="8">
             <div class="contact-hire">
-              <h2>Hubungi {{getWorkerProfile.name}}</h2>
-              <h6>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At repudiandae ut harum. Molestiae odio ad sed quod magnam, temporibus eaque.</h6>
+              <h2>Hubungi {{ getWorkerProfile.name }}</h2>
+              <h6>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. At
+                repudiandae ut harum. Molestiae odio ad sed quod magnam,
+                temporibus eaque.
+              </h6>
               <div class="form-hire">
                 <b-form @submit.prevent="submit">
                   <b-form-group
@@ -39,7 +48,11 @@
                     label="Tujuan tentang pesan ini"
                     label-for="input-1"
                   >
-                    <select class="custom-select" required v-model="form.jobType_id">
+                    <select
+                      class="custom-select"
+                      required
+                      v-model="form.jobType_id"
+                    >
                       <option selected disabled>Project</option>
                       <option value="1">Fulltime</option>
                       <option value="2">Partime</option>
@@ -47,7 +60,11 @@
                     </select>
                   </b-form-group>
 
-                  <b-form-group id="input-group-2" label="Nama Lengkap:" label-for="input-2">
+                  <b-form-group
+                    id="input-group-2"
+                    label="Nama Lengkap:"
+                    label-for="input-2"
+                  >
                     <b-form-input
                       id="input-2"
                       required
@@ -56,7 +73,11 @@
                     ></b-form-input>
                   </b-form-group>
 
-                  <b-form-group id="input-group-1" label="Email" label-for="input-1">
+                  <b-form-group
+                    id="input-group-1"
+                    label="Email"
+                    label-for="input-1"
+                  >
                     <b-form-input
                       id="input-1"
                       type="email"
@@ -66,7 +87,11 @@
                     ></b-form-input>
                   </b-form-group>
 
-                  <b-form-group id="input-group-3" label="No.Handphone" label-for="input-2">
+                  <b-form-group
+                    id="input-group-3"
+                    label="No.Handphone"
+                    label-for="input-2"
+                  >
                     <b-form-input
                       id="input-3"
                       type="number"
@@ -138,18 +163,48 @@ export default {
       this.form.company_id = this.userData.company_id
       this.form.user_id = this.getWorkerProfile.id
       if (this.form.user_id === undefined) {
-        alert('id pekerja tidak ditemukan')
+        // alert('id pekerja tidak ditemukan')
+        this.$swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'id pekerja tidak ditemukan',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } else {
         if (this.form.message.length < 15) {
-          alert('berikan pesan minimal 15 karakter')
+          // alert('berikan pesan minimal 15 karakter')
+          this.$swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'berikan pesan minimal 15 karakter',
+            showConfirmButton: false,
+            timer: 1500
+          })
         } else {
           this.sendHiringMessage(this.form)
             .then((result) => {
-              alert(result)
-              this.$router.push('/home')
+              // alert(result)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: result,
+                showConfirmButton: false,
+                timer: 1500
+              })
+              setTimeout(() => {
+                this.$router.push('/home')
+              }, 1000)
             })
             .catch((error) => {
-              alert(error)
+              // alert(error)
+              this.$swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: error,
+                showConfirmButton: false,
+                timer: 1500
+              })
             })
         }
       }

@@ -71,26 +71,58 @@ export default {
     ...mapActions(['forgot', 'forgotPt']),
     onSubmitReset() {
       if (this.isPt === false) {
-        alert('reset sebagai worker')
+        // alert('reset sebagai worker')
         this.forgot(this.formReset)
           .then((result) => {
-            alert(result.msg)
-            this.$router.push('/auth')
+            // alert(result.msg)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: result.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              this.$router.push('/auth')
+            }, 1000)
             // this.$router.push('/auth#masuk')
           })
           .catch((error) => {
-            alert(error)
+            // alert(error)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
       } else {
         alert('reset sebagai company')
         this.forgotPt(this.formResetPt)
           .then((result) => {
-            alert(result.msg)
-            this.$router.push('/auth')
+            // alert(result.msg)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: result.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              this.$router.push('/auth')
+            })
             // this.$router.push('/auth#masuk')
           })
           .catch((error) => {
-            alert(error)
+            // alert(error)
+            this.$swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: error,
+              showConfirmButton: false,
+              timer: 1500
+            })
           })
       }
     }

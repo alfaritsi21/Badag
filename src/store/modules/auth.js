@@ -1,5 +1,7 @@
 import axios from 'axios'
 import router from '../../router/index'
+import Swal from 'sweetalert2'
+
 export default {
   state: {
     urlApi: process.env.VUE_APP_URL,
@@ -44,7 +46,11 @@ export default {
             })
             .catch(error => {
               if (error.response === undefined) {
-                alert('Tidak dapat terhubung ke server')
+                Swal.fire(
+                  'Notice!',
+                  'Tidak dapat terhubung ke server',
+                  'error'
+                )
               } else {
                 reject(error.response)
               }
@@ -62,7 +68,11 @@ export default {
             })
             .catch(error => {
               if (error.response === undefined) {
-                alert('Tidak dapat terhubung ke server')
+                Swal.fire(
+                  'Notice!',
+                  'Tidak dapat terhubung ke server',
+                  'error'
+                )
               } else {
                 reject(error.response)
               }
@@ -82,7 +92,11 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response)
             }
@@ -101,7 +115,11 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response)
             }
@@ -118,7 +136,11 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response)
             }
@@ -134,7 +156,11 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response)
             }
@@ -191,12 +217,22 @@ export default {
               localStorage.removeItem('token')
               context.commit('delUser')
               router.push('/')
-              alert('Invalid Token, Relogin required')
+              // alert('Invalid Token, Relogin required')
+              Swal.fire(
+                'Notice!',
+                'Invalid Token, Relogin required',
+                'error'
+              )
             } else if (error.response.data.msg === 'jwt expired') {
               localStorage.removeItem('token')
               context.commit('delUser')
               router.push('/')
-              alert('Token Expired, Relogin required')
+              // alert('Token Expired, Relogin required')
+              Swal.fire(
+                'Notice!',
+                'Token Expired, Relogin required',
+                'error'
+              )
             }
           }
           return Promise.reject(error)
