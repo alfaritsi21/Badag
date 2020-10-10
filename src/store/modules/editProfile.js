@@ -47,17 +47,29 @@ export default {
         })
     },
     addSkills(context, payload) {
-      axios
-        .post(`${context.state.urlApi}skill`, payload)
-        .then(response => {
-          context.commit('setDataSkill', response.data.data)
-          //   resolve(response.data)
-          alert(response.data.msg)
-        })
-        .catch(error => {
-          //   reject(error.response.data.msg)
-          alert(error.response.data.msg)
-        })
+      return new Promise((resolve, reject) => {
+        axios
+          .post(`${context.state.urlApi}skill`, payload)
+          .then(response => {
+            context.commit('setDataSkill', response.data.data)
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response.data.msg)
+          })
+      })
+    },
+    deleteSkill(context, payload) {
+      return new Promise((resolve, reject) => {
+        axios
+          .delete(`${context.state.urlApi}skill/${payload[0]}/${payload[1]}`)
+          .then(response => {
+            resolve(response.data)
+          })
+          .catch(error => {
+            reject(error.response.data.msg)
+          })
+      })
     },
     addExperience(context, payload) {
       axios
