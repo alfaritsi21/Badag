@@ -27,7 +27,7 @@
     ></b-form-input>
     <div>
       <b-button block class="prime-button" @click="addBio">Simpan</b-button>
-      <b-button block class="cancel-button">Batal</b-button>
+      <b-button block class="cancel-button" @click="onBatal">Batal</b-button>
     </div>
   </div>
 </template>
@@ -90,6 +90,9 @@ export default {
       data.append('image', this.form.image)
       this.profilePicture([data, this.userData.user_id])
       // this.profilePicture([this.form.image, this.userData.user_id])
+    },
+    onBatal() {
+      this.$router.push('/profile-portofolio')
     }
   }
 }

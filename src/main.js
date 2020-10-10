@@ -13,6 +13,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Chartkick.use(Chart))
 Vue.use(VueSweetalert2)
+Vue.use(require('vue-moment'))
 
 Vue.config.productionTip = false
 

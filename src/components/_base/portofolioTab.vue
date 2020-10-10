@@ -24,7 +24,7 @@
             <div class="jobDesc">
               <p>{{item.position}}</p>
               <p>{{item.company}}</p>
-              <p>{{item.date}}- {{item.date}} 1 month</p>
+              <p>{{item.date | moment("MMMM Do YYYY")}}</p>
               <p>{{item.description}}</p>
             </div>
           </div>
@@ -55,7 +55,7 @@
             <div class="jobDesc">
               <p>{{item.position}}</p>
               <p>{{item.company}}</p>
-              <p>{{item.date}} s/d {{item.date_resign}}</p>
+              <p>{{item.date | moment("MMMM Do YYYY")}}</p>
               <p>{{item.description === "" ? 'belum ada deskripsi' : item.description}}</p>
             </div>
           </div>

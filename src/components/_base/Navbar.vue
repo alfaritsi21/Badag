@@ -17,7 +17,7 @@
               @click="onProfile"
             ></div>
             <div class="icons float-right">
-              <b-icon icon="bell"></b-icon>
+              <b-icon icon="bell" v-b-popover.hover.bottom="'Ada notifikasi baru, segera lihat !'"></b-icon>
               <b-icon icon="envelope" @click="onMail" class="mail"></b-icon>
             </div>
           </div>
@@ -41,7 +41,7 @@
               @click="onProfile"
             ></div>
             <div class="icons float-right">
-              <b-icon icon="bell"></b-icon>
+              <b-icon icon="bell" v-b-popover.hover.bottom="'Ada notifikasi baru, segera lihat !'"></b-icon>
               <b-icon icon="envelope" @click="onMail" class="mail"></b-icon>
             </div>
           </div>
