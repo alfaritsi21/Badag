@@ -32,8 +32,8 @@ Badag is a system website app for company to find the besst talent. And a system
 4. Add .env file at root folder project
 
 ```
-VUE_APP_URL = http://127.0.0.1:3001/
-VUE_APP_URL2 = https://badag-api.fwdev.online/
+VUE_APP_URL1 = http://127.0.0.1:3001/
+VUE_APP_URL = https://badag-api.fwdev.online/
 
 ```
 
