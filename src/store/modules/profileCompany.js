@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   state: {
@@ -27,11 +28,21 @@ export default {
           )
           .then(response => {
             context.commit('setDataCompany', response.data.data)
-            alert(response.data.msg)
+            // alert(response.data.msg)
+            Swal.fire(
+              'Notice!',
+              `${response.data.msg}`,
+              'success'
+            )
             resolve(response.data.msg)
           })
           .catch(error => {
-            alert(error.response.data.msg)
+            // alert(error.response.data.msg)
+            Swal.fire(
+              'Notice!',
+              `${error.response.data.msg}`,
+              'error'
+            )
             reject(error.response.data.msg)
             console.log(error.response.data.msg)
           })
@@ -49,11 +60,21 @@ export default {
         )
         .then(response => {
           //   resolve(response.data)
-          alert(response.data.msg)
+          // alert(response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${response.data.msg}`,
+            'success'
+          )
         })
         .catch(error => {
           //   reject(error.response.data.msg)
-          alert(error.response.data.msg)
+          // alert(error.response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${error.response.data.msg}`,
+            'error'
+          )
         })
     }
   },

@@ -20,7 +20,7 @@
     <p>{{dataCompany.company_position}}</p>
     <div>
       <b-button block class="prime-button" @click="addCom">Simpan</b-button>
-      <b-button block class="cancel-button">Batal</b-button>
+      <b-button block class="cancel-button" @click="onBatal">Batal</b-button>
     </div>
   </div>
 </template>
@@ -78,6 +78,9 @@ export default {
       const data = new FormData()
       data.append('image', this.form.image)
       this.pictureCompany([data, this.company.company_id])
+    },
+    onBatal() {
+      this.$router.push('/home')
     }
   }
 }

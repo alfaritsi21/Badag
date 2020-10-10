@@ -2,9 +2,13 @@
   <div>
     <div class="profile">
       <div class="content">
-        <h2 style="color:grey">Data Perusahaan</h2>
+        <h2 style="color: grey">Data Perusahaan</h2>
         <hr />
-        <b-form-group id="fieldset-1" label="Nama Perusahaan" label-for="input-1">
+        <b-form-group
+          id="fieldset-1"
+          label="Nama Perusahaan"
+          label-for="input-1"
+        >
           <b-form-input
             id="input-1"
             placeholder="Masukkan nama perusahaan"
@@ -34,7 +38,11 @@
             class="mb-2"
           ></b-form-input>
         </b-form-group>
-        <b-form-group id="fieldset-1" label="Deskripsi Singkat" label-for="input-1">
+        <b-form-group
+          id="fieldset-1"
+          label="Deskripsi Singkat"
+          label-for="input-1"
+        >
           <b-form-textarea
             id="textarea"
             placeholder="Tuliskan deskripsi singkat perusahaan"
@@ -42,7 +50,8 @@
             required
             max-rows="6"
             v-model="form.company_description"
-          >{{form.company_description}}</b-form-textarea>
+            >{{ form.company_description }}</b-form-textarea
+          >
         </b-form-group>
         <b-form-group id="fieldset-1" label="Email" label-for="input-1">
           <b-form-input
@@ -129,7 +138,14 @@ export default {
         this.form.company_phone.length < 1 ||
         this.form.company_linkedin.length < 1
       ) {
-        alert('all input field must be filled')
+        // alert('all input field must be filled')
+        this.$swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'all input field must be filled',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } else {
         this.addComForm(this.form)
       }
