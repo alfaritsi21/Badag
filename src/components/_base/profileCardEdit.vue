@@ -72,6 +72,7 @@ export default {
     },
     addBio() {
       this.addBiografi(this.userData.user_id)
+      this.userLoginData()
     },
     editImg() {
       if (this.isEdit === false) {
@@ -89,6 +90,7 @@ export default {
       const data = new FormData()
       data.append('image', this.form.image)
       this.profilePicture([data, this.userData.user_id])
+      this.userLoginData()
       // this.profilePicture([this.form.image, this.userData.user_id])
     },
     onBatal() {

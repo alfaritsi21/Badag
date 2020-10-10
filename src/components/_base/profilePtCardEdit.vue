@@ -65,6 +65,7 @@ export default {
     },
     addCom() {
       this.addCompany(this.company.company_id)
+      this.getDataCompany()
     },
     editImg() {
       if (this.isEdit === false) {
