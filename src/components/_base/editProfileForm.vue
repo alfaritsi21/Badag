@@ -2,10 +2,14 @@
   <div>
     <div class="profile">
       <div class="content">
-        <h2 style="color:grey">Data Diri</h2>
+        <h2 style="color: grey">Data Diri</h2>
         <hr />
         <form action>
-          <b-form-group id="fieldset-1" label="Nama Lengkap" label-for="input-1">
+          <b-form-group
+            id="fieldset-1"
+            label="Nama Lengkap"
+            label-for="input-1"
+          >
             <b-form-input
               id="input-1"
               placeholder="Masukkan Nama Lengkap"
@@ -32,7 +36,11 @@
               class="mb-2"
             ></b-form-input>
           </b-form-group>
-          <b-form-group id="fieldset-1" label="Tempat Kerja" label-for="input-1">
+          <b-form-group
+            id="fieldset-1"
+            label="Tempat Kerja"
+            label-for="input-1"
+          >
             <b-form-input
               id="input-1"
               placeholder="Masukkan Tempat Kerja"
@@ -41,7 +49,11 @@
               class="mb-2"
             ></b-form-input>
           </b-form-group>
-          <b-form-group id="fieldset-1" label="Deskripsi Singkat" label-for="input-1">
+          <b-form-group
+            id="fieldset-1"
+            label="Deskripsi Singkat"
+            label-for="input-1"
+          >
             <b-form-textarea
               id="textarea"
               v-model="form.user_description"
@@ -88,7 +100,14 @@ export default {
         this.form.user_work_location.length < 1 ||
         this.form.user_description.length < 1
       ) {
-        alert('all input field must be filled')
+        // alert('all input field must be filled')
+        this.$swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'all input field must be filled',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } else {
         if (this.getDataJobTime === 'freelance') {
           this.form.user_time_job = 0
@@ -97,9 +116,17 @@ export default {
           this.form.user_time_job = 1
           this.addBioForm(this.form)
         } else {
-          alert(
-            'invalid input (fulltime / freelance ?), masukan ulang input & gunakan huruf kecil'
-          )
+          // alert(
+          //   'invalid input (fulltime / freelance ?), masukan ulang input & gunakan huruf kecil'
+          // )
+          this.$swal.fire({
+            position: 'center',
+            icon: 'error',
+            title:
+              'invalid input (fulltime / freelance ?), masukan ulang input & gunakan huruf kecil',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
       }
     }

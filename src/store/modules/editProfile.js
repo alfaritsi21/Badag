@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 export default {
   state: {
     urlApi: process.env.VUE_APP_URL,
@@ -39,11 +41,21 @@ export default {
         .then(response => {
           context.commit('setDataBiografi', response.data.data)
           //   resolve(response.data)
-          alert(response.data.msg)
+          // alert(response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${response.data.msg}`,
+            'success'
+          )
         })
         .catch(error => {
           //   reject(error.response.data.msg)
-          alert(error.response.data.msg)
+          // alert(error.response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${error.response.data.msg}`,
+            'error'
+          )
         })
     },
     addSkills(context, payload) {
@@ -77,11 +89,21 @@ export default {
         .then(response => {
           context.commit('setDataExperience', response.data.data)
           //   resolve(response.data)
-          alert(response.data.msg)
+          // alert(response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${response.data.msg}`,
+            'success'
+          )
         })
         .catch(error => {
           //   reject(error.response.data.msg)
-          alert(error.response.data.msg)
+          // alert(error.response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${error.response.data.msg}`,
+            'error'
+          )
         })
     },
     addPortofolio(context, payload) {
@@ -90,11 +112,21 @@ export default {
         .then(response => {
           context.commit('setDataPortofolio', response.data.data)
           //   resolve(response.data)
-          alert(response.data.msg)
+          // alert(response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${response.data.msg}`,
+            'success'
+          )
         })
         .catch(error => {
           //   reject(error.response.data.msg)
-          alert(error.response.data.msg)
+          // alert(error.response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${error.response.data.msg}`,
+            'error'
+          )
         })
     },
     addBioForm(context, payload) {
@@ -109,11 +141,21 @@ export default {
         .patch(`${context.state.urlApi}users/${payload[1]}`, payload[0])
         .then(response => {
           //   resolve(response.data)
-          alert(response.data.msg)
+          // alert(response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${response.data.msg}`,
+            'success'
+          )
         })
         .catch(error => {
           //   reject(error.response.data.msg)
-          alert(error.response.data.msg)
+          // alert(error.response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${error.response.data.msg}`,
+            'error'
+          )
         })
     }
   },

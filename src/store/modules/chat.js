@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
 export default {
   state: {
     urlApi: process.env.VUE_APP_URL,
@@ -25,9 +27,14 @@ export default {
     sendMessage(context, payload) {
       axios
         .post(`${context.state.urlApi}chat/send`, payload)
-        .then(response => {})
+        .then(response => { })
         .catch(error => {
-          alert(error.response.data.msg)
+          // alert(error.response.data.msg)
+          Swal.fire(
+            'Notice!',
+            `${error.response.data.msg}`,
+            'error'
+          )
         })
     },
     chatRoom(context, payload) {
@@ -41,10 +48,20 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              // alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response.data.msg)
-              alert(error.response.data.msg)
+              // alert(error.response.data.msg)
+              Swal.fire(
+                'Notice!',
+                `${error.response.data.msg}`,
+                'error'
+              )
             }
           })
       })
@@ -59,10 +76,20 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              // alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response.data.msg)
-              alert(error.response.data.msg)
+              // alert(error.response.data.msg)
+              Swal.fire(
+                'Notice!',
+                `${error.response.data.msg}`,
+                'error'
+              )
             }
           })
       })
@@ -77,10 +104,20 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              // alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response.data.msg)
-              alert(error.response.data.msg)
+              // alert(error.response.data.msg)
+              Swal.fire(
+                'Notice!',
+                `${error.response.data.msg}`,
+                'error'
+              )
             }
           })
       })

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 export default {
   state: {
@@ -86,7 +87,12 @@ export default {
           })
           .catch(error => {
             if (error.response === undefined) {
-              alert('Tidak dapat terhubung ke server')
+              // alert('Tidak dapat terhubung ke server')
+              Swal.fire(
+                'Notice!',
+                'Tidak dapat terhubung ke server',
+                'error'
+              )
             } else {
               reject(error.response)
             }
